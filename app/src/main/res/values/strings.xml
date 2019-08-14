@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WanAndroid-Kotlin</string>
+    <string name="home">首页</string>
+    <string name="project">项目</string>
+    <string name="system">体系</string>
+    <string name="mine">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="please_input_search_content">请输入搜索内容</string>
+</resources>

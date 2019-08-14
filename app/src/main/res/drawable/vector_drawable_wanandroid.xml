@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+        android:viewportWidth="100"
+        android:viewportHeight="100"
+        android:width="100dp"
+        android:height="100dp">
+
+    <path android:name="wan"
+          android:strokeWidth="16"
+          android:strokeLineCap="round"
+          android:strokeLineJoin="round"
+          android:strokeColor="#ff008fff"
+          android:pathData="M90,8
+                            L50,8
+                            A42 42 0 1 0 50 92
+                            L90,92
+                            A100 100 0 0 1 90 8
+                            M80,50
+                            L50,50
+                            ">
+    </path>
+
+
+</vector>
