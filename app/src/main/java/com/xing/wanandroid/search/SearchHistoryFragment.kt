@@ -1,6 +1,7 @@
 package com.xing.wanandroid.search
 
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -8,6 +9,7 @@ import android.util.Log
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.TextView
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
@@ -27,6 +29,7 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
     private var recyclerView: RecyclerView? = null
     private var searchHotsList = arrayListOf<SearchHot>()
     private lateinit var flowLayout: FlowLayout<SearchHot>
+    private lateinit var onSearchTextListener: OnSearchTextListener
 
     override fun getLayoutResId(): Int {
         return R.layout.fragment_search_history
@@ -59,10 +62,16 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
             override fun getView(position: Int, t: SearchHot, parent: ViewGroup): View {
                 val textView = TextView(mContext)
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16f)
-//                textView.setBackgroundResource(R.drawable.shape_search_history_bg)
+                textView.setBackgroundResource(R.drawable.shape_search_history_bg)
                 textView.text = t.name
                 textView.setTextColor(resources.getColor(R.color.black_333))
                 return textView
+            }
+        })
+        flowLayout.setOnItemClickListener(object : FlowLayout.OnItemClickListener<SearchHot> {
+            override fun onItemClick(position: Int, adapter: FlowAdapter<SearchHot>, parent: FlowLayout<SearchHot>) {
+                onSearchTextListener.onSearchText(adapter.getItem(position).name)
+
             }
         })
     }
@@ -76,6 +85,11 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
     override fun onSearchHistory() {
     }
 
+    override fun onAttach(activity: Activity) {
+        super.onAttach(activity)
+        onSearchTextListener = activity as OnSearchTextListener
+    }
+
 
     companion object {
         @JvmStatic
@@ -86,5 +100,7 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
             }
     }
 
-
+    interface OnSearchTextListener {
+        fun onSearchText(text: String)
+    }
 }

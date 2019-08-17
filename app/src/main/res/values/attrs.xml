@@ -7,4 +7,9 @@
         </attr>
         <attr name="radius" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="horizontalMargin" format="dimension"/>
+        <attr name="verticalMargin" format="dimension"/>
+    </declare-styleable>
 </resources>

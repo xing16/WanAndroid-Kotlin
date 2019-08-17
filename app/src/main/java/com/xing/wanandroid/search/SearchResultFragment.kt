@@ -1,55 +1,75 @@
 package com.xing.wanandroid.search
 
 import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.view.ViewGroup
 import com.xing.wanandroid.R
+import com.xing.wanandroid.base.mvp.BaseMVPFragment
+import com.xing.wanandroid.search.adapter.SearchResultAdapter
+import com.xing.wanandroid.search.bean.SearchResultResponse
+import com.xing.wanandroid.search.contract.SearchResultContract
+import com.xing.wanandroid.search.presenter.SearchResultPresenter
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val KEY_WORD = "key_word"
 
 /**
  * 搜索结果
  */
-class SearchResultFragment : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
+class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchResultPresenter>(),
+    SearchResultContract.View {
+
+
+    private var recyclerView: RecyclerView? = null
+    private var page: Int = 0
+    private lateinit var searchResultAdapter: SearchResultAdapter
+
+    override fun createPresenter(): SearchResultPresenter {
+        return SearchResultPresenter()
+    }
+
+    override fun initView(rootView: View?, savedInstanceState: Bundle?) {
+        recyclerView = rootView?.findViewById(R.id.rv_search_result)
+    }
+
+    override fun initData() {
+        super.initData()
+        recyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
+        searchResultAdapter = SearchResultAdapter(R.layout.item_search_result)
+        recyclerView?.adapter = searchResultAdapter
+        presenter.getSearchResult(0, keyword ?: "")
+    }
+
+    override fun getLayoutResId(): Int {
+        return R.layout.fragment_search_result
+    }
+
+    override fun onSearchResult(response: SearchResultResponse) {
+        searchResultAdapter.setNewData(response.datas)
+    }
+
+
+    override fun showLoading() {
+    }
+
+    override fun dismissLoading() {
+    }
+
+    private var keyword: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            keyword = it.getString(KEY_WORD)
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_result, container, false)
-    }
-
-
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SearchResultFragment.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(keyword: String) =
             SearchResultFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(KEY_WORD, keyword)
                 }
             }
     }

@@ -8,4 +8,5 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="please_input_search_content">请输入搜索内容</string>
+    <string name="search">搜索</string>
 </resources>

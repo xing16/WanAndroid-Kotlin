@@ -5,18 +5,30 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import com.xing.wanandroid.R
 
 class FlowLayout<T> : ViewGroup {
 
-    private var horizontalMargin = 20
-    private var verticalMargin = 20
+    private var horizontalMargin: Int = 20
+    private var verticalMargin: Int = 0
     private lateinit var adapter: FlowAdapter<T>
 
     private var childPositions = mutableListOf<FlowChildPosition>()
 
     constructor(context: Context) : super(context)
 
-    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
+        readAttrs(context, attributeSet)
+    }
+
+    private fun readAttrs(context: Context, attributeSet: AttributeSet) {
+        val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.FlowLayout)
+        horizontalMargin = typedArray.getDimension(R.styleable.FlowLayout_horizontalMargin, 30f).toInt()
+        verticalMargin = typedArray.getDimension(R.styleable.FlowLayout_verticalMargin, 30f).toInt()
+        typedArray.recycle()
+    }
+
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
@@ -58,7 +70,7 @@ class FlowLayout<T> : ViewGroup {
                 width = Math.max(width, lineWidth)
                 lineHeight = Math.max(lineHeight, childViewHeight)
             } else {   // 换行
-                height += lineHeight + verticalMargin
+                height += (lineHeight + verticalMargin)
                 childPositions.add(
                     FlowChildPosition(
                         paddingLeft,
@@ -73,9 +85,9 @@ class FlowLayout<T> : ViewGroup {
             }
         }
         val finalWidth =
-            if (widthMode == MeasureSpec.EXACTLY) widthSize else paddingLeft + paddingRight + width - horizontalMargin
+            if (widthMode == MeasureSpec.EXACTLY) widthSize else (paddingLeft + paddingRight + width - horizontalMargin)
         val finalHeight =
-            if (heightMode == MeasureSpec.EXACTLY) heightSize else lineHeight + height + paddingTop + paddingBottom
+            if (heightMode == MeasureSpec.EXACTLY) heightSize else (lineHeight + height + paddingTop + paddingBottom)
         setMeasuredDimension(finalWidth, finalHeight)
     }
 
@@ -88,7 +100,7 @@ class FlowLayout<T> : ViewGroup {
                 }
                 val childView = getChildAt(i)
                 val childPosition = childPositions[i]
-                childView.layout(childPosition.left, childPosition.right, childPosition.top, childPosition.bottom)
+                childView.layout(childPosition.left, childPosition.top, childPosition.right, childPosition.bottom)
             }
         }
     }
@@ -109,6 +121,10 @@ class FlowLayout<T> : ViewGroup {
 
     interface OnItemClickListener<T> {
         fun onItemClick(position: Int, adapter: FlowAdapter<T>, parent: FlowLayout<T>)
+    }
+
+    fun setOnItemClickListener(onItemClickListener: FlowLayout.OnItemClickListener<T>) {
+        this.listener = onItemClickListener
     }
 
     override fun generateLayoutParams(attrs: AttributeSet?): LayoutParams {

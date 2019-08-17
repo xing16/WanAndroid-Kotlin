@@ -7,10 +7,10 @@ import com.xing.wanandroid.home.bean.HomeRecommend
 import com.xing.wanandroid.home.bean.HomeResponse
 import com.xing.wanandroid.project.bean.ProjectResponse
 import com.xing.wanandroid.search.bean.SearchHot
+import com.xing.wanandroid.search.bean.SearchResult
+import com.xing.wanandroid.search.bean.SearchResultResponse
 import io.reactivex.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
 
@@ -30,6 +30,10 @@ interface ApiService {
 
     @GET("hotkey/json")
     fun getSearchHot(): Observable<BaseResponse<ArrayList<SearchHot>>>
+
+    @POST("article/query/{page}/json")
+    @FormUrlEncoded
+    fun getSearchResult(@Path("page") page: Int, @Field("k") keyword: String): Observable<BaseResponse<SearchResultResponse>>
 
 
 }
