@@ -5,6 +5,7 @@ import android.graphics.Bitmap
 import android.os.Build
 import android.util.AttributeSet
 import android.view.ViewGroup
+import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -12,6 +13,7 @@ import android.webkit.WebViewClient
 class ProgressWebView : WebView {
 
     private lateinit var webProgressBar: WebProgressBar
+    private lateinit var onWebViewCallback: OnWebViewCallback
 
     constructor(context: Context) : super(context)
 
@@ -21,6 +23,8 @@ class ProgressWebView : WebView {
     init {
         initWebSettings()
         initProgressBar()
+        webViewClient = MyWebViewClient()
+        webChromeClient = MyWebViewChromeClient()
     }
 
 
@@ -43,6 +47,7 @@ class ProgressWebView : WebView {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             settings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         }
+
     }
 
     private fun initProgressBar() {
@@ -61,18 +66,28 @@ class ProgressWebView : WebView {
 
         override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
             super.onPageStarted(view, url, favicon)
-
+            onWebViewCallback.onPageStarted(view, url, favicon)
         }
     }
 
+    inner class MyWebViewChromeClient : WebChromeClient() {
 
+        override fun onReceivedTitle(view: WebView?, title: String?) {
+            super.onReceivedTitle(view, title)
+            onWebViewCallback.onReceivedTitle(view, title)
+        }
+    }
+
+    fun setWebViewCallback(onWebViewCallback: OnWebViewCallback) {
+        this.onWebViewCallback = onWebViewCallback
+    }
 
     interface OnWebViewCallback {
         fun onProgressChanged(view: WebView, newProgress: Int)
 
-        fun onReceivedTitle(view: WebView, title: String)
+        fun onReceivedTitle(view: WebView?, title: String?)
 
-        fun onPageStarted(view: WebView, url: String, favicon: Bitmap)
+        fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?)
 
         fun onPageFinished(view: WebView, url: String)
 
@@ -84,7 +99,6 @@ class ProgressWebView : WebView {
          * 页面加载完成,不使用 onPageFinish() 因为 onPageFinish() 会被回调两次
          */
         fun onPageLoadComplete()
-
 
     }
 

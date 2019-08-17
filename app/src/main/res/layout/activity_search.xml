@@ -23,6 +23,7 @@
 
         <EditText android:layout_width="match_parent"
                   android:hint="@string/please_input_search_content"
+                  android:maxLines="1"
                   android:imeOptions="actionSearch"
                   android:layout_height="wrap_content"/>
 

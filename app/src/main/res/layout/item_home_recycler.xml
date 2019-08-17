@@ -10,7 +10,7 @@
               android:layout_height="wrap_content">
 
     <TextView
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:lineSpacingExtra="3dp"
             android:textColor="@color/colorFont"
             tools:text="基于 wanandroid.com 开发的 MVP + Retrofit2 + RxJava2 +okhttp3 开发的 Android APP"
@@ -27,11 +27,13 @@
                 tools:text="xing"
                 android:layout_width="wrap_content"
                 android:id="@+id/tv_home_author"
+                android:textSize="14sp"
                 android:layout_height="wrap_content"/>
 
 
         <TextView
                 tools:text="2019-09"
+                android:textSize="14sp"
                 android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:id="@+id/tv_home_public_time"
@@ -40,6 +42,7 @@
         <TextView
                 tools:text="项目/recyclerview"
                 android:layout_marginLeft="20dp"
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:id="@+id/tv_home_category"
                 android:layout_height="wrap_content"/>

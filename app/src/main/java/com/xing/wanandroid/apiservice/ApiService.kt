@@ -6,6 +6,7 @@ import com.xing.wanandroid.home.bean.Banner
 import com.xing.wanandroid.home.bean.HomeRecommend
 import com.xing.wanandroid.home.bean.HomeResponse
 import com.xing.wanandroid.project.bean.ProjectResponse
+import com.xing.wanandroid.search.bean.SearchHot
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -25,6 +26,10 @@ interface ApiService {
 
     @GET("article/list/{page}/json")
     fun getHomeRecommend(@Path("page") page: Int): Observable<BaseResponse<HomeResponse>>
+
+
+    @GET("hotkey/json")
+    fun getSearchHot(): Observable<BaseResponse<ArrayList<SearchHot>>>
 
 
 }

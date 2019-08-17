@@ -9,4 +9,7 @@
     <color name="colorFontDark">#5c5c5c</color>
     <color name="colorGray">#666666</color>
     <color name="gray_ea">#eaeaea</color>
+    <color name="white_aaa">#ffaaaaaa</color>
+    <color name="white_f4f5f6">#fff4f5f6</color>
+    <color name="black_333">#ff333333</color>
 </resources>

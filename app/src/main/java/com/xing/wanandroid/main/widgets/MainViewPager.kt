@@ -18,12 +18,21 @@ class MainViewPager : ViewPager {
      * @return
      */
     override fun onInterceptTouchEvent(ev: MotionEvent?): Boolean {
-        when (ev?.action) {
+        val downX = ev!!.x
+        val downY = ev.y
+        when (ev.action) {
             MotionEvent.ACTION_DOWN, MotionEvent.ACTION_UP -> {
                 super.onInterceptTouchEvent(ev)
                 return false
             }
+            MotionEvent.ACTION_MOVE -> {
+                if (Math.abs(ev.x - downX) > Math.abs(ev.y - downY)) {
+                    return true
+                }
+                return false
+
+            }
         }
-        return true
+        return false
     }
 }

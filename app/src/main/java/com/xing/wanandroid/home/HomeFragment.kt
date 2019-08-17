@@ -7,9 +7,11 @@ import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import butterknife.OnItemClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.home.adapter.HomeRecyclerAdapter
@@ -17,6 +19,8 @@ import com.xing.wanandroid.home.bean.HomeRecommend
 import com.xing.wanandroid.home.bean.HomeResponse
 import com.xing.wanandroid.project.contract.HomeContract
 import com.xing.wanandroid.project.presenter.HomePresenter
+import com.xing.wanandroid.utils.gotoActivity
+import com.xing.wanandroid.web.WebViewActivity
 import com.youth.banner.Banner
 import com.youth.banner.loader.ImageLoader
 import kotlin.math.round
@@ -31,6 +35,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
     private var recyclerView: RecyclerView? = null
     private lateinit var headerView: View
     private var page: Int = 0
+    private var dataList: MutableList<HomeRecommend> = mutableListOf()
 
     override fun getLayoutResId(): Int {
         return R.layout.fragment_home
@@ -50,8 +55,19 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         super.initData()
         recyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         adapter = HomeRecyclerAdapter(R.layout.item_home_recycler)
-        recyclerView?.adapter = adapter
+
         adapter.addHeaderView(headerView)
+        // recyclerview 点击监听
+        adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
+            val bundle: Bundle = Bundle()
+            bundle.putString(WebViewActivity.URL, dataList.get(position).link)
+            gotoActivity(
+                activity!!,
+                WebViewActivity().javaClass,
+                bundle
+            )
+        }
+        recyclerView?.adapter = adapter
 
         presenter.getBanner()
 
@@ -79,8 +95,8 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
     }
 
     override fun onRecommend(response: HomeResponse) {
-        Log.e("debug", "size = ${response.datas.size}")
-        adapter.setNewData(response.datas)
+        dataList.addAll(response.datas)
+        adapter.setNewData(dataList)
     }
 
 
@@ -98,6 +114,5 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
     companion object {
         @JvmStatic
         fun newInstance() = HomeFragment()
-
     }
 }

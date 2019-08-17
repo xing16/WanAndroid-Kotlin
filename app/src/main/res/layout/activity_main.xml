@@ -8,6 +8,7 @@
 
     <RelativeLayout android:layout_width="match_parent"
                     android:paddingLeft="15dp"
+                    android:background="@android:color/white"
                     android:paddingRight="15dp"
                     android:layout_height="50dp">
 
@@ -32,8 +33,8 @@
                 app:tabMode="fixed"
                 app:tabIndicator="@null"
                 app:tabRippleColor="@android:color/transparent"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 app:tabIndicatorFullWidth="false"
                 app:tabTextColor="@color/colorFontDark"
                 android:layout_toRightOf="@id/iv_main_menu"
@@ -44,7 +45,6 @@
                 android:layout_height="match_parent">
 
         </android.support.design.widget.TabLayout>
-
 
     </RelativeLayout>
 
