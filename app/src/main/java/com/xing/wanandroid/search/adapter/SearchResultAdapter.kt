@@ -12,7 +12,7 @@ class SearchResultAdapter(layoutRes: Int) : BaseQuickAdapter<SearchResult, BaseV
         helper?.setText(R.id.tv_search_result_title, item?.title)
             ?.setText(R.id.tv_search_result_author, item?.author)
             ?.setText(R.id.tv_search_result_date, item?.niceDate)
-            ?.setVisible(R.id.iv_search_result_image, !TextUtils.isEmpty(item?.envelopePic))
+            ?.setGone(R.id.iv_search_result_image, !TextUtils.isEmpty(item?.envelopePic))
         Glide.with(mContext).load(item?.envelopePic).into(helper!!.getView(R.id.iv_search_result_image))
     }
 

@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.search.adapter.SearchResultAdapter
+import com.xing.wanandroid.search.bean.SearchResult
 import com.xing.wanandroid.search.bean.SearchResultResponse
 import com.xing.wanandroid.search.contract.SearchResultContract
 import com.xing.wanandroid.search.presenter.SearchResultPresenter
+import com.xing.wanandroid.utils.gotoActivity
+import com.xing.wanandroid.web.WebViewActivity
 
 private const val KEY_WORD = "key_word"
 
@@ -23,6 +27,7 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
     private var recyclerView: RecyclerView? = null
     private var page: Int = 0
     private lateinit var searchResultAdapter: SearchResultAdapter
+    private var dataList: ArrayList<SearchResult> = ArrayList()
 
     override fun createPresenter(): SearchResultPresenter {
         return SearchResultPresenter()
@@ -36,6 +41,11 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
         super.initData()
         recyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         searchResultAdapter = SearchResultAdapter(R.layout.item_search_result)
+        searchResultAdapter.setOnItemClickListener { adapter, view, position ->
+            var bundle = Bundle()
+            bundle.putString(WebViewActivity.URL, dataList[position].link)
+            gotoActivity(activity!!, WebViewActivity().javaClass, bundle)
+        }
         recyclerView?.adapter = searchResultAdapter
         presenter.getSearchResult(0, keyword ?: "")
     }
@@ -45,7 +55,8 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
     }
 
     override fun onSearchResult(response: SearchResultResponse) {
-        searchResultAdapter.setNewData(response.datas)
+        dataList.addAll(response.datas)
+        searchResultAdapter.setNewData(dataList)
     }
 
 

@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               xmlns:tools="http://schemas.android.com/tools"
               android:orientation="horizontal"
               android:paddingLeft="15dp"
               android:paddingRight="15dp"
-              android:paddingBottom="6dp"
-              android:paddingTop="6dp"
+              android:paddingBottom="10dp"
+              android:paddingTop="10dp"
               android:layout_width="match_parent"
-              android:layout_height="100dp">
+              android:layout_height="wrap_content">
 
-    <ImageView
+    <com.xing.wanandroid.widget.RoundImageView
             tools:src="@drawable/dog"
+            app:shape="rectangle"
+            app:radius="6dp"
             android:id="@+id/iv_search_result_image"
+            android:scaleType="centerCrop"
             android:layout_width="120dp"
             android:layout_height="80dp"/>
 
 
     <RelativeLayout android:layout_width="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:orientation="vertical"
                     android:layout_height="wrap_content">
 
         <TextView
-                tools:text="casdcasdcasdc"
+                tools:text="你真的会用RxJava嘛"
                 android:textColor="@color/colorFont"
                 android:textSize="16sp"
                 android:maxLines="2"
@@ -30,17 +35,19 @@
                 android:layout_height="wrap_content"/>
 
         <LinearLayout android:layout_width="match_parent"
-                      android:layout_alignParentBottom="true"
+                      android:layout_marginTop="10dp"
+                      android:layout_below="@id/tv_search_result_title"
                       android:orientation="horizontal"
                       android:layout_height="wrap_content">
 
-
             <TextView
+                    tools:text="xing16"
                     android:id="@+id/tv_search_result_author"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
             <TextView
+                    android:text="2019-09"
                     android:layout_marginLeft="20dp"
                     android:id="@+id/tv_search_result_date"
                     android:layout_width="wrap_content"

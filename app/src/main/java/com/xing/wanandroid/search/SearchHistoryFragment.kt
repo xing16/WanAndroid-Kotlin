@@ -14,6 +14,7 @@ import android.widget.TextView
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.search.adapter.SearchHistoryAdapter
+import com.xing.wanandroid.search.bean.SearchHistory
 import com.xing.wanandroid.search.bean.SearchHot
 import com.xing.wanandroid.search.contract.SearchHistoryContract
 import com.xing.wanandroid.search.presenter.SearchHistoryPresenter
@@ -52,7 +53,10 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
 
     override fun initData() {
         super.initData()
+        // 获取搜索热门
         presenter.getSearchHot()
+        // 获取搜索历史
+        presenter.getSearchHistory()
     }
 
     override fun onSearchHot(searchHots: ArrayList<SearchHot>) {
@@ -82,8 +86,9 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
     override fun dismissLoading() {
     }
 
-    override fun onSearchHistory() {
+    override fun onSearchHistory(searchHistory: ArrayList<SearchHistory>) {
     }
+
 
     override fun onAttach(activity: Activity) {
         super.onAttach(activity)

@@ -3,11 +3,10 @@ package com.xing.wanandroid.apiservice
 import com.xing.wanandroid.base.BaseResponse
 import com.xing.wanandroid.bean.ProjectTab
 import com.xing.wanandroid.home.bean.Banner
-import com.xing.wanandroid.home.bean.HomeRecommend
 import com.xing.wanandroid.home.bean.HomeResponse
+import com.xing.wanandroid.meizi.bean.Meizi
 import com.xing.wanandroid.project.bean.ProjectResponse
 import com.xing.wanandroid.search.bean.SearchHot
-import com.xing.wanandroid.search.bean.SearchResult
 import com.xing.wanandroid.search.bean.SearchResultResponse
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -34,6 +33,9 @@ interface ApiService {
     @POST("article/query/{page}/json")
     @FormUrlEncoded
     fun getSearchResult(@Path("page") page: Int, @Field("k") keyword: String): Observable<BaseResponse<SearchResultResponse>>
+
+    @GET("http://gank.io/api/data/福利/{pageSize}/{page}")
+    fun getMeiziList(@Path("pageSize") pageSize: Int, @Path("page") page: Int): Observable<BaseResponse<List<Meizi>>>
 
 
 }

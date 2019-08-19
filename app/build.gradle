@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'org.greenrobot.greendao' // apply plugin
+
 android {
     compileSdkVersion rootProject.ext.android.compileSdkVersion
     buildToolsVersion rootProject.ext.android.buildToolsVersion
@@ -12,6 +14,9 @@ android {
         targetSdkVersion rootProject.ext.android.targetSdkVersion
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
+
+        renderscriptTargetApi 19
+        renderscriptSupportModeEnabled true
 
         javaCompileOptions {
             annotationProcessorOptions {
@@ -62,7 +67,6 @@ dependencies {
     api rootProject.ext.dependencies['recycler-adapter-helper']
     api rootProject.ext.dependencies['glide']
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:support-v4:28.0.0'
     annotationProcessor rootProject.ext.dependencies['glide-compiler']
 
     // butterknife

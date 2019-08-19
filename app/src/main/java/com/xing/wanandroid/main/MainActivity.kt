@@ -1,6 +1,13 @@
 package com.xing.wanandroid.main
 
+import android.app.Activity
+import android.graphics.BitmapFactory
+import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
+import android.support.v4.widget.DrawerLayout
+import android.util.Log
+import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -10,10 +17,12 @@ import com.xing.wanandroid.base.BaseActivity
 import com.xing.wanandroid.bean.FragmentItem
 import com.xing.wanandroid.home.HomeFragment
 import com.xing.wanandroid.main.widgets.MainViewPager
+import com.xing.wanandroid.meizi.MeiziActivity
 import com.xing.wanandroid.project.ProjectFragment
 import com.xing.wanandroid.project.ProjectPageFragment
 import com.xing.wanandroid.search.SearchActivity
 import com.xing.wanandroid.system.SystemFragment
+import com.xing.wanandroid.utils.blur
 import com.xing.wanandroid.utils.gotoActivity
 
 class MainActivity : BaseActivity(), View.OnClickListener {
@@ -23,16 +32,46 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private lateinit var mainTabLayout: TabLayout
     private lateinit var mainViewPager: MainViewPager
     private lateinit var mAdapter: MainViewPageAdapter
+    private lateinit var navigationView: NavigationView
+    private lateinit var drawerLayout: DrawerLayout
+    private lateinit var avatarBackground: ImageView
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
     }
 
     override fun initView() {
+        drawerLayout = findViewById(R.id.dl_drawer_layout)
+        navigationView = findViewById(R.id.nv_left_navigation)
+        val headerView: View = navigationView.getHeaderView(0)
+        avatarBackground = headerView.findViewById(R.id.iv_avatar_background)
         mainMenu = findViewById(R.id.iv_main_menu)
         mainSearch = findViewById(R.id.iv_main_search)
         mainTabLayout = findViewById(R.id.tl_main_tab)
         mainViewPager = findViewById(R.id.vp_main_pager)
+
+        mainMenu.setOnClickListener {
+            openNavigationView()
+        }
+
+        navigationView.setNavigationItemSelectedListener { item ->
+            Log.e("debug", "dcasdcasdc")
+            when (item.itemId) {
+                R.id.item_happy_minute -> {
+                    gotoActivity(context as Activity, MeiziActivity().javaClass)
+                    drawerLayout.closeDrawer(Gravity.LEFT)
+                }
+            }
+            true
+        }
+
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.dog)
+        avatarBackground.setImageBitmap(blur(context, bitmap, 18))
+
+    }
+
+    private fun openNavigationView() {
+        drawerLayout.openDrawer(Gravity.LEFT)
     }
 
     override fun initData() {
@@ -91,6 +130,4 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private fun gotoSearchActivity() {
         gotoActivity(this, SearchActivity().javaClass)
     }
-
-
 }

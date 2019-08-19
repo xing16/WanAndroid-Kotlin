@@ -23,6 +23,14 @@ class SearchHistoryPresenter : BasePresenter<SearchHistoryContract.View>(), Sear
         })
     }
 
+    override fun addSearchHistory(keyword: String) {
+
+    }
+
+
+    /**
+     * 搜索历史
+     */
     override fun getSearchHistory() {
 
     }

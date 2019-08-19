@@ -1,3 +1,9 @@
 package com.xing.wanandroid.base
 
-data class BaseResponse<T>(var errCode: Int, var errMsg: String, var data: T)
+data class BaseResponse<T>(
+    var data: T,
+    var results: T,
+    val errMsg: String? = null,
+    var errCode: Int = -1,
+    var error: Boolean = true
+)

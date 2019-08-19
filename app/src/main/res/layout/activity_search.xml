@@ -15,12 +15,13 @@
                     android:layout_height="50dp">
 
         <TextView android:layout_width="wrap_content"
-                  android:textSize="16sp"
+                  android:textSize="18sp"
                   android:id="@+id/tv_search"
+                  android:gravity="center_vertical"
                   android:layout_centerVertical="true"
                   android:layout_alignParentRight="true"
                   android:text="@string/search"
-                  android:layout_height="wrap_content"/>
+                  android:layout_height="match_parent"/>
 
 
         <ImageView android:layout_width="wrap_content"
@@ -38,7 +39,6 @@
                   android:layout_toRightOf="@id/iv_search_back"
                   android:imeOptions="actionSearch"
                   android:layout_height="wrap_content"/>
-
     </RelativeLayout>
 
     <FrameLayout android:layout_width="match_parent"
