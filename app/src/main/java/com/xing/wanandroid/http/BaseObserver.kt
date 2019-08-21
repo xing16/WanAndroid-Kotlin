@@ -22,13 +22,13 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
 
     override fun onNext(response: BaseResponse<T>) {
         baseView?.dismissLoading()
-        Log.e("debug", "response = ${response.errCode}")
-        val errcode: Int = response.errCode
-        val errmsg: String? = response.errMsg
+        Log.e("debug", "response = ${response.errorCode}")
+        val errorCode: Int = response.errorCode ?: -1
+        val errorMsg: String? = response.errorMsg
         val error: Boolean = response.error
-        Log.e("debug", "errCode = ${errcode}")
-        Log.e("debug", "error = ${error}")
-        if ((errcode == 0) or (errcode == 200)) {
+        Log.e("debug", "errCode = $errorCode")
+        Log.e("debug", "error = $error")
+        if ((errorCode == 0) or (errorCode == 200)) {
             val data: T = response.data
             onSuccess(data)
         } else if (!error) {
@@ -36,7 +36,7 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
             Log.e("debug", "t = ${response.results}")
             onSuccess(data)
         } else {
-            onError(ApiException(errcode, errmsg))
+            onError(ApiException(errorCode, errorMsg))
         }
     }
 

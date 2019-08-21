@@ -9,6 +9,12 @@
         tools:context=".meizi.MeiziActivity">
 
 
+    <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_meizi"
+            android:background="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"/>
+
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_meizi"
             android:layout_width="match_parent"

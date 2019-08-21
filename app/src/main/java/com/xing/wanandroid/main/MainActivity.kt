@@ -122,7 +122,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.iv_main_search -> gotoSearchActivity()
+            R.id.iv_main_search -> {
+                gotoSearchActivity()
+                overridePendingTransition(0, 0)
+            }
 
         }
     }

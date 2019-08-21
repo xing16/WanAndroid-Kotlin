@@ -10,12 +10,12 @@
             app:tabMode="scrollable"
             app:tabIndicatorHeight="2dp"
             app:tabRippleColor="@android:color/transparent"
-            app:tabIndicatorColor="@color/colorPrimary"
+            app:tabIndicatorColor="@color/colorAccent"
             app:tabIndicatorFullWidth="false"
             app:tabTextAppearance="@style/ProjectTabLayoutStyle"
             android:id="@+id/tl_project_tabs"
             app:tabTextColor="@color/colorFont"
-            app:tabSelectedTextColor="@color/colorPrimary"
+            app:tabSelectedTextColor="@color/colorAccent"
             android:layout_width="match_parent"
             android:layout_height="35dp">
 
