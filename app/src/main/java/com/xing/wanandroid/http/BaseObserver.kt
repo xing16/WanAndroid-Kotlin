@@ -24,8 +24,8 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
         baseView?.dismissLoading()
         Log.e("debug", "response = ${response.errorCode}")
         val errorCode: Int = response.errorCode ?: -1
-        val errorMsg: String? = response.errorMsg
-        val error: Boolean = response.error
+        val errorMsg: String = response.errorMsg ?: ""
+        val error: Boolean = response.error ?: true
         Log.e("debug", "errCode = $errorCode")
         Log.e("debug", "error = $error")
         if ((errorCode == 0) or (errorCode == 200)) {

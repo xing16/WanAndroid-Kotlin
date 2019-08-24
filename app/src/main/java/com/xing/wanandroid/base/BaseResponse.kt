@@ -5,5 +5,5 @@ data class BaseResponse<T>(
     var results: T,
     val errorMsg: String? = null,
     var errorCode: Int? = -1,
-    var error: Boolean = true
+    var error: Boolean? = true
 )

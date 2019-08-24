@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:orientation="vertical"
-              android:layout_height="match_parent"
-              tools:context=".project.ProjectPageFragment">
-
+<com.scwang.smartrefresh.layout.SmartRefreshLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/srl_project"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        tools:context=".project.ProjectPageFragment">
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_project"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-
-</LinearLayout>
+</com.scwang.smartrefresh.layout.SmartRefreshLayout>

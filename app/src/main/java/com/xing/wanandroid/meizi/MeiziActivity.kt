@@ -11,6 +11,7 @@ import com.xing.wanandroid.meizi.adapter.MeiziAdapter
 import com.xing.wanandroid.meizi.bean.Meizi
 import com.xing.wanandroid.meizi.contract.MeiziContract
 import com.xing.wanandroid.meizi.presenter.MeiziPresenter
+import com.xing.wanandroid.utils.dp2px
 
 class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), MeiziContract.View {
 
@@ -25,8 +26,10 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
 
     override fun initView() {
         toolbar = findViewById(R.id.tb_meizi)
-        toolbar.title = "妹子"
-        toolbar.setNavigationIcon(R.drawable.ic_back)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "妹子"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.elevation = dp2px(context, 5f).toFloat()
         toolbar.setNavigationOnClickListener { finish() }
         recyclerView = findViewById(R.id.rv_meizi)
         recyclerView.layoutManager = GridLayoutManager(context, 2)
@@ -53,5 +56,6 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
     override fun createPresenter(): MeiziPresenter {
         return MeiziPresenter()
     }
+
 
 }

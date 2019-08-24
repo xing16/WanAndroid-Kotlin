@@ -8,7 +8,7 @@ import android.view.View
 
 abstract class BaseActivity : AppCompatActivity() {
 
-    lateinit var context: Context
+    protected lateinit var context: Context
 
     final override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -2,6 +2,7 @@ package com.xing.wanandroid.project.contract
 
 import com.xing.wanandroid.base.mvp.IView
 import com.xing.wanandroid.home.bean.Banner
+import com.xing.wanandroid.home.bean.HomeArticle
 import com.xing.wanandroid.home.bean.HomeResponse
 
 
@@ -10,15 +11,14 @@ interface HomeContract {
 
         fun onBanner(list: List<Banner>)
 
-        fun onRecommend(response:HomeResponse)
+        fun onArticles(page: Int, list: List<HomeArticle>)
     }
 
     interface Presenter {
 
         fun getBanner()
 
-        fun getRecommend(page: Int)
-
+        fun getArticles(page: Int)
 
     }
 

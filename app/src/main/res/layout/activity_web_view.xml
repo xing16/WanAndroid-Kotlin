@@ -9,7 +9,10 @@
         tools:context=".web.WebViewActivity">
 
     <android.support.v7.widget.Toolbar
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp"
             android:id="@+id/tb_web"
+            app:contentInsetStartWithNavigation="0dp"
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"/>

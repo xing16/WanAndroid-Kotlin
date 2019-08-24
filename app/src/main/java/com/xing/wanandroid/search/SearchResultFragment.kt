@@ -5,6 +5,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.search.adapter.SearchResultAdapter
@@ -23,17 +27,24 @@ private const val KEY_WORD = "key_word"
 class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchResultPresenter>(),
     SearchResultContract.View {
 
-
     private var recyclerView: RecyclerView? = null
-    private var page: Int = 0
+    private var refreshLayout: SmartRefreshLayout? = null
+    private var mCurPage: Int = 0
     private lateinit var searchResultAdapter: SearchResultAdapter
     private var dataList: ArrayList<SearchResult> = ArrayList()
+
+    override fun getLayoutResId(): Int {
+        return R.layout.fragment_search_result
+    }
 
     override fun createPresenter(): SearchResultPresenter {
         return SearchResultPresenter()
     }
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
+        refreshLayout = rootView?.findViewById(R.id.srl_search_result)
+        refreshLayout?.setEnableRefresh(false)
+        refreshLayout?.setRefreshFooter(ClassicsFooter(context))
         recyclerView = rootView?.findViewById(R.id.rv_search_result)
     }
 
@@ -48,14 +59,23 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
         }
         recyclerView?.adapter = searchResultAdapter
         presenter.getSearchResult(0, keyword ?: "")
+
+        setListener()
     }
 
-    override fun getLayoutResId(): Int {
-        return R.layout.fragment_search_result
+    private fun setListener() {
+        refreshLayout?.setOnLoadMoreListener(object : OnLoadMoreListener {
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                presenter.getSearchResult(mCurPage, keyword)
+            }
+        })
     }
 
-    override fun onSearchResult(response: SearchResultResponse) {
+
+    override fun onSearchResult(page: Int, response: SearchResultResponse) {
+        refreshLayout?.finishLoadMore()
         dataList.addAll(response.datas)
+        mCurPage = page + 1
         searchResultAdapter.setNewData(dataList)
     }
 

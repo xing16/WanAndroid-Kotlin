@@ -1,4 +1,4 @@
-package com.xing.wanandroid.utils
+package com.xing.wanandroid.http
 
 import java.security.SecureRandom
 import java.security.cert.X509Certificate

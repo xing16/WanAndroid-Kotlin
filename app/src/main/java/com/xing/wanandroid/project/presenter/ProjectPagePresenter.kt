@@ -13,7 +13,7 @@ class ProjectPagePresenter : BasePresenter<ProjectPageContract.View>(), ProjectP
             object : BaseObserver<ProjectResponse>() {
                 override fun onSuccess(data: ProjectResponse) {
                     if (this@ProjectPagePresenter.isViewAttached()) {
-                        this@ProjectPagePresenter.getView()?.onProjectLists(data)
+                        this@ProjectPagePresenter.getView()?.onProjectLists(page, data)
                     }
                 }
             })

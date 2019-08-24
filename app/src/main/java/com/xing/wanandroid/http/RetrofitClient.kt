@@ -1,6 +1,5 @@
 package com.xing.wanandroid.http
 
-import com.xing.wanandroid.utils.SSLSocketClient
 import com.xing.wanandroid.utils.logInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit

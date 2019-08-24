@@ -4,26 +4,28 @@ import android.content.Context
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
-import butterknife.OnItemClick
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.home.adapter.HomeRecyclerAdapter
-import com.xing.wanandroid.home.bean.HomeRecommend
-import com.xing.wanandroid.home.bean.HomeResponse
+import com.xing.wanandroid.home.bean.HomeArticle
 import com.xing.wanandroid.project.contract.HomeContract
 import com.xing.wanandroid.project.presenter.HomePresenter
-import com.xing.wanandroid.utils.gotoActivity
+import com.xing.wanandroid.utils.*
 import com.xing.wanandroid.web.WebViewActivity
+import com.xing.wanandroid.widget.LinearItemDecoration
 import com.youth.banner.Banner
 import com.youth.banner.loader.ImageLoader
-import kotlin.math.round
 
 private const val ARG_PARAM1 = "param1"
 
@@ -33,16 +35,21 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
     private lateinit var adapter: HomeRecyclerAdapter
     private lateinit var banner: Banner
     private var recyclerView: RecyclerView? = null
+    private var refreshLayout: SmartRefreshLayout? = null
     private lateinit var headerView: View
-    private var page: Int = 0
-    private var dataList: MutableList<HomeRecommend> = mutableListOf()
+    private var mCurPage: Int = 0
+    private var dataList: List<HomeArticle> = ArrayList()
 
     override fun getLayoutResId(): Int {
         return R.layout.fragment_home
     }
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
+        refreshLayout = rootView?.findViewById(R.id.srl_home)
+        refreshLayout?.setRefreshHeader(ClassicsHeader(context))
+        refreshLayout?.setRefreshFooter(ClassicsFooter(context))
         recyclerView = rootView?.findViewById(R.id.rv_home)
+
         headerView = layoutInflater.inflate(R.layout.layout_home_header, null, false)
         banner = headerView.findViewById(R.id.banner)
     }
@@ -53,14 +60,24 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
     override fun initData() {
         super.initData()
+        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.colorGray))
+            .height(0.5f)
+            .margin(15f, 15f)
+            .jumpPositions(arrayOf(4))
+        recyclerView?.addItemDecoration(itemDecoration)
         recyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         adapter = HomeRecyclerAdapter(R.layout.item_home_recycler)
 
         adapter.addHeaderView(headerView)
         // recyclerview 点击监听
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
-            val bundle: Bundle = Bundle()
-            bundle.putString(WebViewActivity.URL, dataList.get(position).link)
+            val bundle = Bundle()
+            val bean = dataList.get(position)
+            bundle.putString(URL, bean.link)
+            bundle.putInt(ID, bean.id)
+            bundle.putString(AUTHOR, bean.author)
+            bundle.putString(LINK, bean.link)
+            bundle.putString(TITLE, bean.title)
             gotoActivity(
                 activity!!,
                 WebViewActivity().javaClass,
@@ -69,11 +86,25 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         }
         recyclerView?.adapter = adapter
 
+        // 获取 banner
         presenter.getBanner()
+        // 获取文章
+        presenter.getArticles(mCurPage)
 
-        presenter.getRecommend(page)
+        setListener()
+    }
 
+    private fun setListener() {
+        refreshLayout?.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                presenter.getArticles(mCurPage)
 
+            }
+
+            override fun onRefresh(refreshLayout: RefreshLayout) {
+                presenter.getArticles(0)
+            }
+        })
     }
 
     override fun onBanner(list: List<com.xing.wanandroid.home.bean.Banner>) {
@@ -91,14 +122,16 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         banner.setImages(urlList)
             .isAutoPlay(true)
             .start()
-
     }
 
-    override fun onRecommend(response: HomeResponse) {
-        dataList.addAll(response.datas)
+    override fun onArticles(page: Int, list: List<HomeArticle>) {
+
+        refreshLayout?.finishRefresh()
+        refreshLayout?.finishLoadMore()
+        mCurPage = page + 1
+        dataList = list
         adapter.setNewData(dataList)
     }
-
 
     override fun showLoading() {
     }

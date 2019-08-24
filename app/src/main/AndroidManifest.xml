@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
+            android:name=".app.MainApp"
             android:usesCleartextTraffic="true"
             android:networkSecurityConfig="@xml/network_security_config"
             android:allowBackup="true"

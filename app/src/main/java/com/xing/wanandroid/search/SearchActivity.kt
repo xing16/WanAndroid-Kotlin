@@ -1,5 +1,6 @@
 package com.xing.wanandroid.search
 
+import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.widget.EditText
 import android.widget.ImageView
@@ -33,22 +34,21 @@ class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListene
                 Toast.makeText(SearchActivity@ this, "请输入搜索内容", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             }
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.replace(R.id.fl_search_container, SearchResultFragment.newInstance(keyword))
-            transaction.commitAllowingStateLoss()
-
+            changeFragment(SearchResultFragment.newInstance(keyword))
         }
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.add(R.id.fl_search_container, SearchHistoryFragment.newInstance())
-        transaction.commitAllowingStateLoss()
+        changeFragment(SearchHistoryFragment.newInstance())
     }
 
 
     override fun onSearchText(text: String) {
         editText.setText(text)
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.fl_search_container, SearchResultFragment.newInstance(text))
-        transaction.commitAllowingStateLoss()
+        val fragment = SearchResultFragment.newInstance(text)
+        changeFragment(fragment)
     }
 
+    private fun changeFragment(fragment: Fragment) {
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.fl_search_container, fragment)
+        transaction.commitAllowingStateLoss()
+    }
 }
