@@ -5,8 +5,21 @@
           android:icon="@android:drawable/ic_menu_set_as"
           android:title="轻松一刻"/>
 
-    <item android:id="@+id/upload"
+    <item android:id="@+id/setting"
           android:icon="@android:drawable/btn_star"
-          android:title="上传管理"/>
+          android:title="设置"/>
+
+    <item android:id="@+id/about"
+          android:icon="@android:drawable/btn_star"
+          android:title="关于"/>
+    <item android:id="@+id/about1"
+          android:icon="@android:drawable/btn_star"
+          android:title="关于"/>
+    <item android:id="@+id/about2"
+          android:icon="@android:drawable/btn_star"
+          android:title="关于"/>
+    <item android:id="@+id/about3"
+          android:icon="@android:drawable/btn_star"
+          android:title="关于"/>
 
 </menu>

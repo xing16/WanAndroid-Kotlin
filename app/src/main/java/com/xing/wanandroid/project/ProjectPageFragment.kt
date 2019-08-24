@@ -1,5 +1,6 @@
 package com.xing.wanandroid.project
 
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
@@ -13,11 +14,15 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.BaseLazyFragment
+import com.xing.wanandroid.image.ImageBrowseActivity
 import com.xing.wanandroid.project.adapter.ProjectAdapter
 import com.xing.wanandroid.project.bean.Project
 import com.xing.wanandroid.project.bean.ProjectResponse
 import com.xing.wanandroid.project.contract.ProjectPageContract
 import com.xing.wanandroid.project.presenter.ProjectPagePresenter
+import com.xing.wanandroid.utils.*
+import com.xing.wanandroid.web.WebViewActivity
+import com.xing.wanandroid.widget.LinearItemDecoration
 
 private const val CID = "cid"
 
@@ -42,6 +47,11 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
         recyclerView = rootView?.findViewById(R.id.rv_project)
+        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_ddd))
+            .height(1f)
+            .margin(15f, 15f)
+            .jumpPositions(arrayOf(0))
+        recyclerView?.addItemDecoration(itemDecoration)
         refreshLayout = rootView?.findViewById(R.id.srl_project)
         refreshLayout?.setEnableRefresh(false)
         refreshLayout?.setRefreshFooter(ClassicsFooter(context))
@@ -63,6 +73,8 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
         recyclerView?.adapter = mAdapter
         mAdapter.onItemClickListener =
                 BaseQuickAdapter.OnItemClickListener { adapter, view, position -> onItemClick(position) }
+        mAdapter.onItemChildClickListener =
+                BaseQuickAdapter.OnItemChildClickListener { adapter, view, position -> onItemChildClick(position) }
     }
 
     override fun onProjectLists(page: Int, response: ProjectResponse) {
@@ -80,6 +92,31 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
     }
 
     fun onItemClick(position: Int) {
+        val bundle = Bundle()
+        val bean = dataList.get(position)
+        bundle.putString(URL, bean.link)
+        bundle.putInt(ID, bean.id)
+        bundle.putString(AUTHOR, bean.author)
+        bundle.putString(LINK, bean.link)
+        bundle.putString(TITLE, bean.title)
+        gotoActivity(
+            mContext as Activity,
+            WebViewActivity().javaClass,
+            bundle
+        )
+    }
+
+    fun onItemChildClick(position: Int) {
+        val imgUrl = dataList.get(position).envelopePic
+        val list = ArrayList<String>()
+        list.add(imgUrl)
+        val bundle = Bundle()
+        bundle.putStringArrayList(IMAGES, list)
+        gotoActivity(
+            mContext as Activity,
+            ImageBrowseActivity().javaClass,
+            bundle
+        )
     }
 
 

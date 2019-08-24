@@ -12,7 +12,6 @@ abstract class BaseFragment : Fragment() {
 
     protected lateinit var mContext: Context
 
-
     override fun onAttach(context: Context) {
         super.onAttach(context)
         mContext = context

@@ -7,10 +7,10 @@ import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
 import android.util.Log
 import android.view.Gravity
-import android.view.MenuItem
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.R
 import com.xing.wanandroid.adapter.MainViewPageAdapter
 import com.xing.wanandroid.base.BaseActivity
@@ -42,6 +42,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     override fun initView() {
         drawerLayout = findViewById(R.id.dl_drawer_layout)
+        StatusBarUtil.setColorForDrawerLayout(this, drawerLayout, resources.getColor(R.color.colorPrimary), 0)
         navigationView = findViewById(R.id.nv_left_navigation)
         val headerView: View = navigationView.getHeaderView(0)
         avatarBackground = headerView.findViewById(R.id.iv_avatar_background)
@@ -58,7 +59,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             Log.e("debug", "dcasdcasdc")
             when (item.itemId) {
                 R.id.item_happy_minute -> {
-                    gotoActivity(context as Activity, MeiziActivity().javaClass)
+                    gotoActivity(mContext as Activity, MeiziActivity().javaClass)
                     drawerLayout.closeDrawer(Gravity.LEFT)
                 }
             }
@@ -66,17 +67,17 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         }
 
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.dog)
-        avatarBackground.setImageBitmap(blur(context, bitmap, 18))
+        avatarBackground.setImageBitmap(blur(mContext, bitmap, 18))
 
     }
 
     private fun openNavigationView() {
-        drawerLayout.openDrawer(Gravity.LEFT)
+        drawerLayout.openDrawer(Gravity.START)
     }
 
     override fun initData() {
         val list = mutableListOf<FragmentItem>()
-        list.add(FragmentItem("热门", HomeFragment.newInstance()))
+        list.add(FragmentItem("首页", HomeFragment.newInstance()))
         list.add(FragmentItem("项目", ProjectFragment.newInstance()))
         list.add(FragmentItem("体系", SystemFragment.newInstance()))
         list.add(FragmentItem("干货", ProjectPageFragment.newInstance(1)))

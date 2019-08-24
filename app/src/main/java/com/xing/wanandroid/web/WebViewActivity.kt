@@ -33,7 +33,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.elevation = dp2px(context, 5f).toFloat()
+        supportActionBar?.elevation = dp2px(mContext, 5f).toFloat()
         toolbar.setNavigationOnClickListener {
             finish()
         }

@@ -4,6 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/dl_drawer_layout"
         android:layout_width="match_parent"
+        android:fitsSystemWindows="true"
         android:layout_height="match_parent">
 
     <!--主布局-->

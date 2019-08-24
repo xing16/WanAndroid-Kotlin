@@ -3,8 +3,8 @@ package com.xing.wanandroid.search
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.view.LayoutInflater
 import android.view.View
-import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
@@ -18,6 +18,7 @@ import com.xing.wanandroid.search.contract.SearchResultContract
 import com.xing.wanandroid.search.presenter.SearchResultPresenter
 import com.xing.wanandroid.utils.gotoActivity
 import com.xing.wanandroid.web.WebViewActivity
+import com.xing.wanandroid.widget.LinearItemDecoration
 
 private const val KEY_WORD = "key_word"
 
@@ -46,6 +47,11 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
         refreshLayout?.setEnableRefresh(false)
         refreshLayout?.setRefreshFooter(ClassicsFooter(context))
         recyclerView = rootView?.findViewById(R.id.rv_search_result)
+        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_ddd))
+            .height(1f)
+            .margin(15f, 15f)
+            .jumpPositions(arrayOf(0))
+        recyclerView?.addItemDecoration(itemDecoration)
     }
 
     override fun initData() {
@@ -73,6 +79,12 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
 
 
     override fun onSearchResult(page: Int, response: SearchResultResponse) {
+        if (page == 0) {
+            if (response.datas.isEmpty()) {
+                val emptyView: View = LayoutInflater.from(context).inflate(R.layout.layout_empty, null, false)
+                searchResultAdapter.emptyView = emptyView
+            }
+        }
         refreshLayout?.finishLoadMore()
         dataList.addAll(response.datas)
         mCurPage = page + 1

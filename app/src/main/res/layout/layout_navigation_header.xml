@@ -28,7 +28,7 @@
 
         <TextView
                 android:text="xing16"
-                android:textSize="24sp"
+                android:textSize="26sp"
                 android:layout_gravity="center_vertical"
                 android:textColor="@android:color/white"
                 android:layout_marginLeft="20dp"

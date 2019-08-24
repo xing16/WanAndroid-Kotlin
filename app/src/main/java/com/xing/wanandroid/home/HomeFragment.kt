@@ -25,6 +25,7 @@ import com.xing.wanandroid.utils.*
 import com.xing.wanandroid.web.WebViewActivity
 import com.xing.wanandroid.widget.LinearItemDecoration
 import com.youth.banner.Banner
+import com.youth.banner.listener.OnBannerListener
 import com.youth.banner.loader.ImageLoader
 
 private const val ARG_PARAM1 = "param1"
@@ -60,10 +61,10 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
     override fun initData() {
         super.initData()
-        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.colorGray))
-            .height(0.5f)
+        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_ddd))
+            .height(1f)
             .margin(15f, 15f)
-            .jumpPositions(arrayOf(4))
+            .jumpPositions(arrayOf(0))
         recyclerView?.addItemDecoration(itemDecoration)
         recyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         adapter = HomeRecyclerAdapter(R.layout.item_home_recycler)
@@ -122,10 +123,24 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         banner.setImages(urlList)
             .isAutoPlay(true)
             .start()
+
+        banner.setOnBannerListener(object : OnBannerListener {
+            override fun OnBannerClick(position: Int) {
+                val bundle = Bundle()
+                val banner = list.get(position)
+                bundle.putString(URL, banner.url)
+                bundle.putInt(ID, banner.id)
+                gotoActivity(
+                    activity!!,
+                    WebViewActivity().javaClass,
+                    bundle
+                )
+            }
+        })
+
     }
 
     override fun onArticles(page: Int, list: List<HomeArticle>) {
-
         refreshLayout?.finishRefresh()
         refreshLayout?.finishLoadMore()
         mCurPage = page + 1
