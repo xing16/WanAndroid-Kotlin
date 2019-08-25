@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".user.activity.LoginActivity">
+
+    <ImageView
+            android:layout_marginTop="80dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/android_logo"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"/>
+
+    <com.xing.wanandroid.widget.ClearEditText
+            android:hint="用户名"
+            android:background="@drawable/shape_bottom_border"
+            android:id="@+id/cet_login_username"
+            app:clearIcon="@drawable/ic_clear_gray"
+            app:tipIcon="@drawable/ic_login_user"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+    <com.xing.wanandroid.widget.ClearEditText
+            android:layout_marginTop="10dp"
+            android:background="@drawable/shape_bottom_border"
+            android:id="@+id/cet_login_password"
+            android:inputType="textPassword"
+            android:hint="密码"
+            app:clearIcon="@drawable/ic_clear_gray"
+            app:tipIcon="@drawable/ic_login_password"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"/>
+
+    <Button android:background="@drawable/selector_btn_user"
+            android:layout_marginTop="20dp"
+            android:text="@string/login"
+            android:textSize="16sp"
+            android:id="@+id/bnt_login"
+            android:textColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"/>
+
+    <TextView
+            android:id="@+id/tv_user_register"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:textColor="@color/colorFontDark"
+            android:text="注册账号?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+</LinearLayout>

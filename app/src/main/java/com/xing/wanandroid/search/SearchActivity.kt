@@ -1,19 +1,25 @@
 package com.xing.wanandroid.search
 
+import android.animation.IntEvaluator
+import android.animation.ObjectAnimator
 import android.support.v4.app.Fragment
 import android.text.TextUtils
-import android.widget.EditText
+import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.BaseActivity
+import com.xing.wanandroid.utils.getScreenWidth
 import com.xing.wanandroid.utils.hideKeyboard
+import com.xing.wanandroid.widget.ClearEditText
+import com.xing.wanandroid.widget.ViewWrapper
 
 class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListener {
 
-    private lateinit var editText: EditText
+    private lateinit var editText: ClearEditText
     private lateinit var backImgView: ImageView
+    private lateinit var searchTxtView: TextView
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_search
@@ -26,7 +32,9 @@ class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListene
             overridePendingTransition(0, 0)
         }
         editText = findViewById(R.id.et_search_input)
-        var searchTxtView: TextView = findViewById(R.id.tv_search)
+        initAnimation()
+
+        searchTxtView = findViewById(R.id.tv_search)
         searchTxtView.setOnClickListener {
             hideKeyboard(editText)
             val keyword = editText.text.toString().trim()
@@ -37,6 +45,26 @@ class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListene
             changeFragment(SearchResultFragment.newInstance(keyword))
         }
         changeFragment(SearchHistoryFragment.newInstance())
+    }
+
+    private fun initAnimation() {
+        editText.post(object : Runnable {
+            override fun run() {
+                val viewWrapper = ViewWrapper(editText)
+                val objectAnimator =
+                    ObjectAnimator.ofObject(
+                        viewWrapper,
+                        "width",
+                        IntEvaluator(),
+                        editText.width,
+                        getScreenWidth(mContext) - searchTxtView.width * 3
+                    )
+                objectAnimator.duration = 200
+                objectAnimator.interpolator = LinearInterpolator()
+                objectAnimator.start()
+            }
+        })
+
     }
 
 

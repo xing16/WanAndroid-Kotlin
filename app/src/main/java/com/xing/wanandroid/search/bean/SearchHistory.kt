@@ -7,11 +7,12 @@ import org.greenrobot.greendao.annotation.Id
 class SearchHistory {
 
     @Id
+    private var id: Long = 0
+
+
     private lateinit var keyword: String
 
     private var createTime: Long = 0
-
-
 
 
 }

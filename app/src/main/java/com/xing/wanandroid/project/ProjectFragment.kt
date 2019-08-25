@@ -2,13 +2,12 @@ package com.xing.wanandroid.project
 
 import android.os.Bundle
 import android.support.design.widget.TabLayout
-import android.util.Log
 import android.view.View
 import com.xing.wanandroid.R
 import com.xing.wanandroid.project.adapter.ProjectPageAdapter
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.bean.FragmentItem
-import com.xing.wanandroid.bean.ProjectTab
+import com.xing.wanandroid.project.bean.ProjectTab
 import com.xing.wanandroid.main.widgets.ProjectViewPager
 import com.xing.wanandroid.project.contract.ProjectContract
 import com.xing.wanandroid.project.presenter.ProjectPresenter

@@ -1,7 +1,7 @@
 package com.xing.wanandroid.project.contract
 
 import com.xing.wanandroid.base.mvp.IView
-import com.xing.wanandroid.bean.ProjectTab
+import com.xing.wanandroid.project.bean.ProjectTab
 
 
 interface ProjectContract {

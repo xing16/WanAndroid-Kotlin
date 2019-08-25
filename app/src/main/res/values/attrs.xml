@@ -12,4 +12,10 @@
         <attr name="horizontalMargin" format="dimension"/>
         <attr name="verticalMargin" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="ClearEditText">
+        <attr name="tipIcon" format="reference"/>
+        <attr name="clearIcon" format="reference"/>
+    </declare-styleable>
+
 </resources>

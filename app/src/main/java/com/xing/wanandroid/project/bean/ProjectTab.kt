@@ -1,3 +1,3 @@
-package com.xing.wanandroid.bean
+package com.xing.wanandroid.project.bean
 
 data class ProjectTab(val id: Int, val name: String)

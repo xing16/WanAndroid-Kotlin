@@ -2,7 +2,7 @@ package com.xing.wanandroid.project.presenter
 
 import com.xing.wanandroid.apiservice.ApiService
 import com.xing.wanandroid.base.mvp.BasePresenter
-import com.xing.wanandroid.bean.ProjectTab
+import com.xing.wanandroid.project.bean.ProjectTab
 import com.xing.wanandroid.http.BaseObserver
 import com.xing.wanandroid.project.contract.ProjectContract
 

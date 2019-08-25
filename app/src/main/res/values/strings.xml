@@ -4,10 +4,9 @@
     <string name="project">项目</string>
     <string name="system">体系</string>
     <string name="mine">我的</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="please_input_search_content">请输入搜索内容</string>
     <string name="search">搜索</string>
     <string name="favorite">favorite</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
 </resources>
