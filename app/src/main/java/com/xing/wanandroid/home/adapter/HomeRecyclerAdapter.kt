@@ -4,12 +4,12 @@ import android.text.TextUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.xing.wanandroid.R
-import com.xing.wanandroid.home.bean.HomeArticle
+import com.xing.wanandroid.home.bean.Article
 import com.xing.wanandroid.utils.format
 
-class HomeRecyclerAdapter(layoutResId: Int) : BaseQuickAdapter<HomeArticle, BaseViewHolder>(layoutResId) {
+class HomeRecyclerAdapter(layoutResId: Int) : BaseQuickAdapter<Article, BaseViewHolder>(layoutResId) {
 
-    override fun convert(helper: BaseViewHolder?, item: HomeArticle?) {
+    override fun convert(helper: BaseViewHolder?, item: Article?) {
         // type： 是否是置顶    type = 1 -> 置顶 ， type = 0 -> 非置顶
         val type = item?.type ?: 0
         // refresh: 是否是最新， true -> 最新 ， false -> 非最新

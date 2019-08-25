@@ -1,6 +1,6 @@
 package com.xing.wanandroid.home.bean
 
-data class HomeArticle(
+data class Article(
     val id: Int,
     val title: String,
     val author: String,

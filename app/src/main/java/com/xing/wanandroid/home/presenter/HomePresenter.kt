@@ -4,8 +4,8 @@ import com.xing.wanandroid.apiservice.ApiService
 import com.xing.wanandroid.base.BaseResponse
 import com.xing.wanandroid.base.mvp.BasePresenter
 import com.xing.wanandroid.home.bean.Banner
-import com.xing.wanandroid.home.bean.HomeArticle
-import com.xing.wanandroid.home.bean.HomeResponse
+import com.xing.wanandroid.home.bean.Article
+import com.xing.wanandroid.home.bean.ArticleResponse
 import com.xing.wanandroid.http.BaseObserver
 import com.xing.wanandroid.project.contract.HomeContract
 import io.reactivex.Observable
@@ -13,7 +13,7 @@ import io.reactivex.functions.BiFunction
 
 class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter {
 
-    private var dataList = ArrayList<HomeArticle>()
+    private var dataList = ArrayList<Article>()
 
     override fun getBanner() {
         addSubscribe(create(ApiService::class.java).getBanner(), object : BaseObserver<List<Banner>>() {
@@ -27,11 +27,11 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
         val apiService = create(ApiService::class.java)
         val zipObservable = Observable.zip(apiService.getTopArticle(), apiService.getArticles(page),
             object :
-                BiFunction<BaseResponse<List<HomeArticle>>, BaseResponse<HomeResponse>, BaseResponse<List<HomeArticle>>> {
+                BiFunction<BaseResponse<List<Article>>, BaseResponse<ArticleResponse>, BaseResponse<List<Article>>> {
                 override fun apply(
-                    resp1: BaseResponse<List<HomeArticle>>,
-                    resp2: BaseResponse<HomeResponse>
-                ): BaseResponse<List<HomeArticle>> {
+                    resp1: BaseResponse<List<Article>>,
+                    resp2: BaseResponse<ArticleResponse>
+                ): BaseResponse<List<Article>> {
                     if (page == 0) {
                         dataList.clear()
                         val topArticles = resp1.data
@@ -44,8 +44,8 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                 }
             })
 
-        addSubscribe(zipObservable, object : BaseObserver<List<HomeArticle>>() {
-            override fun onSuccess(data: List<HomeArticle>) {
+        addSubscribe(zipObservable, object : BaseObserver<List<Article>>() {
+            override fun onSuccess(data: List<Article>) {
                 getView()?.onArticles(page, data)
             }
         })

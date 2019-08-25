@@ -1,5 +1,6 @@
 package com.xing.wanandroid.system
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
@@ -9,9 +10,13 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.xing.wanandroid.R
 import com.xing.wanandroid.project.adapter.ProjectPageAdapter
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
+import com.xing.wanandroid.system.adapter.SystemAdapter
 import com.xing.wanandroid.system.bean.SystemCategory
 import com.xing.wanandroid.system.contract.SystemContract
 import com.xing.wanandroid.system.presenter.SystemPresenter
+import com.xing.wanandroid.utils.CID
+import com.xing.wanandroid.utils.TITLE
+import com.xing.wanandroid.utils.gotoActivity
 
 private const val ARG_PARAM1 = "param1"
 
@@ -20,8 +25,8 @@ class SystemFragment : BaseMVPFragment<SystemContract.View, SystemPresenter>(),
 
     private var categoryRecyclerView: RecyclerView? = null
     private var contentRecyclerView: RecyclerView? = null
-    private lateinit var systemCategoryAdapter: SystemCategoryAdapter
-    private lateinit var contentAdapter: SystemCategoryAdapter
+    private lateinit var systemCategoryAdapter: SystemAdapter
+    private lateinit var contentAdapter: SystemAdapter
     private var dataList: List<SystemCategory> = ArrayList()
 
     private var param1: String? = null
@@ -38,19 +43,33 @@ class SystemFragment : BaseMVPFragment<SystemContract.View, SystemPresenter>(),
 
     override fun initData() {
         super.initData()
+        // Left menu
         categoryRecyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
-        contentRecyclerView?.layoutManager = GridLayoutManager(mContext, 2)
-        systemCategoryAdapter = SystemCategoryAdapter(R.layout.item_system_category)
-        contentAdapter = SystemCategoryAdapter(R.layout.item_system_category)
-
-        systemCategoryAdapter.setOnItemClickListener(object : BaseQuickAdapter.OnItemClickListener {
+        systemCategoryAdapter = SystemAdapter(R.layout.item_system_category)
+        systemCategoryAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                val systemCategory = dataList.get(position)
+                val systemCategory = dataList[position]
                 contentAdapter.setNewData(systemCategory.children)
             }
-        })
+        }
         categoryRecyclerView?.adapter = systemCategoryAdapter
+
+        // Content
+        contentRecyclerView?.layoutManager = GridLayoutManager(mContext, 2)
+        contentAdapter = SystemAdapter(R.layout.item_system_content)
+        contentAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
+            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                val cid = contentAdapter.data[position].id
+                val title = contentAdapter.data[position].name
+                val bundle = Bundle()
+                bundle.putInt(CID, cid)
+                bundle.putString(TITLE, title)
+                gotoActivity(mContext as Activity, SystemArticleActivity().javaClass, bundle)
+            }
+        }
         contentRecyclerView?.adapter = contentAdapter
+
+        // 请求数据
         presenter.getSystemCategory()
     }
 

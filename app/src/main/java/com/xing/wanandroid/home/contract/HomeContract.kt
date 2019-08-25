@@ -2,8 +2,7 @@ package com.xing.wanandroid.project.contract
 
 import com.xing.wanandroid.base.mvp.IView
 import com.xing.wanandroid.home.bean.Banner
-import com.xing.wanandroid.home.bean.HomeArticle
-import com.xing.wanandroid.home.bean.HomeResponse
+import com.xing.wanandroid.home.bean.Article
 
 
 interface HomeContract {
@@ -11,7 +10,7 @@ interface HomeContract {
 
         fun onBanner(list: List<Banner>)
 
-        fun onArticles(page: Int, list: List<HomeArticle>)
+        fun onArticles(page: Int, list: List<Article>)
     }
 
     interface Presenter {

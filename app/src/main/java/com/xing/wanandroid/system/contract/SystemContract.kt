@@ -16,5 +16,4 @@ interface SystemContract {
         fun getSystemCategory()
     }
 
-
 }

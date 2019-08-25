@@ -15,6 +15,7 @@ import com.xing.wanandroid.R
 import com.xing.wanandroid.adapter.MainViewPageAdapter
 import com.xing.wanandroid.base.BaseActivity
 import com.xing.wanandroid.bean.FragmentItem
+import com.xing.wanandroid.gank.GankFragment
 import com.xing.wanandroid.home.HomeFragment
 import com.xing.wanandroid.main.widgets.MainViewPager
 import com.xing.wanandroid.meizi.MeiziActivity
@@ -80,7 +81,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         list.add(FragmentItem("首页", HomeFragment.newInstance()))
         list.add(FragmentItem("项目", ProjectFragment.newInstance()))
         list.add(FragmentItem("体系", SystemFragment.newInstance()))
-        list.add(FragmentItem("干货", ProjectPageFragment.newInstance(1)))
+        list.add(FragmentItem("干货", GankFragment.newInstance()))
         mAdapter = MainViewPageAdapter(this, supportFragmentManager, list)
         mainViewPager.adapter = mAdapter
         mainTabLayout.setupWithViewPager(mainViewPager)
@@ -127,7 +128,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 gotoSearchActivity()
                 overridePendingTransition(0, 0)
             }
-
         }
     }
 

@@ -18,7 +18,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.home.adapter.HomeRecyclerAdapter
-import com.xing.wanandroid.home.bean.HomeArticle
+import com.xing.wanandroid.home.bean.Article
 import com.xing.wanandroid.project.contract.HomeContract
 import com.xing.wanandroid.project.presenter.HomePresenter
 import com.xing.wanandroid.utils.*
@@ -39,7 +39,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
     private var refreshLayout: SmartRefreshLayout? = null
     private lateinit var headerView: View
     private var mCurPage: Int = 0
-    private var dataList: List<HomeArticle> = ArrayList()
+    private var dataList: List<Article> = ArrayList()
 
     override fun getLayoutResId(): Int {
         return R.layout.fragment_home
@@ -73,7 +73,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         // recyclerview 点击监听
         adapter.onItemClickListener = BaseQuickAdapter.OnItemClickListener { adapter, view, position ->
             val bundle = Bundle()
-            val bean = dataList.get(position)
+            val bean = dataList[position]
             bundle.putString(URL, bean.link)
             bundle.putInt(ID, bean.id)
             bundle.putString(AUTHOR, bean.author)
@@ -140,7 +140,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
     }
 
-    override fun onArticles(page: Int, list: List<HomeArticle>) {
+    override fun onArticles(page: Int, list: List<Article>) {
         refreshLayout?.finishRefresh()
         refreshLayout?.finishLoadMore()
         mCurPage = page + 1

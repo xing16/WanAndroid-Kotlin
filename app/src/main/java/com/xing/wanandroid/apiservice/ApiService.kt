@@ -3,8 +3,8 @@ package com.xing.wanandroid.apiservice
 import com.xing.wanandroid.base.BaseResponse
 import com.xing.wanandroid.project.bean.ProjectTab
 import com.xing.wanandroid.home.bean.Banner
-import com.xing.wanandroid.home.bean.HomeArticle
-import com.xing.wanandroid.home.bean.HomeResponse
+import com.xing.wanandroid.home.bean.Article
+import com.xing.wanandroid.home.bean.ArticleResponse
 import com.xing.wanandroid.meizi.bean.Meizi
 import com.xing.wanandroid.project.bean.ProjectResponse
 import com.xing.wanandroid.search.bean.SearchHot
@@ -29,10 +29,10 @@ interface ApiService {
     fun getBanner(): Observable<BaseResponse<List<Banner>>>
 
     @GET("article/top/json")
-    fun getTopArticle(): Observable<BaseResponse<List<HomeArticle>>>
+    fun getTopArticle(): Observable<BaseResponse<List<Article>>>
 
     @GET("article/list/{page}/json")
-    fun getArticles(@Path("page") page: Int): Observable<BaseResponse<HomeResponse>>
+    fun getArticles(@Path("page") page: Int): Observable<BaseResponse<ArticleResponse>>
 
     @GET("hotkey/json")
     fun getSearchHot(): Observable<BaseResponse<ArrayList<SearchHot>>>
@@ -68,6 +68,9 @@ interface ApiService {
 
     @GET("tree/json")
     fun getSystem(): Observable<BaseResponse<List<SystemCategory>>>
+
+    @GET("article/list/{page}/json")
+    fun getSystemArticles(@Path("page") page: Int, @Query("cid") cid: Int): Observable<BaseResponse<ArticleResponse>>
 
 
 }

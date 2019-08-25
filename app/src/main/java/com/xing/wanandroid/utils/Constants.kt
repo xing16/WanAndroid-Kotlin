@@ -7,3 +7,5 @@ const val AUTHOR: String = "author"
 const val TITLE: String = "title"
 const val IMAGES: String = "images"
 const val INDEX: String = "index"
+const val CID: String = "cid"
+

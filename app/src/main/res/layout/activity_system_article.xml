@@ -6,19 +6,28 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".meizi.MeiziActivity">
+        tools:context=".system.SystemArticleActivity">
 
 
     <android.support.v7.widget.Toolbar
-            android:id="@+id/tb_meizi"
+            android:id="@+id/tb_system_article"
+            android:elevation="10dp"
             android:background="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="50dp"/>
 
-    <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_meizi"
+
+    <com.scwang.smartrefresh.layout.SmartRefreshLayout
+            android:id="@+id/srl_system_article"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_system_article"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
 
 </LinearLayout>
