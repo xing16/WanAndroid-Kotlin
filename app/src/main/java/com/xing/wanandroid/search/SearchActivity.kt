@@ -1,22 +1,24 @@
 package com.xing.wanandroid.search
 
+import android.animation.AnimatorSet
 import android.animation.IntEvaluator
 import android.animation.ObjectAnimator
 import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.view.animation.LinearInterpolator
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.BaseActivity
-import com.xing.wanandroid.utils.getScreenWidth
 import com.xing.wanandroid.utils.hideKeyboard
 import com.xing.wanandroid.widget.ClearEditText
-import com.xing.wanandroid.widget.ViewWrapper
+import com.xing.wanandroid.widget.ViewMarginWrapper
 
 class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListener {
 
+    private lateinit var searchLayout: RelativeLayout
     private lateinit var editText: ClearEditText
     private lateinit var backImgView: ImageView
     private lateinit var searchTxtView: TextView
@@ -26,13 +28,14 @@ class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListene
     }
 
     override fun initView() {
+        searchLayout = findViewById(R.id.rl_search_parent)
         backImgView = findViewById(R.id.iv_search_back)
         backImgView.setOnClickListener {
             finish()
             overridePendingTransition(0, 0)
         }
         editText = findViewById(R.id.et_search_input)
-        initAnimation()
+        startAnimation()
 
         searchTxtView = findViewById(R.id.tv_search)
         searchTxtView.setOnClickListener {
@@ -47,24 +50,45 @@ class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListene
         changeFragment(SearchHistoryFragment.newInstance())
     }
 
-    private fun initAnimation() {
+    private fun startAnimation() {
         editText.post(object : Runnable {
             override fun run() {
-                val viewWrapper = ViewWrapper(editText)
-                val objectAnimator =
-                    ObjectAnimator.ofObject(
-                        viewWrapper,
-                        "width",
-                        IntEvaluator(),
-                        editText.width,
-                        getScreenWidth(mContext) - searchTxtView.width * 3
-                    )
-                objectAnimator.duration = 200
-                objectAnimator.interpolator = LinearInterpolator()
-                objectAnimator.start()
+                val viewWrapper = ViewMarginWrapper(editText)
+                val leftMarginAnimation = initMarginAnimation(viewWrapper, "leftMargin", 0, backImgView.width, 300)
+                val rightMarginAnimation = initMarginAnimation(
+                    viewWrapper,
+                    "rightMargin",
+                    0,
+                    searchTxtView.width,
+                    300
+                )
+                val animatorSet = AnimatorSet()
+                animatorSet.playTogether(leftMarginAnimation, rightMarginAnimation)
+                animatorSet.duration = 300
+                animatorSet.start()
+
             }
         })
+    }
 
+
+    fun initMarginAnimation(
+        obj: Any,
+        propertyName: String,
+        startMargin: Int,
+        endMargin: Int,
+        duration: Long
+    ): ObjectAnimator {
+        val objectAnimator = ObjectAnimator.ofObject(
+            obj,
+            propertyName,
+            IntEvaluator(),
+            startMargin,
+            endMargin
+        )
+        objectAnimator.duration = duration
+        objectAnimator.interpolator = LinearInterpolator()
+        return objectAnimator
     }
 
 

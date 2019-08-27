@@ -2,7 +2,7 @@ package com.xing.wanandroid.widget
 
 import android.view.View
 
-class ViewWrapper(val view: View) {
+class ViewWidthWrapper(val view: View) {
 
     fun setWidth(width: Int) {
         val lp = view.layoutParams

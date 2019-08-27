@@ -11,13 +11,14 @@
     <RelativeLayout android:layout_width="match_parent"
                     android:paddingLeft="15dp"
                     android:paddingRight="15dp"
+                    android:id="@+id/rl_search_parent"
                     android:gravity="center_vertical"
                     android:layout_height="50dp">
 
         <TextView android:layout_width="wrap_content"
                   android:textSize="18sp"
                   android:id="@+id/tv_search"
-                  android:paddingLeft="10dp"
+                  android:paddingLeft="15dp"
                   android:textColor="@color/black_333"
                   android:gravity="center_vertical"
                   android:layout_centerVertical="true"
@@ -27,7 +28,7 @@
 
 
         <ImageView android:layout_width="wrap_content"
-                   android:paddingRight="10dp"
+                   android:paddingRight="15dp"
                    android:id="@+id/iv_search_back"
                    android:src="@drawable/ic_back"
                    android:layout_height="match_parent"/>
@@ -41,7 +42,6 @@
                 android:textSize="16sp"
                 app:clearIcon="@drawable/ic_clear_gray"
                 android:layout_centerVertical="true"
-                android:layout_centerHorizontal="true"
                 android:background="@drawable/shape_search_input"
                 android:id="@+id/et_search_input"
                 android:paddingLeft="10dp"
