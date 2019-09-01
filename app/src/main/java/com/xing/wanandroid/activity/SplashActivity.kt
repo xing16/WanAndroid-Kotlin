@@ -1,5 +1,7 @@
 package com.xing.wanandroid.activity
 
+import android.animation.Animator
+import android.animation.ValueAnimator
 import android.content.Intent
 import android.graphics.drawable.Animatable2
 import android.graphics.drawable.AnimatedVectorDrawable
@@ -10,41 +12,60 @@ import android.support.annotation.RequiresApi
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.ImageView
+import com.airbnb.lottie.LottieAnimationView
 import com.xing.wanandroid.R
 import com.xing.wanandroid.main.MainActivity
+import com.xing.wanandroid.utils.gotoActivity
 
 class SplashActivity : AppCompatActivity() {
 
-    private lateinit var musicImgView: ImageView
-    private lateinit var logoImgView: ImageView
+//    private lateinit var musicImgView: ImageView
+//    private lateinit var logoImgView: ImageView
+    private lateinit var logoLottieView: LottieAnimationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
-        musicImgView = findViewById(R.id.iv_logo_music)
-        logoImgView = findViewById(R.id.iv_splash_text)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            val musicDrawable = resources.getDrawable(R.drawable.vector_animator_wanandroid) as AnimatedVectorDrawable
-            musicImgView.setImageDrawable(musicDrawable)
-            musicDrawable.start()
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                musicDrawable.registerAnimationCallback(AnimatorCallback())
+        logoLottieView = findViewById(R.id.lav_logo)
+        logoLottieView.addAnimatorListener(object : Animator.AnimatorListener {
+            override fun onAnimationRepeat(animation: Animator?) {
             }
-        }
+
+            override fun onAnimationCancel(animation: Animator?) {
+            }
+
+            override fun onAnimationStart(animation: Animator?) {
+            }
+
+            override fun onAnimationEnd(animation: Animator?) {
+                gotoMainActivity()
+            }
+        })
+//        musicImgView = findViewById(R.id.iv_logo_music)
+//        logoImgView = findViewById(R.id.iv_splash_text)
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            val musicDrawable =
+//                resources.getDrawable(R.drawable.vector_animator_wanandroid) as AnimatedVectorDrawable
+//            musicImgView.setImageDrawable(musicDrawable)
+//            musicDrawable.start()
+//            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                musicDrawable.registerAnimationCallback(AnimatorCallback())
+//            }
+//        }
     }
 
 
-    @RequiresApi(Build.VERSION_CODES.M)
-    inner class AnimatorCallback : Animatable2.AnimationCallback() {
-        override fun onAnimationEnd(drawable: Drawable?) {
-            super.onAnimationEnd(drawable)
-            this@SplashActivity.logoImgView.visibility = View.VISIBLE
-            this@SplashActivity.logoImgView.setImageResource(R.drawable.splash_text)
-            gotoActivity()
-        }
-    }
+//    @RequiresApi(Build.VERSION_CODES.M)
+//    inner class AnimatorCallback : Animatable2.AnimationCallback() {
+//        override fun onAnimationEnd(drawable: Drawable?) {
+//            super.onAnimationEnd(drawable)
+//            this@SplashActivity.logoImgView.visibility = View.VISIBLE
+//            this@SplashActivity.logoImgView.setImageResource(R.drawable.splash_text)
+//            gotoActivity()
+//        }
+//    }
 
-    private fun gotoActivity() {
+    private fun gotoMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()

@@ -1,59 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
         tools:context=".user.activity.LoginActivity">
 
-    <ImageView
-            android:layout_marginTop="80dp"
-            android:layout_gravity="center_horizontal"
-            android:src="@drawable/android_logo"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"/>
-
-    <com.xing.wanandroid.widget.ClearEditText
-            android:hint="用户名"
-            android:background="@drawable/shape_bottom_border"
-            android:id="@+id/cet_login_username"
-            app:clearIcon="@drawable/ic_clear_gray"
-            app:tipIcon="@drawable/ic_login_user"
+    <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <com.xing.wanandroid.widget.ClearEditText
-            android:layout_marginTop="10dp"
-            android:background="@drawable/shape_bottom_border"
-            android:id="@+id/cet_login_password"
-            android:inputType="textPassword"
-            android:hint="密码"
-            app:clearIcon="@drawable/ic_clear_gray"
-            app:tipIcon="@drawable/ic_login_password"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+        <ImageView
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="90dp"
+                android:src="@drawable/android_logo" />
 
-    <Button android:background="@drawable/selector_btn_user"
-            android:layout_marginTop="20dp"
-            android:text="@string/login"
-            android:textSize="16sp"
-            android:id="@+id/bnt_login"
-            android:textColor="@android:color/white"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"/>
+        <com.xing.wanandroid.widget.ClearEditText
+                android:id="@+id/cet_login_username"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_bottom_border"
+                android:hint="用户名"
+                app:clearIcon="@drawable/ic_clear_gray"
+                app:tipIcon="@drawable/ic_login_user" />
+
+        <com.xing.wanandroid.widget.ClearEditText
+                android:id="@+id/cet_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_bottom_border"
+                android:hint="密码"
+                android:inputType="textPassword"
+                app:clearIcon="@drawable/ic_clear_gray"
+                app:tipIcon="@drawable/ic_login_password" />
+
+
+        <com.xing.wanandroid.widget.LoginView
+                android:id="@+id/lv_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                app:text="登录" />
+    </LinearLayout>
+
 
     <TextView
             android:id="@+id/tv_user_register"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            android:textColor="@color/colorFontDark"
-            android:text="注册账号?"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="30dp"
+            android:text="@string/register_account"
+            android:textColor="@color/colorFontDark"
+            android:textSize="16sp" />
 
-</LinearLayout>
+</RelativeLayout>

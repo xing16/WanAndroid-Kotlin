@@ -2,20 +2,30 @@
 <resources>
     <declare-styleable name="RoundImageView">
         <attr name="shape" format="enum">
-            <enum name="circle" value="0"/>
-            <enum name="rectangle" value="1"/>
+            <enum name="circle" value="0" />
+            <enum name="rectangle" value="1" />
         </attr>
-        <attr name="radius" format="dimension"/>
+        <attr name="radius" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="FlowLayout">
-        <attr name="horizontalMargin" format="dimension"/>
-        <attr name="verticalMargin" format="dimension"/>
+        <attr name="horizontalMargin" format="dimension" />
+        <attr name="verticalMargin" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="ClearEditText">
-        <attr name="tipIcon" format="reference"/>
-        <attr name="clearIcon" format="reference"/>
+        <attr name="tipIcon" format="reference" />
+        <attr name="clearIcon" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="LoginView">
+        <attr name="borderRadius" format="dimension|reference" />
+        <attr name="bgColor" format="color|reference" />
+        <attr name="text" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+        <attr name="arcColor" format="color" />
+        <attr name="arcStrokeWidth" format="dimension" />
     </declare-styleable>
 
 </resources>

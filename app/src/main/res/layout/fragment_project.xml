@@ -1,29 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:orientation="vertical"
-              android:layout_height="match_parent">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
     <android.support.design.widget.TabLayout
-            app:tabMode="scrollable"
-            app:tabIndicatorHeight="2dp"
-            app:tabRippleColor="@android:color/transparent"
+            android:id="@+id/tl_project_tabs"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:background="@android:color/white"
             app:tabIndicatorColor="@color/colorAccent"
             app:tabIndicatorFullWidth="false"
-            app:tabTextAppearance="@style/ProjectTabLayoutStyle"
-            android:id="@+id/tl_project_tabs"
-            app:tabTextColor="@color/colorFont"
+            app:tabIndicatorHeight="2dp"
+            app:tabMode="scrollable"
+            app:tabRippleColor="@android:color/transparent"
             app:tabSelectedTextColor="@color/colorAccent"
-            android:layout_width="match_parent"
-            android:layout_height="35dp">
+            app:tabTextAppearance="@style/ProjectTabLayoutStyle"
+            app:tabTextColor="@color/colorFont">
 
     </android.support.design.widget.TabLayout>
 
     <com.xing.wanandroid.main.widgets.ProjectViewPager
             android:id="@+id/vp_project_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
 
 </LinearLayout>

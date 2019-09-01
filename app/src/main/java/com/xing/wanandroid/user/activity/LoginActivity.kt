@@ -14,15 +14,15 @@ import com.xing.wanandroid.user.contract.LoginContract
 import com.xing.wanandroid.user.presenter.LoginPresenter
 import com.xing.wanandroid.utils.gotoActivity
 import com.xing.wanandroid.widget.ClearEditText
+import com.xing.wanandroid.widget.LoginView
 
 class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     LoginContract.View, View.OnClickListener {
 
     private lateinit var usernameEditText: ClearEditText
     private lateinit var passwordEditText: ClearEditText
-    private lateinit var loginBtn: Button
+    private lateinit var loginView: LoginView
     private lateinit var registerTxtView: TextView
-
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_login
@@ -35,7 +35,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     override fun initView() {
         usernameEditText = findViewById(R.id.cet_login_username)
         passwordEditText = findViewById(R.id.cet_login_password)
-        loginBtn = findViewById(R.id.bnt_login)
+        loginView = findViewById(R.id.lv_login)
         registerTxtView = findViewById(R.id.tv_user_register)
     }
 
@@ -50,16 +50,19 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
         )
         registerTxtView.text = spannableString
         registerTxtView.setOnClickListener(this)
-        loginBtn.setOnClickListener(this)
+        loginView.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when (v?.id) {
-            R.id.bnt_login -> {
-                login()
+            R.id.lv_login -> {
+//                login()
+                loginView.setState(LoginView.STATE_LOADING)
+
             }
             R.id.tv_user_register -> {
-                gotoRegisterActivity()
+//                gotoRegisterActivity()
+                loginView.setState(LoginView.STATE_FAILED)
             }
         }
     }
@@ -93,6 +96,4 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     override fun onLoginResult(result: LoginResponse) {
         finish()
     }
-
-
 }
