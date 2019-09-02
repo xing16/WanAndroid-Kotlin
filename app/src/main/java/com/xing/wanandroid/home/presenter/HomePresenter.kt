@@ -3,9 +3,9 @@ package com.xing.wanandroid.project.presenter
 import com.xing.wanandroid.apiservice.ApiService
 import com.xing.wanandroid.base.BaseResponse
 import com.xing.wanandroid.base.mvp.BasePresenter
-import com.xing.wanandroid.home.bean.Banner
 import com.xing.wanandroid.home.bean.Article
 import com.xing.wanandroid.home.bean.ArticleResponse
+import com.xing.wanandroid.home.bean.Banner
 import com.xing.wanandroid.http.BaseObserver
 import com.xing.wanandroid.project.contract.HomeContract
 import io.reactivex.Observable

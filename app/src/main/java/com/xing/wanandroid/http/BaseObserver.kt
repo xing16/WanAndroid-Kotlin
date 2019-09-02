@@ -1,5 +1,6 @@
 package com.xing.wanandroid.http
 
+import android.content.Context
 import android.util.Log
 import com.xing.wanandroid.base.BaseResponse
 import com.xing.wanandroid.base.mvp.IView
@@ -11,7 +12,8 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
 
     constructor() : super()
 
-    constructor(view: IView) : super() {
+
+    constructor(context: Context, view: IView) : super() {
         baseView = view
     }
 

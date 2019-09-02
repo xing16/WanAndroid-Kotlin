@@ -56,13 +56,10 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.lv_login -> {
-//                login()
-                loginView.setState(LoginView.STATE_LOADING)
-
+                login()
             }
             R.id.tv_user_register -> {
-//                gotoRegisterActivity()
-                loginView.setState(LoginView.STATE_FAILED)
+                gotoRegisterActivity()
             }
         }
     }
@@ -79,6 +76,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
             return
         }
         presenter.login(username, password)
+        loginView.setState(LoginView.STATE_LOADING)
     }
 
 
@@ -95,5 +93,10 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
 
     override fun onLoginResult(result: LoginResponse) {
         finish()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        loginView.release()
     }
 }
