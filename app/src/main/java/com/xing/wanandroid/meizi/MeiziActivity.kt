@@ -25,6 +25,7 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
     private lateinit var meiziAdapter: MeiziAdapter
     private var dataList: ArrayList<Meizi> = ArrayList()
     private lateinit var toolbar: Toolbar
+    private lateinit var gridLayoutManager: GridLayoutManager
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_meizi
@@ -38,9 +39,16 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
         supportActionBar?.elevation = dp2px(mContext, 5f).toFloat()
         toolbar.setNavigationOnClickListener { finish() }
         recyclerView = findViewById(R.id.rv_meizi)
-        recyclerView.layoutManager = GridLayoutManager(mContext, 2)
+        gridLayoutManager = GridLayoutManager(mContext, 3)
+
+        recyclerView.layoutManager = gridLayoutManager
         meiziAdapter = MeiziAdapter(R.layout.item_meizi)
         recyclerView.adapter = meiziAdapter
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return 3 - position % 3
+            }
+        }
     }
 
     override fun initData() {

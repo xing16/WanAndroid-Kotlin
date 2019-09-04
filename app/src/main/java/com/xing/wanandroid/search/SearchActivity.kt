@@ -1,10 +1,9 @@
 package com.xing.wanandroid.search
 
-import android.animation.AnimatorSet
-import android.animation.IntEvaluator
-import android.animation.ObjectAnimator
+import android.animation.*
 import android.support.v4.app.Fragment
 import android.text.TextUtils
+import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -55,15 +54,11 @@ class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListene
             override fun run() {
                 val viewWrapper = ViewMarginWrapper(editText)
                 val leftMarginAnimation = initMarginAnimation(viewWrapper, "leftMargin", 0, backImgView.width, 300)
-                val rightMarginAnimation = initMarginAnimation(
-                    viewWrapper,
-                    "rightMargin",
-                    0,
-                    searchTxtView.width,
-                    300
-                )
+                val rightMarginAnimation = initMarginAnimation(viewWrapper, "rightMargin", 0, searchTxtView.width, 300)
+                val searchTextAnimation = initTranslationAnimation(searchTxtView, "translationX", 300L, 200f, 0f)
+                val backImgViewAnimation = initTranslationAnimation(backImgView, "translationX", 300L, -100f, 0f)
                 val animatorSet = AnimatorSet()
-                animatorSet.playTogether(leftMarginAnimation, rightMarginAnimation)
+                animatorSet.playTogether(leftMarginAnimation, rightMarginAnimation, searchTextAnimation, backImgViewAnimation)
                 animatorSet.duration = 300
                 animatorSet.start()
 
@@ -72,7 +67,7 @@ class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListene
     }
 
 
-    fun initMarginAnimation(
+    private fun initMarginAnimation(
         obj: Any,
         propertyName: String,
         startMargin: Int,
@@ -88,6 +83,13 @@ class SearchActivity : BaseActivity(), SearchHistoryFragment.OnSearchTextListene
         )
         objectAnimator.duration = duration
         objectAnimator.interpolator = LinearInterpolator()
+        return objectAnimator
+    }
+
+    private fun initTranslationAnimation(target: Any, propertyName: String, duration: Long, start: Float, end: Float): ObjectAnimator {
+        val objectAnimator = ObjectAnimator.ofObject(target, propertyName, FloatEvaluator(), start, end)
+        objectAnimator.duration = duration
+        objectAnimator.interpolator = DecelerateInterpolator()
         return objectAnimator
     }
 

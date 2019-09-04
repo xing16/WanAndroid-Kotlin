@@ -12,13 +12,13 @@
     <color name="colorGray">#666666</color>
     <color name="gray_ea">#eaeaea</color>
     <color name="white_aaa">#ffaaaaaa</color>
-    <color name="white_ddd">#ffdddddd</color>
+    <color name="white_eaeaea">#eaeaea</color>
     <color name="white_f4f5f6">#fff4f5f6</color>
     <color name="black_333">#ff333333</color>
     <color name="gray_959698">#ff959698</color>
     <color name="color_cdcdcd">#ffcdcdcd</color>
     <color name="black_222">#ff222222</color>
-    <color name="white_2fff">#55ffffff</color>
+    <color name="white_55ffffff">#55ffffff</color>
 
 
 </resources>

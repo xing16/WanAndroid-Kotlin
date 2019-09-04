@@ -25,18 +25,19 @@
         <activity
                 android:name=".activity.SplashActivity"
                 android:theme="@style/FullScreenStyle">
-
         </activity>
-        <activity android:name=".web.WebViewActivity"></activity>
-        <activity android:name=".search.SearchActivity"></activity>
-        <activity android:name=".meizi.MeiziActivity"></activity>
-        <activity android:name=".image.ImageBrowseActivity"></activity>
+        <activity
+                android:name=".web.WebViewActivity"
+                android:theme="@style/WebViewActivityTheme" />
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".meizi.MeiziActivity" />
+        <activity android:name=".image.ImageBrowseActivity" />
         <activity android:name=".user.activity.LoginActivity">
 
 
         </activity>
-        <activity android:name=".user.activity.RegisterActivity"></activity>
-        <activity android:name=".system.SystemArticleActivity"></activity>
+        <activity android:name=".user.activity.RegisterActivity" />
+        <activity android:name=".system.SystemArticleActivity" />
     </application>
 
 </manifest>

@@ -118,7 +118,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         if (isSelected) {
             textView?.setTextColor(resources.getColor(android.R.color.black))
         } else {
-            textView?.setTextColor(resources.getColor(R.color.colorGray))
+            textView?.setTextColor(resources.getColor(R.color.gray_959698))
         }
     }
 

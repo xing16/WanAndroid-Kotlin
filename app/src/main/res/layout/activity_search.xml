@@ -1,57 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:orientation="vertical"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".search.SearchActivity">
 
-    <RelativeLayout android:layout_width="match_parent"
-                    android:paddingLeft="15dp"
-                    android:paddingRight="15dp"
-                    android:id="@+id/rl_search_parent"
-                    android:gravity="center_vertical"
-                    android:layout_height="50dp">
+    <RelativeLayout
+            android:id="@+id/rl_search_parent"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/white"
+            android:gravity="center_vertical">
 
-        <TextView android:layout_width="wrap_content"
-                  android:textSize="18sp"
-                  android:id="@+id/tv_search"
-                  android:paddingLeft="15dp"
-                  android:textColor="@color/black_333"
-                  android:gravity="center_vertical"
-                  android:layout_centerVertical="true"
-                  android:layout_alignParentRight="true"
-                  android:text="@string/search"
-                  android:layout_height="match_parent"/>
+        <TextView
+                android:id="@+id/tv_search"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:text="@string/search"
+                android:textColor="@color/black_333"
+                android:textSize="18sp" />
 
 
-        <ImageView android:layout_width="wrap_content"
-                   android:paddingRight="15dp"
-                   android:id="@+id/iv_search_back"
-                   android:src="@drawable/ic_back"
-                   android:layout_height="match_parent"/>
+        <ImageView
+                android:id="@+id/iv_search_back"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:src="@drawable/ic_back" />
 
         <com.xing.wanandroid.widget.ClearEditText
+                android:id="@+id/et_search_input"
                 android:layout_width="match_parent"
+                android:layout_height="38dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:background="@drawable/shape_search_input"
                 android:hint="@string/please_input_search_content"
+                android:imeOptions="actionSearch"
                 android:maxLines="1"
-                app:tipIcon="@drawable/ic_search_gray"
+                android:paddingLeft="10dp"
                 android:singleLine="true"
                 android:textSize="16sp"
                 app:clearIcon="@drawable/ic_clear_gray"
-                android:layout_centerVertical="true"
-                android:background="@drawable/shape_search_input"
-                android:id="@+id/et_search_input"
-                android:paddingLeft="10dp"
-                android:imeOptions="actionSearch"
-                android:layout_height="38dp"/>
+                app:tipIcon="@drawable/ic_search_gray" />
     </RelativeLayout>
 
-    <FrameLayout android:layout_width="match_parent"
-                 android:id="@+id/fl_search_container"
-                 android:layout_height="match_parent"/>
+    <FrameLayout
+            android:id="@+id/fl_search_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
 
 </LinearLayout>

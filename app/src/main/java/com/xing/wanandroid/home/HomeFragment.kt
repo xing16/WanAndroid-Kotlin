@@ -61,7 +61,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
     override fun initData() {
         super.initData()
-        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_ddd))
+        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
             .height(1f)
             .margin(15f, 15f)
             .jumpPositions(arrayOf(0))

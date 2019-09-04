@@ -47,7 +47,7 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
         recyclerView = rootView?.findViewById(R.id.rv_project)
-        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_ddd))
+        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
             .height(1f)
             .margin(15f, 15f)
             .jumpPositions(arrayOf(0))
