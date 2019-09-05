@@ -14,6 +14,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
+        <activity android:name=".favorite.FavoriteActivity"></activity>
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,18 +25,14 @@
         </activity>
         <activity
                 android:name=".activity.SplashActivity"
-                android:theme="@style/FullScreenStyle">
-        </activity>
+                android:theme="@style/FullScreenStyle"></activity>
         <activity
                 android:name=".web.WebViewActivity"
                 android:theme="@style/WebViewActivityTheme" />
         <activity android:name=".search.SearchActivity" />
         <activity android:name=".meizi.MeiziActivity" />
         <activity android:name=".image.ImageBrowseActivity" />
-        <activity android:name=".user.activity.LoginActivity">
-
-
-        </activity>
+        <activity android:name=".user.activity.LoginActivity"></activity>
         <activity android:name=".user.activity.RegisterActivity" />
         <activity android:name=".system.SystemArticleActivity" />
     </application>

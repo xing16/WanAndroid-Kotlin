@@ -7,9 +7,9 @@
     <color name="colorPrimaryDark">#ffffffff</color>
     <color name="colorAccent">#c43d3d</color>
     <color name="colorBackground">#fff2f2f2</color>
-    <color name="colorFont">#ff323232</color>
-    <color name="colorFontDark">#5c5c5c</color>
-    <color name="colorGray">#666666</color>
+    <color name="color_f32">#ff323232</color>
+    <color name="color_f5c">#ff5c5c5c</color>
+    <color name="color_666">#666666</color>
     <color name="gray_ea">#eaeaea</color>
     <color name="white_aaa">#ffaaaaaa</color>
     <color name="white_eaeaea">#eaeaea</color>

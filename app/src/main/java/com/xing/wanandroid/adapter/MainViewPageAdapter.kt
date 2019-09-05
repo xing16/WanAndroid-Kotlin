@@ -45,7 +45,7 @@ class MainViewPageAdapter(var context: Context, fm: FragmentManager, var fragmen
         var view: View = layoutInflater.inflate(R.layout.layout_main_tab, null, false)
         var textView: TextView = view.findViewById(R.id.tv_tab_title)
         textView.text = getPageTitle(position)
-        textView.setTextColor(context.resources.getColor(R.color.colorGray))
+        textView.setTextColor(context.resources.getColor(R.color.color_666))
         textView.textSize = 18f
         return view
     }

@@ -12,6 +12,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:text="热门搜索"
+            android:textColor="@color/color_f32"
             android:textSize="18sp" />
 
     <com.xing.wanandroid.widget.flowlayout.FlowLayout
@@ -20,25 +21,25 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
 
-
     <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:paddingTop="10dp"
+            android:paddingTop="15dp"
             android:paddingBottom="10dp">
 
         <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_centerVertical="true"
                 android:text="搜索历史"
+                android:textColor="@color/color_f32"
                 android:textSize="18sp" />
 
         <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_delete" />
 
 

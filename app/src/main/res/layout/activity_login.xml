@@ -61,7 +61,7 @@
             android:layout_marginTop="16dp"
             android:layout_marginBottom="30dp"
             android:text="@string/register_account"
-            android:textColor="@color/colorFontDark"
+            android:textColor="@color/color_f5c"
             android:textSize="16sp" />
 
 </RelativeLayout>

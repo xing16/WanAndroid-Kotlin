@@ -27,7 +27,7 @@
 
         <TextView
                 tools:text="你真的会用RxJava嘛"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/color_f32"
                 android:textSize="16sp"
                 android:maxLines="2"
                 android:id="@+id/tv_search_result_title"

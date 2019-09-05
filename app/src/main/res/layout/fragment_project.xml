@@ -18,7 +18,7 @@
             app:tabRippleColor="@android:color/transparent"
             app:tabSelectedTextColor="@color/colorAccent"
             app:tabTextAppearance="@style/ProjectTabLayoutStyle"
-            app:tabTextColor="@color/colorFont">
+            app:tabTextColor="@color/color_f32">
 
     </android.support.design.widget.TabLayout>
 

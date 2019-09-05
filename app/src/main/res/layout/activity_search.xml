@@ -24,7 +24,7 @@
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
                 android:text="@string/search"
-                android:textColor="@color/black_333"
+                android:textColor="@color/color_f32"
                 android:textSize="18sp" />
 
 

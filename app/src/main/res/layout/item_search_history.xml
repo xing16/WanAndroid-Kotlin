@@ -19,7 +19,7 @@
               tools:text="rxjava"
               android:id="@+id/tv_search_history_title"
               android:singleLine="true"
-              android:textColor="@color/colorGray"
+              android:textColor="@color/color_666"
               android:textSize="16sp"
               android:layout_height="wrap_content"/>
 

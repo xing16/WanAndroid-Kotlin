@@ -26,7 +26,7 @@
                 android:textSize="16sp"
                 tools:text="你的酒罐打了养"
                 android:maxLines="2"
-                android:textColor="@color/colorFont"
+                android:textColor="@color/color_f32"
                 android:id="@+id/tv_project_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>

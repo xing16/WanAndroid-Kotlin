@@ -72,5 +72,8 @@ interface ApiService {
     @GET("article/list/{page}/json")
     fun getSystemArticles(@Path("page") page: Int, @Query("cid") cid: Int): Observable<BaseResponse<ArticleResponse>>
 
+    @GET("lg/collect/list/{page}/json")
+    fun getArticleFavorites(@Path("page") page: Int): Observable<BaseResponse<ArticleResponse>>
+
 
 }

@@ -50,7 +50,7 @@
                     app:tabIndicatorFullWidth="false"
                     app:tabMode="fixed"
                     app:tabRippleColor="@android:color/transparent"
-                    app:tabTextColor="@color/colorFontDark">
+                    app:tabTextColor="@color/color_f5c">
 
             </android.support.design.widget.TabLayout>
 
@@ -69,7 +69,7 @@
             android:id="@+id/nv_left_navigation"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="left"
+            android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/layout_navigation_header"
             app:menu="@menu/menu_navigation" />

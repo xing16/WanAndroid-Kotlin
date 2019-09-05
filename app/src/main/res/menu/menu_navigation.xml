@@ -1,25 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/item_happy_minute"
-          android:icon="@android:drawable/ic_menu_set_as"
-          android:title="轻松一刻"/>
+    <item
+            android:id="@+id/item_nav_happy_minute"
+            android:icon="@android:drawable/ic_menu_set_as"
+            android:title="轻松一刻" />
 
-    <item android:id="@+id/setting"
-          android:icon="@android:drawable/btn_star"
-          android:title="设置"/>
+    <item
+            android:id="@+id/item_nav_favorite"
+            android:icon="@drawable/ic_favorite_fill"
+            android:title="我的收藏" />
 
-    <item android:id="@+id/about"
-          android:icon="@android:drawable/btn_star"
-          android:title="关于"/>
-    <item android:id="@+id/about1"
-          android:icon="@android:drawable/btn_star"
-          android:title="关于"/>
-    <item android:id="@+id/about2"
-          android:icon="@android:drawable/btn_star"
-          android:title="关于"/>
-    <item android:id="@+id/about3"
-          android:icon="@android:drawable/btn_star"
-          android:title="关于"/>
+    <item
+            android:id="@+id/setting"
+            android:icon="@android:drawable/btn_star"
+            android:title="设置" />
+
+    <item
+            android:id="@+id/about"
+            android:icon="@android:drawable/btn_star"
+            android:title="关于" />
+    <item
+            android:id="@+id/about1"
+            android:icon="@android:drawable/btn_star"
+            android:title="关于" />
+    <item
+            android:id="@+id/about2"
+            android:icon="@android:drawable/btn_star"
+            android:title="关于" />
+    <item
+            android:id="@+id/about3"
+            android:icon="@android:drawable/btn_star"
+            android:title="关于" />
 
 </menu>
