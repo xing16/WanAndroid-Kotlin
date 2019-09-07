@@ -39,14 +39,14 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
         supportActionBar?.elevation = dp2px(mContext, 5f).toFloat()
         toolbar.setNavigationOnClickListener { finish() }
         recyclerView = findViewById(R.id.rv_meizi)
-        gridLayoutManager = GridLayoutManager(mContext, 3)
+        gridLayoutManager = GridLayoutManager(mContext, 4)
 
         recyclerView.layoutManager = gridLayoutManager
         meiziAdapter = MeiziAdapter(R.layout.item_meizi)
         recyclerView.adapter = meiziAdapter
         gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
             override fun getSpanSize(position: Int): Int {
-                return 3 - position % 3
+                return if (position % 3 == 0) 4 else 2
             }
         }
     }

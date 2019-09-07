@@ -4,6 +4,9 @@ import android.content.Context
 import android.graphics.Bitmap
 import android.support.v8.renderscript.*
 
+/**
+ * 0 - 25
+ */
 fun blur(context: Context, bitmap: Bitmap, radius: Int): Bitmap {
     val rs = RenderScript.create(context)
     val outputBitmap = Bitmap.createBitmap(bitmap)

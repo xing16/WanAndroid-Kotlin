@@ -13,16 +13,18 @@ import com.xing.wanandroid.utils.*
 import com.xing.wanandroid.web.contract.WebContract
 import com.xing.wanandroid.web.presenter.WebPresenter
 import com.xing.wanandroid.widget.ProgressWebView
+import com.xing.wanandroid.widget.WebDialogFragment
 
 class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
 
     private lateinit var toolbar: Toolbar
     private lateinit var webView: ProgressWebView
-    private var favoriteMenuItem: MenuItem? = null
+    private var moreMenuItem: MenuItem? = null
     private var title: String? = null
     private var link: String? = null
     private var id: Int? = -1
     private var author: String? = null
+    private var dialogFragment: WebDialogFragment? = null
 
     companion object {
         val URL: String = "url"
@@ -102,7 +104,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
      * 获取菜单项
      */
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        favoriteMenuItem = menu?.findItem(R.id.item_favorite)
+        moreMenuItem = menu?.findItem(R.id.item_more)
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -110,10 +112,22 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
      * 菜单项点击事件
      */
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == R.id.item_favorite) {
-            presenter.addFavorite(id ?: -1, title ?: "", author ?: "", link ?: "")
+        if (item?.itemId == R.id.item_more) {
+            showMoreDialog();
         }
         return true
+    }
+
+    private fun showMoreDialog() {
+        if (dialogFragment == null) {
+            dialogFragment = WebDialogFragment()
+        }
+        val dialog = dialogFragment?.dialog
+        val isShowing = dialog?.isShowing ?: false
+        if (isShowing) {
+            return
+        }
+        dialogFragment?.show(supportFragmentManager, WebDialogFragment().javaClass.name)
     }
 
 }
