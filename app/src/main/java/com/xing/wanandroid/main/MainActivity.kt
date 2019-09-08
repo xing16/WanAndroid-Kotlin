@@ -7,9 +7,11 @@ import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
 import android.util.Log
 import android.view.Gravity
+import android.view.KeyEvent
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.R
 import com.xing.wanandroid.adapter.MainViewPageAdapter
@@ -25,6 +27,7 @@ import com.xing.wanandroid.search.SearchActivity
 import com.xing.wanandroid.system.SystemFragment
 import com.xing.wanandroid.utils.blur
 import com.xing.wanandroid.utils.gotoActivity
+import kotlin.system.exitProcess
 
 class MainActivity : BaseActivity(), View.OnClickListener {
 
@@ -120,6 +123,8 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         textView?.textSize = textSize
         if (isSelected) {
             textView?.setTextColor(resources.getColor(android.R.color.black))
+            val width = textView?.measuredWidth
+            Log.e("debug", "width = $width")
         } else {
             textView?.setTextColor(resources.getColor(R.color.gray_959698))
         }
@@ -136,5 +141,21 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private fun gotoSearchActivity() {
         gotoActivity(this, SearchActivity().javaClass)
+    }
+
+    private var lastTime: Long = 0L
+
+    override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            val now = System.currentTimeMillis()
+            if (now - lastTime > 1000) {
+                Toast.makeText(mContext, "再按一次,推出应用", Toast.LENGTH_LONG).show()
+                lastTime = now
+                return false
+            }
+            finish()
+            exitProcess(0)
+        }
+        return super.onKeyDown(keyCode, event)
     }
 }

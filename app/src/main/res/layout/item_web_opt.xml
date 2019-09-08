@@ -9,8 +9,8 @@
         android:gravity="center">
 
     <LinearLayout
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="76dp"
+            android:layout_height="76dp"
             android:background="@drawable/selector_web_opt"
             android:gravity="center"
             android:orientation="vertical">

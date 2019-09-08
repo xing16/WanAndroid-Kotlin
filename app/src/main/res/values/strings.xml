@@ -10,7 +10,14 @@
     <string name="login">登录</string>
     <string name="register">注册</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="register_account">注册账号?</string>
+    <string name="share_success">分享成功</string>
+    <string name="share_failed">分享失败</string>
+    <string name="share_cancel">分享取消</string>
+    <string name="share_auth_failed">分享授权失败</string>
+    <string name="share_unsupported">分享不支持</string>
+    <string name="share_unknown">分享未知错误</string>
+
+
 </resources>

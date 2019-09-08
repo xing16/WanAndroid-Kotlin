@@ -23,15 +23,14 @@
         <item name="android:textSize">16sp</item>
     </style>
 
-
     <style name="WebViewActivityTheme" parent="AppTheme">
         <item name="android:windowAnimationStyle">@style/ActivityRightEnterExistAnimation</item>
     </style>
 
     <style name="ActivityRightEnterExistAnimation" parent="@android:style/Animation.Activity">
-        <item name="android:windowEnterAnimation">@anim/anim_right_enter</item>
         <item name="android:activityOpenEnterAnimation">@anim/anim_right_enter</item>
-        <item name="android:windowExitAnimation">@anim/anim_right_exit</item>
+        <item name="android:activityOpenExitAnimation">@anim/anim_alpha_down</item>
+        <item name="android:activityCloseEnterAnimation">@anim/anim_alpha_up</item>
         <item name="android:activityCloseExitAnimation">@anim/anim_right_exit</item>
     </style>
 

@@ -3,9 +3,9 @@
         package="com.xing.wanandroid">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
             android:name=".app.MainApp"
@@ -17,7 +17,7 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".favorite.FavoriteActivity"></activity>
+        <activity android:name=".favorite.FavoriteActivity" />
         <activity android:name=".main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,16 +28,20 @@
         </activity>
         <activity
                 android:name=".activity.SplashActivity"
-                android:theme="@style/FullScreenStyle"></activity>
+                android:theme="@style/FullScreenStyle" />
         <activity
                 android:name=".web.WebViewActivity"
                 android:theme="@style/WebViewActivityTheme" />
         <activity android:name=".search.SearchActivity" />
         <activity android:name=".meizi.MeiziActivity" />
         <activity android:name=".image.ImageBrowseActivity" />
-        <activity android:name=".user.activity.LoginActivity"></activity>
+        <activity android:name=".user.activity.LoginActivity" />
         <activity android:name=".user.activity.RegisterActivity" />
         <activity android:name=".system.SystemArticleActivity" />
+        <activity
+                android:name=".wxapi.WXEntryActivity"
+                android:exported="true"
+                android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

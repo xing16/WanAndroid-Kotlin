@@ -26,11 +26,26 @@ android {
         }
     }
 
+    signingConfigs {
+        releaseKeyStore {
+            keyAlias 'key0'
+            keyPassword 'xing123456'
+            storeFile file('keystore.jks')
+            storePassword 'xing123456'
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.releaseKeyStore
         }
+
+        debug {
+            signingConfig signingConfigs.releaseKeyStore
+        }
+
     }
 }
 
@@ -82,4 +97,5 @@ dependencies {
     api rootProject.ext.dependencies['aspectj']
     api rootProject.ext.dependencies['statusbar-util']
     api rootProject.ext.dependencies['lottie']
+    api rootProject.ext.dependencies['wechat']
 }
