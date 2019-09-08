@@ -2,37 +2,44 @@ package com.xing.wanandroid.widget
 
 import android.app.Dialog
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.os.Parcelable
 import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentTransaction
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.*
-import butterknife.OnClick
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.xing.wanandroid.R
 import com.xing.wanandroid.utils.blur
 import com.xing.wanandroid.web.adapter.WebOptAdapter
 import com.xing.wanandroid.web.bean.WebOptBean
 
+
 class WebDialogFragment : DialogFragment() {
 
     private lateinit var mContext: Context
-    private var dataList: ArrayList<WebOptBean> = ArrayList()
+    private var dataList: ArrayList<WebOptBean>? = ArrayList()
+
+    companion object {
+        fun newInstance(arrayList: ArrayList<WebOptBean>): WebDialogFragment {
+            val webDialogFragment = WebDialogFragment()
+            val bundle = Bundle()
+            bundle.putParcelableArrayList("dataList", arrayList)
+            webDialogFragment.arguments = bundle
+            return webDialogFragment
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.e("debug", "oncreate")
-        setStyle(STYLE_NO_TITLE, R.style.WebDialogFragmentStyle) //dialog全屏
-
-        initData()
-
+        dataList = arguments?.getParcelableArrayList("dataList")
+        setStyle(STYLE_NO_TITLE, com.xing.wanandroid.R.style.WebDialogFragmentStyle) //dialog全屏
     }
 
     override fun onStart() {
@@ -45,18 +52,10 @@ class WebDialogFragment : DialogFragment() {
         val attribute = dialog.window?.attributes
         attribute?.height = WindowManager.LayoutParams.WRAP_CONTENT   // 高度为 wrap_content，布局文件中设置无效
         attribute?.gravity = Gravity.TOP
-        attribute?.windowAnimations = R.style.WebDialogFragmentAnimation
+        attribute?.windowAnimations = com.xing.wanandroid.R.style.WebDialogFragmentAnimation
         dialog.window?.attributes = attribute
     }
 
-    private fun initData() {
-        dataList.clear()
-        dataList.add(WebOptBean(R.drawable.ic_favorite_white, "收藏"))
-        dataList.add(WebOptBean(R.drawable.ic_share, "微信分享"))
-        dataList.add(WebOptBean(R.drawable.ic_link, "复制链接"))
-        dataList.add(WebOptBean(R.drawable.ic_browser, "浏览器打开"))
-        dataList.add(WebOptBean(R.drawable.ic_browser, "浏览器打开"))
-    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -65,32 +64,40 @@ class WebDialogFragment : DialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         Log.e("debug", "oncreateview")
-        val rootView: View = inflater.inflate(R.layout.dialog_web, container, false)
-        val parentView: View = rootView.findViewById(R.id.ll_web_dialog_parent)
-        val closeImgView: View = rootView.findViewById(R.id.iv_dialog_web_close)
+        val rootView: View = inflater.inflate(com.xing.wanandroid.R.layout.dialog_web, container, false)
+        val parentView: View = rootView.findViewById(com.xing.wanandroid.R.id.ll_web_dialog_parent)
+        val closeImgView: View = rootView.findViewById(com.xing.wanandroid.R.id.iv_dialog_web_close)
         closeImgView.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 dismissAllowingStateLoss()
             }
         })
-        val bitmap: Bitmap = BitmapFactory.decodeResource(resources, R.drawable.android_logo1)
+        val bitmap: Bitmap = BitmapFactory.decodeResource(resources, com.xing.wanandroid.R.drawable.android_logo1)
         val blurBitmap = blur(mContext, bitmap, 10)
         parentView.background = BitmapDrawable(blurBitmap)
 
-        val recyclerView: RecyclerView = rootView.findViewById(R.id.rv_web_opt)
+        val recyclerView: RecyclerView = rootView.findViewById(com.xing.wanandroid.R.id.rv_web_opt)
         recyclerView.layoutManager = GridLayoutManager(mContext, 4)
-        val adapter = WebOptAdapter(R.layout.item_web_opt, dataList)
+        val adapter = WebOptAdapter(com.xing.wanandroid.R.layout.item_web_opt, dataList)
         adapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                when (position) {
-
-                }
+                dismissAllowingStateLoss()
+                listener?.onItemClick(position)
             }
-
         }
         recyclerView.adapter = adapter
 
         return rootView
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+    }
+
+    private var listener: OnItemClickListener? = null
+
+    fun setOnItemClickListener(listener: OnItemClickListener?) {
+        this.listener = listener
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

@@ -32,7 +32,8 @@ class ImageBrowseActivity : BaseActivity() {
 
     override fun initData() {
         super.initData()
-        recyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+       val linearLayoutManager =  LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = linearLayoutManager
         val bundle = intent.extras
         index = bundle?.getInt(INDEX) ?: 0
         list = bundle?.getStringArrayList(IMAGES) ?: ArrayList()

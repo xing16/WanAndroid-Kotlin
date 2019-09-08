@@ -5,7 +5,7 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.xing.wanandroid.R
 import com.xing.wanandroid.web.bean.WebOptBean
 
-class WebOptAdapter(layoutResId: Int, dataList: ArrayList<WebOptBean>) : BaseQuickAdapter<WebOptBean, BaseViewHolder>(layoutResId, dataList) {
+class WebOptAdapter(layoutResId: Int, dataList: ArrayList<WebOptBean>?) : BaseQuickAdapter<WebOptBean, BaseViewHolder>(layoutResId, dataList) {
 
     override fun convert(helper: BaseViewHolder?, item: WebOptBean?) {
         val id = item?.resId ?: -1

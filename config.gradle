@@ -48,6 +48,7 @@ ext {
             "eventbus"               : "org.greenrobot:eventbus:3.1.1",
             "aspectj"                : "org.aspectj:aspectjrt:1.8.9",
             "statusbar-util"         : "com.jaeger.statusbarutil:library:1.5.1",
-            "lottie"                 : "com.airbnb.android:lottie:2.7.0"
+            "lottie"                 : "com.airbnb.android:lottie:2.7.0",
+            "wechat"                 : "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+"
     ]
 }
