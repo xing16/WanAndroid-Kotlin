@@ -26,6 +26,7 @@ import android.content.IntentFilter
 import android.provider.UserDictionary.Words.APP_ID
 import android.content.BroadcastReceiver
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
+import com.xing.wanandroid.R
 
 
 class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
@@ -39,7 +40,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
     private var author: String? = null
     private var dialogFragment: WebDialogFragment? = null
     private var loadUrl: String? = null
-    private var appId: String = ""
+    private var appId: String = "wx2c753629bd2e94bd"
 
     companion object {
         val URL: String = "url"
@@ -50,6 +51,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        toolbar.setNavigationIcon(R.drawable.ic_back)
         supportActionBar?.elevation = dp2px(mContext, 5f).toFloat()
         toolbar.setNavigationOnClickListener {
             finish()

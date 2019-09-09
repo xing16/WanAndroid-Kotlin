@@ -1,12 +1,13 @@
 package com.xing.wanandroid.apiservice
 
 import com.xing.wanandroid.base.BaseResponse
-import com.xing.wanandroid.project.bean.ProjectTab
-import com.xing.wanandroid.home.bean.Banner
+import com.xing.wanandroid.gank.bean.WxPublic
 import com.xing.wanandroid.home.bean.Article
 import com.xing.wanandroid.home.bean.ArticleResponse
+import com.xing.wanandroid.home.bean.Banner
 import com.xing.wanandroid.meizi.bean.Meizi
 import com.xing.wanandroid.project.bean.ProjectResponse
+import com.xing.wanandroid.project.bean.ProjectTab
 import com.xing.wanandroid.search.bean.SearchHot
 import com.xing.wanandroid.search.bean.SearchResultResponse
 import com.xing.wanandroid.system.bean.SystemCategory
@@ -74,6 +75,9 @@ interface ApiService {
 
     @GET("lg/collect/list/{page}/json")
     fun getArticleFavorites(@Path("page") page: Int): Observable<BaseResponse<ArticleResponse>>
+
+    @GET("wxarticle/chapters/json")
+    fun getWxPublic(): Observable<BaseResponse<List<WxPublic>>>
 
 
 }
