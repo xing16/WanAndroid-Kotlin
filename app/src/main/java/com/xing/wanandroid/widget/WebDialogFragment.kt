@@ -2,14 +2,11 @@ package com.xing.wanandroid.widget
 
 import android.app.Dialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.ColorDrawable
-import android.net.Uri
 import android.os.Bundle
-import android.os.Parcelable
 import android.support.v4.app.DialogFragment
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -72,7 +69,7 @@ class WebDialogFragment : DialogFragment() {
                 dismissAllowingStateLoss()
             }
         })
-        val bitmap: Bitmap = BitmapFactory.decodeResource(resources, com.xing.wanandroid.R.drawable.android_logo1)
+        val bitmap: Bitmap = BitmapFactory.decodeResource(resources, com.xing.wanandroid.R.drawable.android_logo_dark)
         val blurBitmap = blur(mContext, bitmap, 10)
         parentView.background = BitmapDrawable(blurBitmap)
 

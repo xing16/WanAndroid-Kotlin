@@ -35,7 +35,7 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
             onSuccess(data)
         } else if (!error) {
             val data: T = response.results
-            Log.e("debug", "t = ${response.results}")
+            Log.e("debug", "baseobserver = ${response.results}")
             onSuccess(data)
         } else {
             onError(ApiException(errorCode, errorMsg))

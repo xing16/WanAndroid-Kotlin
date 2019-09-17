@@ -1,6 +1,7 @@
 package com.xing.wanandroid.apiservice
 
 import com.xing.wanandroid.base.BaseResponse
+import com.xing.wanandroid.gank.bean.GankToday
 import com.xing.wanandroid.gank.bean.WxPublic
 import com.xing.wanandroid.home.bean.Article
 import com.xing.wanandroid.home.bean.ArticleResponse
@@ -78,6 +79,10 @@ interface ApiService {
 
     @GET("wxarticle/chapters/json")
     fun getWxPublic(): Observable<BaseResponse<List<WxPublic>>>
+
+
+    @GET("http://gank.io/api/today")
+    fun getGankToday(): Observable<BaseResponse<HashMap<String, List<GankToday>>>>
 
 
 }

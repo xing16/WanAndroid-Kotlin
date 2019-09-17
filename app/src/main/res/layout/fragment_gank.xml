@@ -7,9 +7,9 @@
         tools:context=".gank.GankFragment">
 
     <android.support.v7.widget.RecyclerView
-            android:id="@+id/rv_wx_public"
+            android:id="@+id/rv_gank_today"
             android:layout_width="match_parent"
-            android:layout_height="110dp" />
+            android:layout_height="match_parent" />
 
 
 </LinearLayout>
