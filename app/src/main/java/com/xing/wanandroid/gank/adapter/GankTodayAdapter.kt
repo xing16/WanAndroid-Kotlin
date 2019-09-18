@@ -1,6 +1,5 @@
 package com.xing.wanandroid.gank.adapter
 
-import android.util.Log
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseSectionQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
@@ -15,12 +14,16 @@ class GankTodayAdapter(layoutResId: Int, sectionHeadResId: Int, list: List<GankT
     }
 
     override fun convert(helper: BaseViewHolder?, item: GankTodayEntity<GankToday>?) {
-        Log.e("debug", "item?.t?.images != null : ${item?.t?.images != null}")
-        Log.e("debug", "item.t?.images?.size != 0 : ${item?.t?.images?.size != 0}")
-
+        val publishedAt: String? = item?.t?.publishedAt
+        var publishedAtString: String
+        when {
+            publishedAt == null -> publishedAtString = ""
+            publishedAt.length < 10 -> publishedAtString = publishedAt
+            else -> publishedAtString = publishedAt.substring(0, 10)
+        }
         helper?.setText(R.id.tv_gank_desc, item?.t?.desc)
             ?.setText(R.id.tv_gank_who, item?.t?.who)
-            ?.setText(R.id.tv_gank_create_time, item?.t?.createdAt)
+            ?.setText(R.id.tv_gank_create_time, publishedAtString)
             ?.setGone(R.id.ll_gank_images_parent, item?.t?.images != null && item.t?.images?.size != 0)
 
         if (item?.t?.images?.size ?: 0 > 2) {

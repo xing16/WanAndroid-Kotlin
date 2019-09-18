@@ -23,7 +23,7 @@ package com.xing.wanandroid.gank.bean
 
 data class GankToday(
     val desc: String,
-    val createdAt: String,
+    val publishedAt: String,
     val type: String,
     val url: String,
     val who: String,

@@ -1,20 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_marginLeft="15dp"
-        android:background="@drawable/selector_wx_public"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:gravity="center_horizontal"
         android:orientation="vertical">
+
+    <TextView
+            android:id="@+id/tv_wx_author_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/selector_wx_public"
+            android:gravity="center"
+            android:singleLine="true"
+            android:textColor="@android:color/white"
+            android:textSize="16sp"
+            tools:text="陶" />
 
     <TextView
             android:id="@+id/tv_wx_author"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginTop="6dp"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@android:color/white"
-            android:textSize="18sp"
+            android:textColor="@color/black_333"
+            android:textSize="16sp"
             tools:text="xing16" />
+
 
 </LinearLayout>
