@@ -48,6 +48,7 @@
                     android:layout_toRightOf="@id/iv_main_menu"
                     app:tabGravity="center"
                     app:tabIndicatorFullWidth="false"
+                    app:tabIndicatorHeight="0dp"
                     app:tabMode="fixed"
                     app:tabRippleColor="@android:color/transparent"
                     app:tabTextColor="@color/color_f5c">

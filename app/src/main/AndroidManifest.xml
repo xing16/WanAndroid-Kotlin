@@ -19,6 +19,22 @@
             android:usesCleartextTraffic="true">
         <activity android:name=".favorite.FavoriteActivity" />
         <activity android:name=".main.MainActivity">
+
+        </activity>
+        <activity
+                android:name=".activity.SplashActivity"
+                android:theme="@style/FullScreenStyle" >
+
+
+        </activity>
+        <activity
+                android:name=".web.WebViewActivity"
+                android:theme="@style/WebViewActivityTheme" />
+        <activity android:name=".search.SearchActivity" />
+        <activity android:name=".meizi.MeiziActivity" />
+        <activity android:name=".image.ImageBrowseActivity" />
+        <activity android:name=".user.activity.LoginActivity" >
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -26,16 +42,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".activity.SplashActivity"
-                android:theme="@style/FullScreenStyle" />
-        <activity
-                android:name=".web.WebViewActivity"
-                android:theme="@style/WebViewActivityTheme" />
-        <activity android:name=".search.SearchActivity" />
-        <activity android:name=".meizi.MeiziActivity" />
-        <activity android:name=".image.ImageBrowseActivity" />
-        <activity android:name=".user.activity.LoginActivity" />
         <activity android:name=".user.activity.RegisterActivity" />
         <activity android:name=".system.SystemArticleActivity" />
         <activity
