@@ -20,10 +20,10 @@
 
     <declare-styleable name="LoginView">
         <attr name="borderRadius" format="dimension|reference" />
-        <attr name="bgColor" format="color|reference" />
+        <attr name="bgColor" format="color" />
         <attr name="text" format="string" />
-        <attr name="textColor" format="color" />
-        <attr name="textSize" format="dimension" />
+        <attr name="textColor1" format="color" />
+        <attr name="textSize1" format="dimension" />
         <attr name="arcColor" format="color" />
         <attr name="arcStrokeWidth" format="dimension" />
     </declare-styleable>

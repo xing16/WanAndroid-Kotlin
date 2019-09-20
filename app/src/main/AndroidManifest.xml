@@ -19,7 +19,12 @@
             android:usesCleartextTraffic="true">
         <activity android:name=".favorite.FavoriteActivity" />
         <activity android:name=".main.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
                 android:name=".activity.SplashActivity"
@@ -35,12 +40,7 @@
         <activity android:name=".image.ImageBrowseActivity" />
         <activity android:name=".user.activity.LoginActivity" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".user.activity.RegisterActivity" />
         <activity android:name=".system.SystemArticleActivity" />

@@ -28,7 +28,7 @@
                 android:layout_marginTop="10dp"
                 android:background="@drawable/shape_bottom_border"
                 android:hint="用户名"
-                app:clearIcon="@drawable/ic_clear_gray"
+                app:clearIcon="@drawable/ic_close_gray"
                 app:tipIcon="@drawable/ic_login_user" />
 
         <com.xing.wanandroid.widget.ClearEditText
@@ -39,7 +39,7 @@
                 android:background="@drawable/shape_bottom_border"
                 android:hint="密码"
                 android:inputType="textPassword"
-                app:clearIcon="@drawable/ic_clear_gray"
+                app:clearIcon="@drawable/ic_close_gray"
                 app:tipIcon="@drawable/ic_login_password" />
 
 
@@ -48,7 +48,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                app:text="登录" />
+                app:arcColor="@color/color_f32"
+                app:bgColor="@color/black_333"
+                app:borderRadius="19dp"
+                app:text="登录1111"
+                app:textColor1="#ff00ff00"
+                app:textSize1="30sp" />
     </LinearLayout>
 
 

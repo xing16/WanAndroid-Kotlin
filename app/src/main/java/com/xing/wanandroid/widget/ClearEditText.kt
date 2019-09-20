@@ -9,10 +9,11 @@ import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.MotionEvent
+import android.view.View
 import android.widget.EditText
 import com.xing.wanandroid.R
 
-class ClearEditText : EditText, TextWatcher {
+class ClearEditText : EditText, TextWatcher, View.OnFocusChangeListener {
 
     private var tipDrawable: Drawable? = null
     private var clearDrawable: Drawable? = null
@@ -32,10 +33,11 @@ class ClearEditText : EditText, TextWatcher {
     }
 
     fun init(context: Context) {
-        compoundDrawablePadding = dp2px(6f).toInt()
+        compoundDrawablePadding = dp2px(12f).toInt()
         setPadding(dp2px(10f).toInt(), dp2px(10f).toInt(), dp2px(10f).toInt(), dp2px(10f).toInt())
         addTextChangedListener(this)
-        setSingleLine()
+        onFocusChangeListener = this
+//        setSingleLine()
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -83,6 +85,17 @@ class ClearEditText : EditText, TextWatcher {
         }
         return super.onTouchEvent(event)
 
+    }
+
+    /**
+     * 焦点发生改变
+     */
+    override fun onFocusChange(v: View?, hasFocus: Boolean) {
+        if (hasFocus && text.toString().trim().isNotEmpty()) {
+            setCompoundDrawables(compoundDrawables[0], compoundDrawables[1], clearDrawable, compoundDrawables[3])
+        } else {
+            setCompoundDrawables(compoundDrawables[0], compoundDrawables[1], null, compoundDrawables[3])
+        }
     }
 
     private fun dp2px(dp: Float): Float {

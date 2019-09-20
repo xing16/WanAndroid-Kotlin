@@ -22,11 +22,11 @@ class LoginView : View {
     private var backgroundPaint: Paint
     private var arcPaint: Paint
     private var textPaint: Paint
-    private var bgColor: Int = 0xffff0000.toInt()
+    private var bgColor: Int = Color.GREEN
     private var text: String = ""
-    private var textColor: Int = 0xffffffff.toInt()
+    private var textColor: Int = 0
     private var textSize: Float = dp2px(22f)
-    private var arcColor: Int = 0xffffffff.toInt()
+    private var arcColor: Int = 0
     private var arcStrokeWidth: Float = dp2px(5f)
     private var mViewWidth: Int = 0
     private var mViewHeight: Int = 0
@@ -65,13 +65,14 @@ class LoginView : View {
 
     private fun readAttrs(context: Context, attributeSet: AttributeSet?) {
         val typeArray = context.obtainStyledAttributes(attributeSet, R.styleable.LoginView)
-        bgColor = typeArray.getColor(R.styleable.LoginView_bgColor, 0xffff0000.toInt())
+        var bgColor = typeArray.getColor(R.styleable.LoginView_bgColor, 0xffff0000.toInt())
+        bgColor = 0xff0000ff.toInt()
         radius = typeArray.getDimension(R.styleable.LoginView_borderRadius, dp2px(6f))
         arcColor = typeArray.getColor(R.styleable.LoginView_arcColor, 0xffffffff.toInt())
         arcStrokeWidth = typeArray.getDimension(R.styleable.LoginView_arcStrokeWidth, dp2px(3f))
         text = typeArray.getString(R.styleable.LoginView_text) ?: ""
-        textColor = typeArray.getColor(R.styleable.LoginView_textColor, 0xffffffff.toInt())
-        textSize = typeArray.getDimension(R.styleable.LoginView_textSize, sp2px(22f))
+        textColor = typeArray.getColor(R.styleable.LoginView_textColor1, 0xffffffff.toInt())
+        textSize = typeArray.getDimension(R.styleable.LoginView_textSize1, sp2px(22f))
         typeArray.recycle()
     }
 
