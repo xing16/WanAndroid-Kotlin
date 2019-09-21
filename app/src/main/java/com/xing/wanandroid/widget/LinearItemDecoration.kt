@@ -22,7 +22,7 @@ class LinearItemDecoration : RecyclerView.ItemDecoration {
 
     constructor(context: Context) : super() {
         mContext = context
-        height = dp2px(context, 1f)
+        height = dp2px(context, 1f).toInt()
         paint = Paint(Paint.ANTI_ALIAS_FLAG)
         paint.style = Paint.Style.FILL
     }
@@ -31,8 +31,8 @@ class LinearItemDecoration : RecyclerView.ItemDecoration {
      * 设置 ItemDecoration 左右宽度，设置 getItemOffsets() 中的 outRect.left, outRect.right
      */
     fun itemOffsets(itemOffsetLeft: Float, itemOffsetRight: Float): LinearItemDecoration {
-        this.itemOffsetLeft = dp2px(mContext, itemOffsetLeft)
-        this.itemOffsetRight = dp2px(mContext, itemOffsetRight)
+        this.itemOffsetLeft = dp2px(mContext, itemOffsetLeft).toInt()
+        this.itemOffsetRight = dp2px(mContext, itemOffsetRight).toInt()
         return this
     }
 
@@ -40,7 +40,7 @@ class LinearItemDecoration : RecyclerView.ItemDecoration {
      * 设置 ItemDecoration 高度
      */
     fun height(height: Float): LinearItemDecoration {
-        this.height = dp2px(mContext, height)
+        this.height = dp2px(mContext, height).toInt()
         return this
     }
 
@@ -53,8 +53,8 @@ class LinearItemDecoration : RecyclerView.ItemDecoration {
     }
 
     fun margin(left: Float, right: Float): LinearItemDecoration {
-        this.leftMargin = dp2px(mContext, left)
-        this.rightMargin = dp2px(mContext, right)
+        this.leftMargin = dp2px(mContext, left).toInt()
+        this.rightMargin = dp2px(mContext, right).toInt()
         return this
     }
 

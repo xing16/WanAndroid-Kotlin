@@ -1,6 +1,7 @@
 package com.xing.wanandroid.gank
 
 
+import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -9,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.gank.adapter.GankTodayAdapter
@@ -18,6 +20,8 @@ import com.xing.wanandroid.gank.bean.GankTodayEntity
 import com.xing.wanandroid.gank.bean.WxPublic
 import com.xing.wanandroid.gank.contract.GankContract
 import com.xing.wanandroid.gank.presenter.GankPresenter
+import com.xing.wanandroid.utils.gotoActivity
+import com.xing.wanandroid.web.WebViewActivity
 import com.xing.wanandroid.widget.LinearItemDecoration
 
 
@@ -51,6 +55,11 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
         // 初始化 wxPublicRecyclerView
         wxPublicRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
         wxPublicAdapter = WxPublicAdapter(R.layout.item_wx_public)
+        wxPublicAdapter.setOnItemClickListener(object : BaseQuickAdapter.OnItemClickListener {
+            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+
+            }
+        })
         wxPublicRecyclerView.adapter = wxPublicAdapter
 
         // 初始化 gankRecyclerView
@@ -99,7 +108,14 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
         }
         gankTodayAdapter = GankTodayAdapter(R.layout.item_gank_section_item, R.layout.item_gank_section_header, list)
         gankTodayAdapter.addHeaderView(headerView)
-
+        gankTodayAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
+            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                val url = list[position].t.url
+                val bundle = Bundle()
+                bundle.putString(WebViewActivity.URL, url)
+                gotoActivity(mContext as Activity, WebViewActivity().javaClass, bundle)
+            }
+        }
         gankRecyclerView?.adapter = gankTodayAdapter
     }
 

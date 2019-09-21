@@ -14,18 +14,21 @@ import android.view.View
 import android.widget.ImageView
 import com.airbnb.lottie.LottieAnimationView
 import com.xing.wanandroid.R
+import com.xing.wanandroid.base.BaseActivity
 import com.xing.wanandroid.main.MainActivity
 import com.xing.wanandroid.utils.gotoActivity
 
-class SplashActivity : AppCompatActivity() {
+class SplashActivity : BaseActivity() {
 
 //    private lateinit var musicImgView: ImageView
 //    private lateinit var logoImgView: ImageView
     private lateinit var logoLottieView: LottieAnimationView
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splash)
+    override fun getLayoutResId(): Int {
+        return R.layout.activity_splash
+    }
+
+    override fun initView() {
         logoLottieView = findViewById(R.id.lav_logo)
         logoLottieView.addAnimatorListener(object : Animator.AnimatorListener {
             override fun onAnimationRepeat(animation: Animator?) {
@@ -54,7 +57,6 @@ class SplashActivity : AppCompatActivity() {
 //        }
     }
 
-
 //    @RequiresApi(Build.VERSION_CODES.M)
 //    inner class AnimatorCallback : Animatable2.AnimationCallback() {
 //        override fun onAnimationEnd(drawable: Drawable?) {
@@ -66,10 +68,7 @@ class SplashActivity : AppCompatActivity() {
 //    }
 
     private fun gotoMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
+        gotoActivity(this, MainActivity().javaClass)
         finish()
     }
-
-
 }

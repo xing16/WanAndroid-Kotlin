@@ -19,11 +19,11 @@ import com.xing.wanandroid.R
 
 class LoginView : View {
 
-    private var backgroundPaint: Paint
-    private var arcPaint: Paint
-    private var textPaint: Paint
-    private var bgColor: Int = Color.GREEN
-    private var text: String = ""
+    private lateinit var backgroundPaint: Paint
+    private lateinit var arcPaint: Paint
+    private lateinit var textPaint: Paint
+    private var bgColor: Int = Color.RED
+    private var text: String = "登录"
     private var textColor: Int = 0
     private var textSize: Float = dp2px(22f)
     private var arcColor: Int = 0
@@ -54,33 +54,32 @@ class LoginView : View {
     companion object {
         const val STATE_LOADING = 1
         const val STATE_FAILED = 2
-
     }
 
     constructor(context: Context) : this(context, null)
 
     constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet) {
         readAttrs(context, attributeSet)
+        init()
     }
 
     private fun readAttrs(context: Context, attributeSet: AttributeSet?) {
         val typeArray = context.obtainStyledAttributes(attributeSet, R.styleable.LoginView)
-        var bgColor = typeArray.getColor(R.styleable.LoginView_bgColor, 0xffff0000.toInt())
-        bgColor = 0xff0000ff.toInt()
+        bgColor = typeArray.getColor(R.styleable.LoginView_bgColor, 0)
         radius = typeArray.getDimension(R.styleable.LoginView_borderRadius, dp2px(6f))
         arcColor = typeArray.getColor(R.styleable.LoginView_arcColor, 0xffffffff.toInt())
         arcStrokeWidth = typeArray.getDimension(R.styleable.LoginView_arcStrokeWidth, dp2px(3f))
         text = typeArray.getString(R.styleable.LoginView_text) ?: ""
-        textColor = typeArray.getColor(R.styleable.LoginView_textColor1, 0xffffffff.toInt())
-        textSize = typeArray.getDimension(R.styleable.LoginView_textSize1, sp2px(22f))
+        textColor = typeArray.getColor(R.styleable.LoginView_textColor, 0xffffffff.toInt())
+        textSize = typeArray.getDimension(R.styleable.LoginView_textSize, sp2px(16f))
         typeArray.recycle()
     }
 
-    init {
+    private fun init() {
         backgroundPaint = createPaint(bgColor, Paint.Style.FILL, 0f)
         arcPaint = createPaint(arcColor, Paint.Style.STROKE, dp2px(3f))
         textPaint = createPaint(textColor, Paint.Style.FILL, 10f)
-        textPaint.textSize = dp2px(20f)
+        textPaint.textSize = textSize
         textPaint.textAlign = Paint.Align.CENTER
     }
 

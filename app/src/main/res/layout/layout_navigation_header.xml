@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:layout_width="match_parent"
-                android:layout_height="200dp">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
 
     <ImageView
             android:id="@+id/iv_avatar_background"
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/dog"/>
+            android:src="@drawable/dog" />
 
-    <LinearLayout android:layout_width="match_parent"
-                  android:orientation="horizontal"
-                  android:paddingLeft="20dp"
-                  android:layout_marginBottom="20dp"
-                  android:layout_alignParentBottom="true"
-                  android:layout_height="wrap_content">
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal"
+            android:paddingLeft="20dp">
 
         <com.xing.wanandroid.widget.RoundImageView
-                android:id="@+id/iv_avatar"
-                app:shape="circle"
+                android:id="@+id/iv_nav_avatar"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:scaleType="centerCrop"
                 android:src="@drawable/dog"
-                android:layout_width="80dp"
-                android:layout_height="80dp"/>
+                app:borderColor="#aa555555"
+                app:borderWidth="4dp"
+                app:radius="20dp"
+                app:shape="circle" />
 
         <TextView
-                android:text="xing16"
-                android:textSize="26sp"
-                android:layout_gravity="center_vertical"
-                android:textColor="@android:color/white"
-                android:layout_marginLeft="20dp"
+                android:id="@+id/tv_nav_username"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="match_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="20dp"
+                android:ellipsize="end"
+                android:gravity="center_vertical"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
 
     </LinearLayout>
 

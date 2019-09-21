@@ -5,6 +5,7 @@ import android.text.TextUtils
 import android.text.style.UnderlineSpan
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.xing.wanandroid.R
@@ -23,6 +24,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     private lateinit var passwordEditText: ClearEditText
     private lateinit var loginView: LoginView
     private lateinit var registerTxtView: TextView
+    private lateinit var closeImgView: ImageView
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_login
@@ -33,6 +35,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     }
 
     override fun initView() {
+        closeImgView = findViewById(R.id.iv_login_close)
         usernameEditText = findViewById(R.id.cet_login_username)
         passwordEditText = findViewById(R.id.cet_login_password)
         loginView = findViewById(R.id.lv_login)
@@ -51,6 +54,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
         registerTxtView.text = spannableString
         registerTxtView.setOnClickListener(this)
         loginView.setOnClickListener(this)
+        closeImgView.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
@@ -60,6 +64,9 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
             }
             R.id.tv_user_register -> {
                 gotoRegisterActivity()
+            }
+            R.id.iv_login_close -> {
+                finishLoginActivity()
             }
         }
     }
@@ -92,7 +99,15 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     }
 
     override fun onLoginResult(result: LoginResponse) {
+        finishLoginActivity()
+    }
+
+    /**
+     * 关闭 LoginActivity
+     */
+    private fun finishLoginActivity() {
         finish()
+        overridePendingTransition(0, R.anim.anim_bottom_exit)
     }
 
     override fun onDestroy() {

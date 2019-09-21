@@ -9,16 +9,24 @@
         android:paddingRight="20dp"
         tools:context=".user.activity.LoginActivity">
 
+    <ImageView
+            android:id="@+id/iv_login_close"
+            android:layout_width="26dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_close" />
+
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/iv_login_close"
             android:orientation="vertical">
 
         <ImageView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="90dp"
+                android:layout_marginTop="80dp"
                 android:src="@drawable/android_logo" />
 
         <com.xing.wanandroid.widget.ClearEditText
@@ -48,12 +56,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                app:arcColor="@color/color_f32"
-                app:bgColor="@color/black_333"
-                app:borderRadius="19dp"
-                app:text="登录1111"
-                app:textColor1="#ff00ff00"
-                app:textSize1="30sp" />
+                app:arcColor="@android:color/white"
+                app:bgColor="@color/colorAccent"
+                app:borderRadius="6dp"
+                app:text="登录"
+                app:textColor="@android:color/white"
+                app:textSize="20sp" />
     </LinearLayout>
 
 

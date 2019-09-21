@@ -71,6 +71,6 @@
             android:background="@drawable/selector_btn_user"
             android:text="@string/register"
             android:textColor="@android:color/white"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
 </LinearLayout>

@@ -28,9 +28,7 @@
         </activity>
         <activity
                 android:name=".activity.SplashActivity"
-                android:theme="@style/FullScreenStyle" >
-
-
+                android:theme="@style/FullScreenStyle">
         </activity>
         <activity
                 android:name=".web.WebViewActivity"
@@ -38,7 +36,7 @@
         <activity android:name=".search.SearchActivity" />
         <activity android:name=".meizi.MeiziActivity" />
         <activity android:name=".image.ImageBrowseActivity" />
-        <activity android:name=".user.activity.LoginActivity" >
+        <activity android:name=".user.activity.LoginActivity">
 
 
         </activity>

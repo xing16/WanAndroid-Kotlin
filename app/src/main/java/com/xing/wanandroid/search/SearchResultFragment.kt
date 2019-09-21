@@ -59,7 +59,7 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
         recyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         searchResultAdapter = SearchResultAdapter(R.layout.item_search_result)
         searchResultAdapter.setOnItemClickListener { adapter, view, position ->
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putString(WebViewActivity.URL, dataList[position].link)
             gotoActivity(activity!!, WebViewActivity().javaClass, bundle)
         }

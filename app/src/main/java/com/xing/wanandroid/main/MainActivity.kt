@@ -25,6 +25,7 @@ import com.xing.wanandroid.meizi.MeiziActivity
 import com.xing.wanandroid.project.ProjectFragment
 import com.xing.wanandroid.search.SearchActivity
 import com.xing.wanandroid.system.SystemFragment
+import com.xing.wanandroid.user.activity.LoginActivity
 import com.xing.wanandroid.utils.blur
 import com.xing.wanandroid.utils.gotoActivity
 import kotlin.system.exitProcess
@@ -39,6 +40,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private lateinit var navigationView: NavigationView
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var avatarBackground: ImageView
+    private lateinit var usernameTextView: TextView
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
@@ -49,6 +51,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         StatusBarUtil.setColorForDrawerLayout(this, drawerLayout, resources.getColor(R.color.colorPrimary), 0)
         navigationView = findViewById(R.id.nv_left_navigation)
         val headerView: View = navigationView.getHeaderView(0)
+        usernameTextView = headerView.findViewById(R.id.tv_nav_username)
         avatarBackground = headerView.findViewById(R.id.iv_avatar_background)
         mainMenu = findViewById(R.id.iv_main_menu)
         mainSearch = findViewById(R.id.iv_main_search)
@@ -56,11 +59,12 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         mainViewPager = findViewById(R.id.vp_main_pager)
 
         mainMenu.setOnClickListener {
-            openNavigationView()
+            openDrawer()
         }
+        usernameTextView.setOnClickListener(this)
 
         navigationView.setNavigationItemSelectedListener { item ->
-            drawerLayout.closeDrawer(Gravity.LEFT)
+            closeDrawer()
             when (item.itemId) {
                 R.id.item_nav_happy_minute -> {
                     gotoActivity(mContext as Activity, MeiziActivity().javaClass)
@@ -76,10 +80,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.dog)
         avatarBackground.setImageBitmap(blur(mContext, bitmap, 18))
 
-    }
-
-    private fun openNavigationView() {
-        drawerLayout.openDrawer(Gravity.START)
     }
 
     override fun initData() {
@@ -114,7 +114,25 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             }
         })
+        if (true) {
+            usernameTextView.text = getString(R.string.click_to_login)
+        }
+
         mainSearch.setOnClickListener(this)
+    }
+
+    /**
+     * 打开抽屉
+     */
+    private fun openDrawer() {
+        drawerLayout.openDrawer(Gravity.START)
+    }
+
+    /**
+     * 关闭抽屉
+     */
+    private fun closeDrawer() {
+        drawerLayout.closeDrawer(Gravity.START)
     }
 
     private fun changeTabView(tab: TabLayout.Tab?, textSize: Float, isSelected: Boolean) {
@@ -136,11 +154,19 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 gotoSearchActivity()
                 overridePendingTransition(0, 0)
             }
+            R.id.tv_nav_username -> {
+                gotoLoginActivity()
+                closeDrawer()
+            }
         }
     }
 
     private fun gotoSearchActivity() {
         gotoActivity(this, SearchActivity().javaClass)
+    }
+
+    private fun gotoLoginActivity() {
+        gotoActivity(this, LoginActivity().javaClass)
     }
 
     private var lastTime: Long = 0L

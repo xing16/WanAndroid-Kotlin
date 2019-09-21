@@ -52,15 +52,15 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         toolbar.setNavigationIcon(R.drawable.ic_back)
-        supportActionBar?.elevation = dp2px(mContext, 5f).toFloat()
+        supportActionBar?.elevation = dp2px(mContext, 5f)
         toolbar.setNavigationOnClickListener {
             finish()
         }
-        webView = findViewById(com.xing.wanandroid.R.id.pwv_webview)
+        webView = findViewById(R.id.pwv_webview)
     }
 
     override fun getLayoutResId(): Int {
-        return com.xing.wanandroid.R.layout.activity_web_view
+        return R.layout.activity_web_view
     }
 
     override fun showLoading() {

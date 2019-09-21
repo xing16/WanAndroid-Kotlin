@@ -6,6 +6,8 @@
             <enum name="rectangle" value="1" />
         </attr>
         <attr name="radius" format="dimension" />
+        <attr name="borderColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="FlowLayout">
@@ -22,8 +24,8 @@
         <attr name="borderRadius" format="dimension|reference" />
         <attr name="bgColor" format="color" />
         <attr name="text" format="string" />
-        <attr name="textColor1" format="color" />
-        <attr name="textSize1" format="dimension" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
         <attr name="arcColor" format="color" />
         <attr name="arcStrokeWidth" format="dimension" />
     </declare-styleable>

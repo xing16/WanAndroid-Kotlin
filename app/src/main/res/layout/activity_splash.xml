@@ -19,21 +19,21 @@
             app:lottie_loop="false" />
 
 
-<!--    <ImageView-->
-<!--            android:id="@+id/iv_logo_music"-->
-<!--            android:layout_width="100dp"-->
-<!--            android:layout_height="120dp"-->
-<!--            android:layout_marginTop="200dp"-->
-<!--            tools:src="@drawable/ic_launcher_background" />-->
+    <!--    <ImageView-->
+    <!--            android:id="@+id/iv_logo_music"-->
+    <!--            android:layout_width="100dp"-->
+    <!--            android:layout_height="120dp"-->
+    <!--            android:layout_marginTop="200dp"-->
+    <!--            tools:src="@drawable/ic_launcher_background" />-->
 
-<!--    <ImageView-->
-<!--            android:id="@+id/iv_splash_text"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:src="@drawable/splash_text"-->
-<!--            android:visibility="gone"-->
-<!--            tools:text="WanAndroid" />-->
+    <!--    <ImageView-->
+    <!--            android:id="@+id/iv_splash_text"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:layout_marginTop="20dp"-->
+    <!--            android:src="@drawable/splash_text"-->
+    <!--            android:visibility="gone"-->
+    <!--            tools:text="WanAndroid" />-->
 
 
 </LinearLayout>
