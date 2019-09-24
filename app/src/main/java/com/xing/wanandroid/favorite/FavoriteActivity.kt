@@ -3,21 +3,33 @@ package com.xing.wanandroid.favorite
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
+import android.util.Log
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
+import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
 import com.xing.wanandroid.favorite.adapter.FavoriteAdapter
 import com.xing.wanandroid.favorite.contract.FavoriteContract
 import com.xing.wanandroid.favorite.presenter.FavoritePresenter
+import com.xing.wanandroid.home.bean.Article
 import com.xing.wanandroid.home.bean.ArticleResponse
 import com.xing.wanandroid.utils.dp2px
+import com.xing.wanandroid.widget.LinearItemDecoration
+import kotlinx.android.synthetic.main.activity_search.*
 
 class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresenter>(),
     FavoriteContract.View {
 
+    private lateinit var refreshLayout: SmartRefreshLayout
     private lateinit var recyclerView: RecyclerView
     private lateinit var favoriteAdapter: FavoriteAdapter
     private var curPage = 0
     private lateinit var toolbar: Toolbar
+    private var dataList: ArrayList<Article> = ArrayList()
+    private var mCurPage: Int = 0
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_favorite
@@ -28,14 +40,22 @@ class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresente
     }
 
     override fun initView() {
+        refreshLayout = findViewById(R.id.srl_favorite)
+        refreshLayout.setEnableRefresh(false)
+        refreshLayout.setRefreshFooter(ClassicsFooter(mContext))
         toolbar = findViewById(R.id.tb_favorite)
         setSupportActionBar(toolbar)
         supportActionBar?.title = "收藏"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.elevation = dp2px(mContext, 5f).toFloat()
+        supportActionBar?.elevation = dp2px(mContext, 5f)
         toolbar.setNavigationOnClickListener { finish() }
         recyclerView = findViewById(R.id.rv_favorite)
         recyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
+        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
+            .height(1f)
+            .margin(15f, 15f)
+            .jumpPositions(arrayOf(0))
+        recyclerView.addItemDecoration(itemDecoration)
         favoriteAdapter = FavoriteAdapter(R.layout.item_home_recycler)
         recyclerView.adapter = favoriteAdapter
     }
@@ -43,10 +63,20 @@ class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresente
     override fun initData() {
         super.initData()
         presenter.getArticleFavorites(curPage)
+        refreshLayout.setOnLoadMoreListener(object : OnLoadMoreListener {
+
+            override fun onLoadMore(refreshLayout: RefreshLayout) {
+                presenter.getArticleFavorites(mCurPage)
+            }
+        })
     }
 
-    override fun onArticleFavorite(response: ArticleResponse) {
-
+    override fun onArticleFavorite(page: Int, response: ArticleResponse) {
+        Log.e("debug", "rseponse = ${response.datas.size}")
+        refreshLayout.finishLoadMore()
+        dataList.addAll(response.datas)
+        mCurPage = page + 1
+        favoriteAdapter.setNewData(dataList)
     }
 
 

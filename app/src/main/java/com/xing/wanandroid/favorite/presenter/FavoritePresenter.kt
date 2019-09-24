@@ -11,7 +11,7 @@ class FavoritePresenter : BasePresenter<FavoriteContract.View>(), FavoriteContra
     override fun getArticleFavorites(page: Int) {
         addSubscribe(create(ApiService::class.java).getArticleFavorites(page), object : BaseObserver<ArticleResponse>() {
             override fun onSuccess(response: ArticleResponse) {
-                getView()?.onArticleFavorite(response)
+                getView()?.onArticleFavorite(page, response)
             }
         })
     }

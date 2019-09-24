@@ -6,6 +6,12 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
+import com.franmontiel.persistentcookiejar.cache.SetCookieCache
+import com.franmontiel.persistentcookiejar.PersistentCookieJar
+import com.franmontiel.persistentcookiejar.ClearableCookieJar
+import com.xing.wanandroid.app.MainApp
+
 
 class RetrofitClient {
 
@@ -13,12 +19,14 @@ class RetrofitClient {
     var retrofit: Retrofit
 
     private constructor() {
+
         okHttpClient = OkHttpClient.Builder()
             .connectTimeout(10, TimeUnit.SECONDS)
             .readTimeout(10, TimeUnit.SECONDS)
             .sslSocketFactory(SSLSocketClient.getSSLSocketFactory())
             .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
             .addInterceptor(logInterceptor())
+            .cookieJar(MainApp.getInstance().getPersistentCookieJar())
 //            .addInterceptor()
             .build()
         retrofit = Retrofit.Builder()

@@ -19,7 +19,6 @@ class ProgressWebView : WebView {
 
     constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
 
-
     init {
         initWebSettings()
         initProgressBar()

@@ -1,57 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:orientation="horizontal"
-              android:background="@android:color/white"
-              android:padding="10dp"
-              android:layout_width="match_parent"
-              android:layout_height="100dp">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
     <com.xing.wanandroid.widget.RoundImageView
             android:id="@+id/iv_project_image"
             android:layout_width="120dp"
             android:layout_height="match_parent"
-            app:shape="rectangle"
             android:scaleType="centerCrop"
-            android:src="@drawable/dog"
-            app:radius="6dp"/>
+            android:src="@drawable/avatar"
+            app:radius="6dp"
+            app:shape="rectangle" />
 
     <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginLeft="15dp"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp">
 
         <TextView
-                android:textSize="16sp"
-                tools:text="你的酒罐打了养"
-                android:maxLines="2"
-                android:textColor="@color/color_f32"
                 android:id="@+id/tv_project_title"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textColor="@color/color_f32"
+                android:textSize="16sp"
+                tools:text="你的酒罐打了养" />
 
 
         <LinearLayout
-                android:layout_alignParentBottom="true"
                 android:layout_width="wrap_content"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:orientation="horizontal">
 
             <TextView
-                    tools:text="xing16"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
                     android:id="@+id/tv_project_author"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    tools:text="xing16" />
 
             <TextView
-                    android:textSize="14sp"
-                    android:layout_marginLeft="30dp"
-                    tools:text="2019-01"
-                    android:layout_width="wrap_content"
                     android:id="@+id/tv_project_time"
-                    android:layout_height="wrap_content"/>
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:textSize="14sp"
+                    tools:text="2019-01" />
 
 
         </LinearLayout>

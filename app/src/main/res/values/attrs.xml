@@ -30,4 +30,9 @@
         <attr name="arcStrokeWidth" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="ItemView">
+        <attr name="itemIcon" format="reference" />
+        <attr name="itemTitle" format="string" />
+    </declare-styleable>
+
 </resources>

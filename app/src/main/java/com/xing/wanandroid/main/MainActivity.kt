@@ -14,7 +14,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.R
-import com.xing.wanandroid.adapter.MainViewPageAdapter
+import com.xing.wanandroid.main.adapter.MainViewPageAdapter
 import com.xing.wanandroid.base.BaseActivity
 import com.xing.wanandroid.bean.FragmentItem
 import com.xing.wanandroid.favorite.FavoriteActivity
@@ -24,6 +24,7 @@ import com.xing.wanandroid.main.widgets.MainViewPager
 import com.xing.wanandroid.meizi.MeiziActivity
 import com.xing.wanandroid.project.ProjectFragment
 import com.xing.wanandroid.search.SearchActivity
+import com.xing.wanandroid.setting.SettingActivity
 import com.xing.wanandroid.system.SystemFragment
 import com.xing.wanandroid.user.activity.LoginActivity
 import com.xing.wanandroid.utils.blur
@@ -73,11 +74,14 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 R.id.item_nav_favorite -> {
                     gotoActivity(mContext as Activity, FavoriteActivity().javaClass)
                 }
+                R.id.item_nav_setting -> {
+                    gotoActivity(mContext as Activity, SettingActivity().javaClass)
+                }
             }
             true
         }
 
-        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.dog)
+        val bitmap = BitmapFactory.decodeResource(resources, R.drawable.avatar)
         avatarBackground.setImageBitmap(blur(mContext, bitmap, 18))
 
     }

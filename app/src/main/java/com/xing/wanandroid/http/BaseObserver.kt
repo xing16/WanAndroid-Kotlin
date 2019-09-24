@@ -1,6 +1,5 @@
 package com.xing.wanandroid.http
 
-import android.content.Context
 import android.util.Log
 import com.xing.wanandroid.base.BaseResponse
 import com.xing.wanandroid.base.mvp.IView
@@ -12,8 +11,7 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
 
     constructor() : super()
 
-
-    constructor(context: Context, view: IView) : super() {
+    constructor(view: IView?) : super() {
         baseView = view
     }
 
@@ -35,7 +33,7 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
             onSuccess(data)
         } else if (!error) {
             val data: T = response.results
-            Log.e("debug", "baseobserver = ${response.results}")
+            Log.e("debug", "result = ${response.results}")
             onSuccess(data)
         } else {
             onError(ApiException(errorCode, errorMsg))
@@ -44,7 +42,6 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
 
     override fun onError(e: Throwable) {
         ExceptionHandler.handleException(e)
-
     }
 
     abstract fun onSuccess(data: T)

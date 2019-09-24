@@ -1,4 +1,4 @@
-package com.xing.wanandroid.adapter
+package com.xing.wanandroid.main.adapter
 
 import android.content.Context
 import android.support.v4.app.Fragment

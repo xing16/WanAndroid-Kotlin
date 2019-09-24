@@ -12,7 +12,7 @@
             android:title="我的收藏" />
 
     <item
-            android:id="@+id/setting"
+            android:id="@+id/item_nav_setting"
             android:icon="@drawable/ic_setting"
             android:title="设置" />
 

@@ -1,5 +1,6 @@
 package com.xing.wanandroid.apiservice
 
+import com.tencent.mm.opensdk.modelbase.BaseResp
 import com.xing.wanandroid.base.BaseResponse
 import com.xing.wanandroid.gank.bean.GankToday
 import com.xing.wanandroid.gank.bean.WxPublic
@@ -11,6 +12,7 @@ import com.xing.wanandroid.project.bean.ProjectResponse
 import com.xing.wanandroid.project.bean.ProjectTab
 import com.xing.wanandroid.search.bean.SearchHot
 import com.xing.wanandroid.search.bean.SearchResultResponse
+import com.xing.wanandroid.setting.bean.LogoutResult
 import com.xing.wanandroid.system.bean.SystemCategory
 import com.xing.wanandroid.user.bean.LoginResponse
 import com.xing.wanandroid.user.bean.RegisterResponse
@@ -83,6 +85,9 @@ interface ApiService {
 
     @GET("http://gank.io/api/today")
     fun getGankToday(): Observable<BaseResponse<HashMap<String, List<GankToday>>>>
+
+    @GET("user/logout/json")
+    fun logout(): Observable<BaseResponse<LogoutResult>>
 
 
 }

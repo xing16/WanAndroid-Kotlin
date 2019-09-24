@@ -19,6 +19,7 @@
     <string name="share_unsupported">分享不支持</string>
     <string name="share_unknown">分享未知错误</string>
     <string name="click_to_login">未登录,点击登录</string>
+    <string name="logout">退出登录</string>
 
 
 </resources>

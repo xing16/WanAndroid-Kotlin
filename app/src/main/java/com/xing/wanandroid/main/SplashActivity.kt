@@ -1,21 +1,9 @@
-package com.xing.wanandroid.activity
+package com.xing.wanandroid.main
 
 import android.animation.Animator
-import android.animation.ValueAnimator
-import android.content.Intent
-import android.graphics.drawable.Animatable2
-import android.graphics.drawable.AnimatedVectorDrawable
-import android.graphics.drawable.Drawable
-import android.os.Build
-import android.os.Bundle
-import android.support.annotation.RequiresApi
-import android.support.v7.app.AppCompatActivity
-import android.view.View
-import android.widget.ImageView
 import com.airbnb.lottie.LottieAnimationView
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.BaseActivity
-import com.xing.wanandroid.main.MainActivity
 import com.xing.wanandroid.utils.gotoActivity
 
 class SplashActivity : BaseActivity() {

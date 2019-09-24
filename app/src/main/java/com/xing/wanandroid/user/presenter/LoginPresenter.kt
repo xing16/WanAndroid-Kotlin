@@ -9,7 +9,7 @@ import com.xing.wanandroid.user.contract.LoginContract
 class LoginPresenter : BasePresenter<LoginContract.View>(), LoginContract.Presenter {
 
     override fun login(username: String, password: String) {
-        addSubscribe(create(ApiService::class.java).login(username, password), object : BaseObserver<LoginResponse>() {
+        addSubscribe(create(ApiService::class.java).login(username, password), object : BaseObserver<LoginResponse>(getView()) {
             override fun onSuccess(data: LoginResponse) {
                 getView()?.onLoginResult(data)
             }

@@ -4,28 +4,27 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.RelativeLayout
+import com.xing.wanandroid.R
 
-class ItemView : View {
-
-    private var paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
+class ItemView : RelativeLayout {
 
     constructor(context: Context) : this(context, null)
 
-    constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet)
+    constructor(context: Context, attributeSet: AttributeSet?) : super(context, attributeSet) {
 
-    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        init(context, attributeSet)
     }
 
-    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
-        super.onSizeChanged(w, h, oldw, oldh)
+    private fun init(context: Context, attributeSet: AttributeSet?) {
+        readAttrs(context, attributeSet)
+        LayoutInflater.from(context).inflate(R.layout.layout_item_view, this, true)
+
     }
 
-    override fun onDraw(canvas: Canvas?) {
-        super.onDraw(canvas)
-        canvas?.drawCircle(0f, 0f, 100f, paint)
-        canvas?.drawCircle(0f, 0f, 200f, paint)
+    private fun readAttrs(context: Context, attributeSet: AttributeSet?) {
     }
 
 
