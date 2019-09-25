@@ -10,7 +10,7 @@ import com.xing.wanandroid.R
 class WebProgressBar : View {
 
     private var progress: Int = 0
-    private var mHeight: Float = 3f
+    private var mHeight: Int = 0
     private var paint: Paint = Paint(Paint.ANTI_ALIAS_FLAG)
 
     constructor(context: Context) : super(context)
@@ -19,8 +19,12 @@ class WebProgressBar : View {
 
     init {
         paint.style = Paint.Style.FILL
-        paint.strokeWidth = mHeight
-        paint.color = resources.getColor(R.color.colorPrimary)
+        paint.color = resources.getColor(R.color.colorAccent)
+    }
+
+    override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
+        super.onSizeChanged(w, h, oldw, oldh)
+        mHeight = h
     }
 
 
@@ -35,6 +39,7 @@ class WebProgressBar : View {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        canvas?.drawRect(0f, 0f, width * progress / 100f, mHeight, paint)
+        paint.strokeWidth = mHeight.toFloat()
+        canvas?.drawLine(0f, 0f, width * progress / 100f, 0f, paint)
     }
 }

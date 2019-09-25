@@ -25,6 +25,8 @@ import com.tencent.mm.opensdk.constants.ConstantsAPI
 import android.content.IntentFilter
 import android.provider.UserDictionary.Words.APP_ID
 import android.content.BroadcastReceiver
+import android.util.Log
+import android.view.View
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.xing.wanandroid.R
 
@@ -47,7 +49,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
     }
 
     override fun initView() {
-        toolbar = findViewById(com.xing.wanandroid.R.id.tb_web)
+        toolbar = findViewById(R.id.tb_web)
         setSupportActionBar(toolbar)
         supportActionBar?.title = ""
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -84,7 +86,8 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
         author = bundle?.getString(AUTHOR)
         webView.loadUrl(loadUrl)
         webView.setWebViewCallback(object : ProgressWebView.OnWebViewCallback {
-            override fun onProgressChanged(view: WebView, newProgress: Int) {
+            override fun onProgressChanged(view: WebView?, newProgress: Int) {
+                Log.e("debug", "progres = $newProgress")
             }
 
             override fun onReceivedTitle(view: WebView?, title: String?) {
@@ -95,6 +98,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
             }
 
             override fun onPageFinished(view: WebView, url: String) {
+                moreMenuItem?.isVisible = true
             }
 
             override fun onLoadResource(view: WebView, url: String) {
@@ -104,6 +108,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
             }
 
             override fun onPageLoadComplete() {
+                moreMenuItem?.isVisible = true
             }
         })
     }
@@ -125,7 +130,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
      * 创建菜单
      */
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(com.xing.wanandroid.R.menu.menu_web, menu)
+        menuInflater.inflate(R.menu.menu_web, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -133,7 +138,9 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
      * 获取菜单项
      */
     override fun onPrepareOptionsMenu(menu: Menu?): Boolean {
-        moreMenuItem = menu?.findItem(com.xing.wanandroid.R.id.item_more)
+        moreMenuItem = menu?.findItem(R.id.item_more)
+        // 默认是不显示的,页面加载完成才显示
+        moreMenuItem?.isVisible = false
         return super.onPrepareOptionsMenu(menu)
     }
 
@@ -141,7 +148,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
      * 菜单项点击事件
      */
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        if (item?.itemId == com.xing.wanandroid.R.id.item_more) {
+        if (item?.itemId == R.id.item_more) {
             showMoreDialog()
         }
         return true
@@ -149,11 +156,11 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
 
     private fun showMoreDialog() {
         val dataList = ArrayList<WebOptBean>()
-        dataList.add(WebOptBean(com.xing.wanandroid.R.drawable.ic_favorite_white, "收藏"))
-        dataList.add(WebOptBean(com.xing.wanandroid.R.drawable.ic_share, "朋友圈"))
-        dataList.add(WebOptBean(com.xing.wanandroid.R.drawable.ic_wx_friend, "微信好友"))
-        dataList.add(WebOptBean(com.xing.wanandroid.R.drawable.ic_link, "复制链接"))
-        dataList.add(WebOptBean(com.xing.wanandroid.R.drawable.ic_browser, "浏览器打开"))
+        dataList.add(WebOptBean(R.drawable.ic_favorite_white, "收藏"))
+        dataList.add(WebOptBean(R.drawable.ic_share, "朋友圈"))
+        dataList.add(WebOptBean(R.drawable.ic_wx_friend, "微信好友"))
+        dataList.add(WebOptBean(R.drawable.ic_link, "复制链接"))
+        dataList.add(WebOptBean(R.drawable.ic_browser, "浏览器打开"))
         if (dialogFragment == null) {
             dialogFragment = WebDialogFragment.newInstance(dataList)
         }

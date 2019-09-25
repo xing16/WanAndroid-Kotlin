@@ -9,6 +9,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import com.xing.wanandroid.utils.dp2px
 
 class ProgressWebView : WebView {
 
@@ -51,7 +52,7 @@ class ProgressWebView : WebView {
 
     private fun initProgressBar() {
         webProgressBar = WebProgressBar(context)
-        webProgressBar.layoutParams = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 10)
+        webProgressBar.layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(context, 6f).toInt())
         addView(webProgressBar)
     }
 
@@ -67,6 +68,7 @@ class ProgressWebView : WebView {
             super.onPageStarted(view, url, favicon)
             onWebViewCallback.onPageStarted(view, url, favicon)
         }
+
     }
 
     inner class MyWebViewChromeClient : WebChromeClient() {
@@ -75,6 +77,12 @@ class ProgressWebView : WebView {
             super.onReceivedTitle(view, title)
             onWebViewCallback.onReceivedTitle(view, title)
         }
+
+        override fun onProgressChanged(view: WebView?, newProgress: Int) {
+            super.onProgressChanged(view, newProgress)
+            webProgressBar.setProgress(newProgress)
+            onWebViewCallback.onProgressChanged(view, newProgress)
+        }
     }
 
     fun setWebViewCallback(onWebViewCallback: OnWebViewCallback) {
@@ -82,7 +90,7 @@ class ProgressWebView : WebView {
     }
 
     interface OnWebViewCallback {
-        fun onProgressChanged(view: WebView, newProgress: Int)
+        fun onProgressChanged(view: WebView?, newProgress: Int)
 
         fun onReceivedTitle(view: WebView?, title: String?)
 
