@@ -26,7 +26,6 @@
                 android:scaleType="centerCrop"
                 android:src="@drawable/avatar"
                 app:borderColor="#55ff0000"
-                app:borderWidth="4dp"
                 app:radius="20dp"
                 app:shape="circle" />
 

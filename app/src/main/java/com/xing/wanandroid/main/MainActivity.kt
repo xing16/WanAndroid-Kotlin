@@ -82,7 +82,7 @@ class MainActivity : BaseActivity(), View.OnClickListener {
         }
 
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.avatar)
-        avatarBackground.setImageBitmap(blur(mContext, bitmap, 18))
+        avatarBackground.setImageBitmap(blur(mContext, bitmap, 22))
 
     }
 

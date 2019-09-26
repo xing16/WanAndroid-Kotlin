@@ -69,6 +69,11 @@ class ProgressWebView : WebView {
             onWebViewCallback.onPageStarted(view, url, favicon)
         }
 
+        override fun onPageFinished(view: WebView?, url: String?) {
+            super.onPageFinished(view, url)
+            onWebViewCallback.onPageFinished(view, url)
+        }
+
     }
 
     inner class MyWebViewChromeClient : WebChromeClient() {
@@ -83,6 +88,7 @@ class ProgressWebView : WebView {
             webProgressBar.setProgress(newProgress)
             onWebViewCallback.onProgressChanged(view, newProgress)
         }
+
     }
 
     fun setWebViewCallback(onWebViewCallback: OnWebViewCallback) {
@@ -96,7 +102,7 @@ class ProgressWebView : WebView {
 
         fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?)
 
-        fun onPageFinished(view: WebView, url: String)
+        fun onPageFinished(view: WebView?, url: String?)
 
         fun onLoadResource(view: WebView, url: String)
 
