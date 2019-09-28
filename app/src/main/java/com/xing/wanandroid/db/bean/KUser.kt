@@ -1,6 +1,12 @@
-package com.xing.wanandroid.user.bean
+package com.xing.wanandroid.db.bean
 
-class LoginResponse(
+import org.greenrobot.greendao.annotation.Entity
+import org.greenrobot.greendao.annotation.Id
+
+@Entity
+data class KUser(
+    @Id
+    val sid: Long,
     val admin: Boolean,
     val collectionIds: ArrayList<Int>,
     val email: String,

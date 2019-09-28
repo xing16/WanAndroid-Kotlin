@@ -10,7 +10,7 @@ interface HomeContract {
 
         fun onBanner(list: List<Banner>)
 
-        fun onArticles(page: Int, list: List<Article>)
+        fun onArticles(page: Int, list: List<Article>?)
     }
 
     interface Presenter {

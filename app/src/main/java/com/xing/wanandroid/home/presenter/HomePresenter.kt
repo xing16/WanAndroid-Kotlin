@@ -35,10 +35,15 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                     if (page == 0) {
                         dataList.clear()
                         val topArticles = resp1.data
-                        dataList.addAll(topArticles)
+                        if (topArticles != null) {
+                            dataList.addAll(topArticles)
+                        }
                     }
-                    val articles = resp2.data.datas
-                    dataList.addAll(articles)
+                    val data = resp2.data
+                    if (data != null) {
+                        val articles = data.datas
+                        dataList.addAll(articles)
+                    }
                     // 因为 BaseObserver 范型指定了为 BaseResponse， 所以这里重新构造 BaseResponse 对象作为返回值
                     return BaseResponse(dataList, dataList, resp1.errorMsg, resp1.errorCode, false)
                 }

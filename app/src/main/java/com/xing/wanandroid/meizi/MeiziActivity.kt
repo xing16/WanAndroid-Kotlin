@@ -36,7 +36,7 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
         setSupportActionBar(toolbar)
         supportActionBar?.title = "妹子"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.elevation = dp2px(mContext, 5f).toFloat()
+        supportActionBar?.elevation = dp2px(mContext, 5f)
         toolbar.setNavigationOnClickListener { finish() }
         recyclerView = findViewById(R.id.rv_meizi)
         gridLayoutManager = GridLayoutManager(mContext, 4)

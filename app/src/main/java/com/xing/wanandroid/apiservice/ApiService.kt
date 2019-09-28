@@ -2,6 +2,7 @@ package com.xing.wanandroid.apiservice
 
 import com.tencent.mm.opensdk.modelbase.BaseResp
 import com.xing.wanandroid.base.BaseResponse
+import com.xing.wanandroid.db.bean.User
 import com.xing.wanandroid.gank.bean.GankToday
 import com.xing.wanandroid.gank.bean.WxPublic
 import com.xing.wanandroid.home.bean.Article
@@ -59,7 +60,7 @@ interface ApiService {
 
     @POST("user/login")
     @FormUrlEncoded
-    fun login(@Field("username") username: String, @Field("password") password: String): Observable<BaseResponse<LoginResponse>>
+    fun login(@Field("username") username: String, @Field("password") password: String): Observable<BaseResponse<User>>
 
     @POST("user/register")
     @FormUrlEncoded
@@ -87,7 +88,7 @@ interface ApiService {
     fun getGankToday(): Observable<BaseResponse<HashMap<String, List<GankToday>>>>
 
     @GET("user/logout/json")
-    fun logout(): Observable<BaseResponse<LogoutResult>>
+    fun logout(): Observable<BaseResponse<Void>>
 
 
 }

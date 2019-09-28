@@ -1,27 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         tools:context=".web.WebViewActivity">
 
     <android.support.v7.widget.Toolbar
+            android:id="@+id/tb_web"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@android:color/white"
             app:contentInsetLeft="0dp"
             app:contentInsetStart="0dp"
-            android:id="@+id/tb_web"
-            app:contentInsetStartWithNavigation="0dp"
-            android:background="@android:color/white"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"/>
+            app:contentInsetStartWithNavigation="0dp" />
 
-
-    <com.xing.wanandroid.widget.ProgressWebView
+    <com.xing.wanandroid.widget.XWebView
             android:id="@+id/pwv_webview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
+            android:layout_height="match_parent" />
 
 </LinearLayout>

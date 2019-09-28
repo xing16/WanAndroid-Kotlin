@@ -2,6 +2,8 @@ package com.xing.wanandroid.gank
 
 
 import android.app.Activity
+import android.graphics.ColorMatrix
+import android.graphics.ColorMatrixColorFilter
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -11,7 +13,6 @@ import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.gank.adapter.GankTodayAdapter
 import com.xing.wanandroid.gank.adapter.WxPublicAdapter
@@ -39,7 +40,7 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
     private lateinit var gankTodayAdapter: GankTodayAdapter
 
     override fun getLayoutResId(): Int {
-        return R.layout.fragment_gank
+        return com.xing.wanandroid.R.layout.fragment_gank
     }
 
     override fun createPresenter(): GankPresenter {
@@ -47,24 +48,24 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
     }
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
-        headerView = LayoutInflater.from(mContext).inflate(R.layout.layout_gank_header, null, false)
-        wxPublicRecyclerView = headerView.findViewById(R.id.rv_gank_header_wxpublic)
-        headerImgView = headerView.findViewById(R.id.iv_gank_header_img)
-        gankRecyclerView = rootView?.findViewById(R.id.rv_gank_today)
+        headerView = LayoutInflater.from(mContext).inflate(com.xing.wanandroid.R.layout.layout_gank_header, null, false)
+        wxPublicRecyclerView = headerView.findViewById(com.xing.wanandroid.R.id.rv_gank_header_wxpublic)
+        headerImgView = headerView.findViewById(com.xing.wanandroid.R.id.iv_gank_header_img)
+        gankRecyclerView = rootView?.findViewById(com.xing.wanandroid.R.id.rv_gank_today)
 
         // 初始化 wxPublicRecyclerView
         wxPublicRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-        wxPublicAdapter = WxPublicAdapter(R.layout.item_wx_public)
-        wxPublicAdapter.setOnItemClickListener(object : BaseQuickAdapter.OnItemClickListener {
+        wxPublicAdapter = WxPublicAdapter(com.xing.wanandroid.R.layout.item_wx_public)
+        wxPublicAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
             }
-        })
+        }
         wxPublicRecyclerView.adapter = wxPublicAdapter
 
         // 初始化 gankRecyclerView
         gankRecyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
-        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
+        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(com.xing.wanandroid.R.color.white_eaeaea))
             .height(1f)
             .margin(15f, 15f)
             .jumpPositions(arrayOf(0))
@@ -95,6 +96,11 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
             if ("福利" == key) {
                 val meiziImage = map.get(key)?.get(0)?.url
                 Glide.with(mContext).load(meiziImage).into(headerImgView)
+//                val matrix = ColorMatrix()
+
+//                matrix.setSaturation(0f)
+//                val filter = ColorMatrixColorFilter(matrix)
+//                headerImgView.setColorFilter(filter)
                 continue
             }
             list.add(GankTodayEntity(true, key))
@@ -106,7 +112,7 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
                 }
             }
         }
-        gankTodayAdapter = GankTodayAdapter(R.layout.item_gank_section_item, R.layout.item_gank_section_header, list)
+        gankTodayAdapter = GankTodayAdapter(com.xing.wanandroid.R.layout.item_gank_section_item, com.xing.wanandroid.R.layout.item_gank_section_header, list)
         gankTodayAdapter.addHeaderView(headerView)
         gankTodayAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {

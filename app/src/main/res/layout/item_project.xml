@@ -14,7 +14,7 @@
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
             android:src="@drawable/avatar"
-            app:radius="6dp"
+            app:radius="5dp"
             app:shape="rectangle" />
 
     <RelativeLayout

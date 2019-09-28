@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import com.xing.wanandroid.R
-import com.xing.wanandroid.bean.FragmentItem
+import com.xing.wanandroid.common.bean.FragmentItem
 
 class MainViewPageAdapter(var context: Context, fm: FragmentManager, var fragmentItems: List<FragmentItem>) :
     FragmentPagerAdapter(fm) {

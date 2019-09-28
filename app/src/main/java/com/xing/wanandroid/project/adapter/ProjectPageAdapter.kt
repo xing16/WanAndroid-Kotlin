@@ -4,7 +4,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import android.view.ViewGroup
-import com.xing.wanandroid.bean.FragmentItem
+import com.xing.wanandroid.common.bean.FragmentItem
 
 class ProjectPageAdapter(fm: FragmentManager, var fragmentItems: List<FragmentItem>) : FragmentPagerAdapter(fm) {
 

@@ -7,13 +7,29 @@
         android:orientation="vertical"
         android:padding="15dp">
 
-    <com.xing.wanandroid.widget.RoundImageView
-            android:id="@+id/iv_gank_header_img"
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:scaleType="centerCrop"
-            app:radius="6dp"
-            app:shape="rectangle" />
+            android:layout_height="200dp">
+
+        <com.xing.wanandroid.widget.RoundImageView
+                android:id="@+id/iv_gank_header_img"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                app:radius="6dp"
+                app:shape="rectangle" />
+
+        <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="15dp"
+                android:layout_marginBottom="20dp"
+                android:text="今日力推"
+                android:textColor="@android:color/white"
+                android:textSize="30sp" />
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_gank_header_wxpublic"

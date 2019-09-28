@@ -1,16 +1,24 @@
 package com.xing.wanandroid.setting
 
+import android.support.v7.widget.Toolbar
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import com.xing.wanandroid.R
 import com.xing.wanandroid.app.MainApp
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
+import com.xing.wanandroid.main.bean.LoggedInEvent
 import com.xing.wanandroid.setting.contract.SettingContract
 import com.xing.wanandroid.setting.presenter.SettingPresenter
+import com.xing.wanandroid.utils.dp2px
+import com.xing.wanandroid.utils.isCookieNotEmpty
+import org.greenrobot.eventbus.EventBus
 
-class SettingActivity : BaseMVPActivity<SettingContract.View, SettingPresenter>(), SettingContract.View {
+class SettingActivity : BaseMVPActivity<SettingContract.View, SettingPresenter>(),
+    SettingContract.View {
 
     private lateinit var logoutBtn: Button
+    private lateinit var toolbar: Toolbar
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_setting
@@ -21,14 +29,29 @@ class SettingActivity : BaseMVPActivity<SettingContract.View, SettingPresenter>(
     }
 
     override fun initView() {
+        toolbar = findViewById(R.id.tb_setting)
+        setSupportActionBar(toolbar)
+        supportActionBar?.title = "设置"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.elevation = dp2px(mContext, 5f)
+        toolbar.setNavigationOnClickListener { finish() }
         logoutBtn = findViewById(R.id.btn_logout)
         logoutBtn.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
-                MainApp.getInstance().getPersistentCookieJar().clear()
+                presenter.logout()
             }
         })
     }
 
+    override fun initData() {
+        super.initData()
+        val loggedIn = isCookieNotEmpty(mContext)
+        if (loggedIn) {
+            logoutBtn.visibility = View.VISIBLE
+        } else {
+            logoutBtn.visibility = View.GONE
+        }
+    }
 
     override fun showLoading() {
     }
@@ -37,5 +60,9 @@ class SettingActivity : BaseMVPActivity<SettingContract.View, SettingPresenter>(
     }
 
     override fun onLogoutResult() {
+        Log.e("debugdebu7g", "casdcasdc------onlgou")
+        MainApp.getInstance().getPersistentCookieJar().clear()
+        EventBus.getDefault().post(LoggedInEvent(null))
+        finish()
     }
 }

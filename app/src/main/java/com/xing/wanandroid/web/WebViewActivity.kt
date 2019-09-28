@@ -14,7 +14,7 @@ import com.xing.wanandroid.utils.*
 import com.xing.wanandroid.web.bean.WebOptBean
 import com.xing.wanandroid.web.contract.WebContract
 import com.xing.wanandroid.web.presenter.WebPresenter
-import com.xing.wanandroid.widget.ProgressWebView
+import com.xing.wanandroid.widget.XWebView
 import com.xing.wanandroid.widget.WebDialogFragment
 import android.content.ClipData
 import android.content.ClipboardManager
@@ -23,10 +23,8 @@ import android.widget.Toast
 import com.tencent.mm.opensdk.modelmsg.SendMessageToWX
 import com.tencent.mm.opensdk.constants.ConstantsAPI
 import android.content.IntentFilter
-import android.provider.UserDictionary.Words.APP_ID
 import android.content.BroadcastReceiver
 import android.util.Log
-import android.view.View
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.xing.wanandroid.R
 
@@ -34,7 +32,7 @@ import com.xing.wanandroid.R
 class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
 
     private lateinit var toolbar: Toolbar
-    private lateinit var webView: ProgressWebView
+    private var webView: XWebView? = null
     private var moreMenuItem: MenuItem? = null
     private var title: String? = null
     private var link: String? = null
@@ -56,7 +54,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
         toolbar.setNavigationIcon(R.drawable.ic_back)
         supportActionBar?.elevation = dp2px(mContext, 5f)
         toolbar.setNavigationOnClickListener {
-            finish()
+            goBack()
         }
         webView = findViewById(R.id.pwv_webview)
     }
@@ -84,8 +82,11 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
         link = bundle?.getString(LINK)
         title = bundle?.getString(TITLE)
         author = bundle?.getString(AUTHOR)
-        webView.loadUrl(loadUrl)
-        webView.setWebViewCallback(object : ProgressWebView.OnWebViewCallback {
+        webView?.loadUrl(loadUrl)
+        webView?.setWebViewCallback(object : XWebView.OnWebViewCallback {
+            override fun onPageFinished(view: WebView?, url: String?) {
+            }
+
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 Log.e("debug", "progres = $newProgress")
             }
@@ -95,10 +96,6 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
             }
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
-            }
-
-            override fun onPageFinished(view: WebView, url: String) {
-                moreMenuItem?.isVisible = true
             }
 
             override fun onLoadResource(view: WebView, url: String) {
@@ -160,6 +157,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
         dataList.add(WebOptBean(R.drawable.ic_share, "朋友圈"))
         dataList.add(WebOptBean(R.drawable.ic_wx_friend, "微信好友"))
         dataList.add(WebOptBean(R.drawable.ic_link, "复制链接"))
+        dataList.add(WebOptBean(R.drawable.ic_refresh, "刷新"))
         dataList.add(WebOptBean(R.drawable.ic_browser, "浏览器打开"))
         if (dialogFragment == null) {
             dialogFragment = WebDialogFragment.newInstance(dataList)
@@ -171,7 +169,8 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
                     1 -> shareToWeChat(SendMessageToWX.Req.WXSceneTimeline)
                     2 -> shareToWeChat(SendMessageToWX.Req.WXSceneSession)
                     3 -> copyLink()
-                    4 -> openByBrowser()
+                    4 -> refreshPage()
+                    5 -> openByBrowser()
                 }
             }
         })
@@ -181,6 +180,38 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
             return
         }
         dialogFragment?.show(supportFragmentManager, WebDialogFragment().javaClass.name)
+    }
+
+    /**
+     * 返回
+     */
+    private fun goBack() {
+        var canGoBack = webView?.canGoBack() ?: false
+        if (canGoBack) {
+            webView?.goBack()
+        } else {
+            finish()
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        webView?.removeAllViews()
+        webView?.clearHistory()
+        webView = null
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        goBack()
+    }
+
+
+    /**
+     * 刷新
+     */
+    private fun refreshPage() {
+        webView?.reload()
     }
 
     /**

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.support.design.widget.NavigationView
 import android.support.design.widget.TabLayout
 import android.support.v4.widget.DrawerLayout
+import android.util.EventLog
 import android.util.Log
 import android.view.Gravity
 import android.view.KeyEvent
@@ -14,12 +15,17 @@ import android.widget.TextView
 import android.widget.Toast
 import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.R
-import com.xing.wanandroid.main.adapter.MainViewPageAdapter
-import com.xing.wanandroid.base.BaseActivity
-import com.xing.wanandroid.bean.FragmentItem
+import com.xing.wanandroid.base.mvp.BaseMVPActivity
+import com.xing.wanandroid.common.bean.FragmentItem
+import com.xing.wanandroid.db.DbManager
+import com.xing.wanandroid.db.bean.User
 import com.xing.wanandroid.favorite.FavoriteActivity
 import com.xing.wanandroid.gank.GankFragment
 import com.xing.wanandroid.home.HomeFragment
+import com.xing.wanandroid.main.adapter.MainViewPageAdapter
+import com.xing.wanandroid.main.bean.LoggedInEvent
+import com.xing.wanandroid.main.contract.MainContract
+import com.xing.wanandroid.main.presenter.MainPresenter
 import com.xing.wanandroid.main.widgets.MainViewPager
 import com.xing.wanandroid.meizi.MeiziActivity
 import com.xing.wanandroid.project.ProjectFragment
@@ -29,9 +35,14 @@ import com.xing.wanandroid.system.SystemFragment
 import com.xing.wanandroid.user.activity.LoginActivity
 import com.xing.wanandroid.utils.blur
 import com.xing.wanandroid.utils.gotoActivity
+import com.xing.wanandroid.utils.isCookieNotEmpty
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import kotlin.system.exitProcess
 
-class MainActivity : BaseActivity(), View.OnClickListener {
+
+class MainActivity : BaseMVPActivity<MainContract.View, MainPresenter>(), MainContract.View, View.OnClickListener {
 
     private lateinit var mainMenu: ImageView
     private lateinit var mainSearch: ImageView
@@ -42,6 +53,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private lateinit var drawerLayout: DrawerLayout
     private lateinit var avatarBackground: ImageView
     private lateinit var usernameTextView: TextView
+    private var loggedIn = false
+
+    override fun createPresenter(): MainPresenter {
+        return MainPresenter()
+    }
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_main
@@ -69,7 +85,6 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             when (item.itemId) {
                 R.id.item_nav_happy_minute -> {
                     gotoActivity(mContext as Activity, MeiziActivity().javaClass)
-
                 }
                 R.id.item_nav_favorite -> {
                     gotoActivity(mContext as Activity, FavoriteActivity().javaClass)
@@ -83,10 +98,11 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
         val bitmap = BitmapFactory.decodeResource(resources, R.drawable.avatar)
         avatarBackground.setImageBitmap(blur(mContext, bitmap, 22))
-
     }
 
     override fun initData() {
+        super.initData()
+        EventBus.getDefault().register(this)
         val list = mutableListOf<FragmentItem>()
         list.add(FragmentItem("首页", HomeFragment.newInstance()))
         list.add(FragmentItem("项目", ProjectFragment.newInstance()))
@@ -118,12 +134,67 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
             }
         })
-        if (true) {
-            usernameTextView.text = getString(R.string.click_to_login)
-        }
-
+        setUsernameFromCache()
+        presenter.getUserInfo()
         mainSearch.setOnClickListener(this)
     }
+
+    private fun setUsernameFromCache() {
+        loggedIn = isCookieNotEmpty(mContext)
+        if (!loggedIn) {
+            usernameTextView.text = getString(R.string.click_to_login)
+        } else {
+            val user = getCacheUser()
+            val username: String
+            if (user != null) {
+                username = user.username
+            } else {
+                username = ""
+            }
+            usernameTextView.text = username
+        }
+    }
+
+    /**
+     * 设置用户名称，头像等信息
+     */
+    private fun setUsername(user: User?) {
+        if (user != null) {
+            usernameTextView.text = user.username
+        } else {
+            usernameTextView.text = getString(R.string.click_to_login)
+        }
+    }
+
+    private fun getCacheUser(): User? {
+        val users = DbManager.getInstance().getUserDao().loadAll()
+        if (users != null && users.size > 0) {
+            return users[0]
+        }
+        return null
+    }
+
+    override fun onUserInfo(user: User) {
+        Log.e("MainActivity", user.toString())
+        loggedIn = isCookieNotEmpty(mContext)
+        if (loggedIn) {
+            usernameTextView.text = user.username
+        }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onLoginStatusChanged(event: LoggedInEvent) {
+        Log.e("debug22222", "casdcasdc------click")
+        val user = event.user
+        setUsername(user)
+    }
+
+    override fun showLoading() {
+    }
+
+    override fun dismissLoading() {
+    }
+
 
     /**
      * 打开抽屉
@@ -159,8 +230,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
                 overridePendingTransition(0, 0)
             }
             R.id.tv_nav_username -> {
-                gotoLoginActivity()
-                closeDrawer()
+                if (!loggedIn) {
+                    gotoLoginActivity()
+                    closeDrawer()
+                }
             }
         }
     }
@@ -187,5 +260,10 @@ class MainActivity : BaseActivity(), View.OnClickListener {
             exitProcess(0)
         }
         return super.onKeyDown(keyCode, event)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 }

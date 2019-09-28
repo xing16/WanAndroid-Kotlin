@@ -6,7 +6,7 @@ import android.view.View
 import com.xing.wanandroid.R
 import com.xing.wanandroid.project.adapter.ProjectPageAdapter
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
-import com.xing.wanandroid.bean.FragmentItem
+import com.xing.wanandroid.common.bean.FragmentItem
 import com.xing.wanandroid.project.bean.ProjectTab
 import com.xing.wanandroid.main.widgets.ProjectViewPager
 import com.xing.wanandroid.project.contract.ProjectContract

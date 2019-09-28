@@ -32,14 +32,13 @@ private const val ARG_PARAM1 = "param1"
 
 class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeContract.View {
 
-    private var param1: String? = null
     private lateinit var adapter: HomeRecyclerAdapter
     private lateinit var banner: Banner
     private var recyclerView: RecyclerView? = null
     private var refreshLayout: SmartRefreshLayout? = null
     private lateinit var headerView: View
     private var mCurPage: Int = 0
-    private var dataList: List<Article> = ArrayList()
+    private var dataList: ArrayList<Article> = ArrayList()
 
     override fun getLayoutResId(): Int {
         return R.layout.fragment_home
@@ -140,11 +139,13 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
     }
 
-    override fun onArticles(page: Int, list: List<Article>) {
+    override fun onArticles(page: Int, list: List<Article>?) {
         refreshLayout?.finishRefresh()
         refreshLayout?.finishLoadMore()
         mCurPage = page + 1
-        dataList = list
+        if (list != null) {
+            dataList.addAll(list)
+        }
         adapter.setNewData(dataList)
     }
 

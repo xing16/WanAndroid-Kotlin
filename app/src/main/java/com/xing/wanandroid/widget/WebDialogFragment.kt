@@ -60,7 +60,7 @@ class WebDialogFragment : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        Log.e("debug", "oncreateview")
+        Log.e("debug", "onCreateView")
         val rootView: View = inflater.inflate(com.xing.wanandroid.R.layout.dialog_web, container, false)
         val parentView: View = rootView.findViewById(com.xing.wanandroid.R.id.ll_web_dialog_parent)
         val closeImgView: View = rootView.findViewById(com.xing.wanandroid.R.id.iv_dialog_web_close)

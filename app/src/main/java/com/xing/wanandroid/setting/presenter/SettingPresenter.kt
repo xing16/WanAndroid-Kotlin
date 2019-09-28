@@ -9,9 +9,9 @@ import com.xing.wanandroid.setting.contract.SettingContract
 class SettingPresenter : BasePresenter<SettingContract.View>(), SettingContract.Presenter {
 
     override fun logout() {
-        addSubscribe(create(ApiService::class.java).logout(), object : BaseObserver<LogoutResult>() {
-            override fun onSuccess(data: LogoutResult) {
-                getView()?.onLogoutResult()
+        addSubscribe(create(ApiService::class.java).logout(), object : BaseObserver<Void>() {
+            override fun onSuccess(data: Void) {
+//                getView()?.onLogoutResult()
             }
         })
     }

@@ -10,12 +10,15 @@ import android.widget.TextView
 import android.widget.Toast
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
+import com.xing.wanandroid.db.bean.User
+import com.xing.wanandroid.main.bean.LoggedInEvent
 import com.xing.wanandroid.user.bean.LoginResponse
 import com.xing.wanandroid.user.contract.LoginContract
 import com.xing.wanandroid.user.presenter.LoginPresenter
 import com.xing.wanandroid.utils.gotoActivity
 import com.xing.wanandroid.widget.ClearEditText
 import com.xing.wanandroid.widget.LoginView
+import org.greenrobot.eventbus.EventBus
 
 class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     LoginContract.View, View.OnClickListener {
@@ -97,10 +100,9 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
 
     override fun dismissLoading() {
         loginView.setState(LoginView.STATE_FAILED)
-
     }
 
-    override fun onLoginResult(result: LoginResponse) {
+    override fun onLoginResult(username: String, user: User) {
         finishLoginActivity()
     }
 

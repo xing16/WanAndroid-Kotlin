@@ -29,12 +29,18 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
         Log.e("debug", "errCode = $errorCode")
         Log.e("debug", "error = $error")
         if ((errorCode == 0) or (errorCode == 200)) {
-            val data: T = response.data
-            onSuccess(data)
+            if (response.data != null) {
+                onSuccess(response.data)
+            } else {
+
+            }
+
         } else if (!error) {
-            val data: T = response.results
-            Log.e("debug", "result = ${response.results}")
-            onSuccess(data)
+            if (response.results != null) {
+                onSuccess(response.results)
+            } else {
+                onSuccess(Any() as T)
+            }
         } else {
             onError(ApiException(errorCode, errorMsg))
         }
