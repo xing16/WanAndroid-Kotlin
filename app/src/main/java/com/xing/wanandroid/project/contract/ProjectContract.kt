@@ -6,7 +6,7 @@ import com.xing.wanandroid.project.bean.ProjectTab
 
 interface ProjectContract {
     interface View : IView {
-        fun onProjectTabs(projectTabs: List<ProjectTab>)
+        fun onProjectTabs(projectTabs: List<ProjectTab>?)
     }
 
     interface Presenter {

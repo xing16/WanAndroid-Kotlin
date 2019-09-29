@@ -11,8 +11,8 @@ class SystemArticlePresenter : BasePresenter<SystemArticleContract.View>(), Syst
     override fun getSystemArticles(page: Int, cid: Int) {
         addSubscribe(create(ApiService::class.java).getSystemArticles(page, cid),
             object : BaseObserver<ArticleResponse>() {
-                override fun onSuccess(response: ArticleResponse) {
-                    getView()?.onSystemArticles(page, response.datas)
+                override fun onSuccess(response: ArticleResponse?) {
+                    getView()?.onSystemArticles(page, response?.datas)
                 }
             })
     }

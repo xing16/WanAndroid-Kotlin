@@ -7,9 +7,9 @@ import com.xing.wanandroid.search.bean.SearchHot
 interface SearchHistoryContract {
     interface View : IView {
 
-        fun onSearchHot(searchHots: ArrayList<SearchHot>)
+        fun onSearchHot(searchHots: ArrayList<SearchHot>?)
 
-        fun onSearchHistory(searchHistory: ArrayList<SearchHistory>)
+        fun onSearchHistory(searchHistory: ArrayList<SearchHistory>?)
 
 
     }

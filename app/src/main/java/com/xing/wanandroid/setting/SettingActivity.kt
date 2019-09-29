@@ -60,7 +60,6 @@ class SettingActivity : BaseMVPActivity<SettingContract.View, SettingPresenter>(
     }
 
     override fun onLogoutResult() {
-        Log.e("debugdebu7g", "casdcasdc------onlgou")
         MainApp.getInstance().getPersistentCookieJar().clear()
         EventBus.getDefault().post(LoggedInEvent(null))
         finish()

@@ -38,7 +38,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
     private var refreshLayout: SmartRefreshLayout? = null
     private lateinit var headerView: View
     private var mCurPage: Int = 0
-    private var dataList: ArrayList<Article> = ArrayList()
+    private var dataList: List<Article> = ArrayList()
 
     override fun getLayoutResId(): Int {
         return R.layout.fragment_home
@@ -107,10 +107,12 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         })
     }
 
-    override fun onBanner(list: List<com.xing.wanandroid.home.bean.Banner>) {
-        var urlList = mutableListOf<String>()
-        for (banner in list) {
-            urlList.add(banner.imagePath)
+    override fun onBanner(list: List<com.xing.wanandroid.home.bean.Banner>?) {
+        val urlList = mutableListOf<String>()
+        if (list != null) {
+            for (banner in list) {
+                urlList.add(banner.imagePath)
+            }
         }
         banner.setImageLoader(object : ImageLoader() {
             override fun displayImage(context: Context?, path: Any?, imageView: ImageView?) {
@@ -125,15 +127,17 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
         banner.setOnBannerListener(object : OnBannerListener {
             override fun OnBannerClick(position: Int) {
-                val bundle = Bundle()
-                val banner = list.get(position)
-                bundle.putString(URL, banner.url)
-                bundle.putInt(ID, banner.id)
-                gotoActivity(
-                    activity!!,
-                    WebViewActivity().javaClass,
-                    bundle
-                )
+                if (list != null) {
+                    val bundle = Bundle()
+                    val banner = list[position]
+                    bundle.putString(URL, banner.url)
+                    bundle.putInt(ID, banner.id)
+                    gotoActivity(
+                        activity!!,
+                        WebViewActivity().javaClass,
+                        bundle
+                    )
+                }
             }
         })
 
@@ -144,7 +148,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
         refreshLayout?.finishLoadMore()
         mCurPage = page + 1
         if (list != null) {
-            dataList.addAll(list)
+            dataList = list
         }
         adapter.setNewData(dataList)
     }

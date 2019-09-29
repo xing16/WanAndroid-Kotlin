@@ -1,9 +1,13 @@
 package com.xing.wanandroid.favorite
 
+import android.app.Activity
+import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.util.Log
+import android.view.View
+import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
@@ -17,7 +21,10 @@ import com.xing.wanandroid.favorite.presenter.FavoritePresenter
 import com.xing.wanandroid.home.bean.Article
 import com.xing.wanandroid.home.bean.ArticleResponse
 import com.xing.wanandroid.utils.dp2px
+import com.xing.wanandroid.utils.gotoActivity
+import com.xing.wanandroid.web.WebViewActivity
 import com.xing.wanandroid.widget.LinearItemDecoration
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresenter>(),
@@ -57,6 +64,14 @@ class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresente
             .jumpPositions(arrayOf(0))
         recyclerView.addItemDecoration(itemDecoration)
         favoriteAdapter = FavoriteAdapter(R.layout.item_home_recycler)
+        favoriteAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
+            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                val url = dataList[position].link
+                val bundle = Bundle()
+                bundle.putString(WebViewActivity.URL, url)
+                gotoActivity(mContext as Activity, WebViewActivity().javaClass, bundle)
+            }
+        }
         recyclerView.adapter = favoriteAdapter
     }
 
@@ -71,10 +86,11 @@ class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresente
         })
     }
 
-    override fun onArticleFavorite(page: Int, response: ArticleResponse) {
-        Log.e("debug", "rseponse = ${response.datas.size}")
+    override fun onArticleFavorite(page: Int, response: ArticleResponse?) {
         refreshLayout.finishLoadMore()
-        dataList.addAll(response.datas)
+        if (response?.datas != null) {
+            dataList.addAll(response.datas)
+        }
         mCurPage = page + 1
         favoriteAdapter.setNewData(dataList)
     }

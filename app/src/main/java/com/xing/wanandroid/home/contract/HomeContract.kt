@@ -8,7 +8,7 @@ import com.xing.wanandroid.home.bean.Article
 interface HomeContract {
     interface View : IView {
 
-        fun onBanner(list: List<Banner>)
+        fun onBanner(list: List<Banner>?)
 
         fun onArticles(page: Int, list: List<Article>?)
     }

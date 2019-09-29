@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,5 +12,18 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
+    <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/selector_gank_calendar"
+            android:clickable="true"
+            android:padding="12dp"
+            android:src="@drawable/ic_calendar"
+            app:elevation="20dp" />
 
-</LinearLayout>
+
+</RelativeLayout>

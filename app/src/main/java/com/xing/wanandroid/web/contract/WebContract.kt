@@ -5,7 +5,7 @@ import com.xing.wanandroid.web.bean.AddFavoriteResponse
 
 interface WebContract {
     interface View : IView {
-        fun onAddFavorited(addFavoriteResponse: AddFavoriteResponse)
+        fun onAddFavorited(addFavoriteResponse: AddFavoriteResponse?)
     }
 
     interface Presenter {

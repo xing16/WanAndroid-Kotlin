@@ -8,14 +8,14 @@ import com.xing.wanandroid.meizi.bean.Meizi
 import com.xing.wanandroid.meizi.contract.MeiziContract
 
 class MeiziPresenter : BasePresenter<MeiziContract.View>(), MeiziContract.Presenter {
-    override fun getMeiziList() {
+    override fun getMeiziList(page: Int, pageSize: Int) {
         addSubscribe(
-            create(ApiService::class.java).getMeiziList(15, 1),
+            create(ApiService::class.java).getMeiziList(pageSize, page),
             object : BaseObserver<List<Meizi>>() {
-                override fun onSuccess(data: List<Meizi>) {
-                    Log.e("debug", "data = ${data.size}")
+                override fun onSuccess(data: List<Meizi>?) {
+                    Log.e("debug", "data = ${data?.size}")
                     if (this@MeiziPresenter.isViewAttached()) {
-                        this@MeiziPresenter.getView()?.onMeiziList(data)
+                        this@MeiziPresenter.getView()?.onMeiziList(page, data)
                     }
                 }
             })

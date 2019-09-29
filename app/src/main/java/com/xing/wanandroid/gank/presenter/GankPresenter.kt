@@ -12,7 +12,7 @@ class GankPresenter : BasePresenter<GankContract.View>(), GankContract.Presenter
 
     override fun getGankToday() {
         addSubscribe(create(ApiService::class.java).getGankToday(), object : BaseObserver<HashMap<String, List<GankToday>>>() {
-            override fun onSuccess(map: HashMap<String, List<GankToday>>) {
+            override fun onSuccess(map: HashMap<String, List<GankToday>>?) {
                 Log.e("debug", "map = $map")
                 getView()?.onGankToday(map)
             }
@@ -21,7 +21,7 @@ class GankPresenter : BasePresenter<GankContract.View>(), GankContract.Presenter
 
     override fun getWxPublic() {
         addSubscribe(create(ApiService::class.java).getWxPublic(), object : BaseObserver<List<WxPublic>>() {
-            override fun onSuccess(data: List<WxPublic>) {
+            override fun onSuccess(data: List<WxPublic>?) {
                 getView()?.onWxPublic(data)
             }
         })

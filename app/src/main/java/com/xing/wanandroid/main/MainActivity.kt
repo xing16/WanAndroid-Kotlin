@@ -16,6 +16,7 @@ import android.widget.Toast
 import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
+import com.xing.wanandroid.common.annotation.EventBusSubscribe
 import com.xing.wanandroid.common.bean.FragmentItem
 import com.xing.wanandroid.db.DbManager
 import com.xing.wanandroid.db.bean.User
@@ -41,7 +42,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import kotlin.system.exitProcess
 
-
+@EventBusSubscribe()
 class MainActivity : BaseMVPActivity<MainContract.View, MainPresenter>(), MainContract.View, View.OnClickListener {
 
     private lateinit var mainMenu: ImageView
@@ -102,7 +103,6 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainPresenter>(), MainCo
 
     override fun initData() {
         super.initData()
-        EventBus.getDefault().register(this)
         val list = mutableListOf<FragmentItem>()
         list.add(FragmentItem("首页", HomeFragment.newInstance()))
         list.add(FragmentItem("项目", ProjectFragment.newInstance()))
@@ -184,7 +184,6 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainPresenter>(), MainCo
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onLoginStatusChanged(event: LoggedInEvent) {
-        Log.e("debug22222", "casdcasdc------click")
         val user = event.user
         setUsername(user)
     }
@@ -230,6 +229,7 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainPresenter>(), MainCo
                 overridePendingTransition(0, 0)
             }
             R.id.tv_nav_username -> {
+                loggedIn = isCookieNotEmpty(mContext)
                 if (!loggedIn) {
                     gotoLoginActivity()
                     closeDrawer()
@@ -264,6 +264,5 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainPresenter>(), MainCo
 
     override fun onDestroy() {
         super.onDestroy()
-        EventBus.getDefault().unregister(this)
     }
 }

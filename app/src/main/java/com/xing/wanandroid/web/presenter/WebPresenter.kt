@@ -18,7 +18,7 @@ class WebPresenter : BasePresenter<WebContract.View>(), WebContract.Presenter {
             observable = create(ApiService::class.java).addFavorite(id)
         }
         addSubscribe(observable, object : BaseObserver<AddFavoriteResponse>() {
-            override fun onSuccess(data: AddFavoriteResponse) {
+            override fun onSuccess(data: AddFavoriteResponse?) {
                 getView()?.onAddFavorited(data)
             }
         })

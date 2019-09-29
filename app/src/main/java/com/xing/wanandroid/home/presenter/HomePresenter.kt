@@ -17,7 +17,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
 
     override fun getBanner() {
         addSubscribe(create(ApiService::class.java).getBanner(), object : BaseObserver<List<Banner>>() {
-            override fun onSuccess(data: List<Banner>) {
+            override fun onSuccess(data: List<Banner>?) {
                 getView()?.onBanner(data)
             }
         })
@@ -42,7 +42,9 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
                     val data = resp2.data
                     if (data != null) {
                         val articles = data.datas
-                        dataList.addAll(articles)
+                        if (articles != null) {
+                            dataList.addAll(articles)
+                        }
                     }
                     // 因为 BaseObserver 范型指定了为 BaseResponse， 所以这里重新构造 BaseResponse 对象作为返回值
                     return BaseResponse(dataList, dataList, resp1.errorMsg, resp1.errorCode, false)
@@ -50,7 +52,7 @@ class HomePresenter : BasePresenter<HomeContract.View>(), HomeContract.Presenter
             })
 
         addSubscribe(zipObservable, object : BaseObserver<List<Article>>() {
-            override fun onSuccess(data: List<Article>) {
+            override fun onSuccess(data: List<Article>?) {
                 getView()?.onArticles(page, data)
             }
         })

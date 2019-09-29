@@ -102,7 +102,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
         loginView.setState(LoginView.STATE_FAILED)
     }
 
-    override fun onLoginResult(username: String, user: User) {
+    override fun onLoginResult(username: String, user: User?) {
         finishLoginActivity()
     }
 

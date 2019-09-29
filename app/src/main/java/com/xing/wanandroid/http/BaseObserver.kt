@@ -26,21 +26,10 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
         val errorCode: Int = response.errorCode ?: -1
         val errorMsg: String = response.errorMsg ?: ""
         val error: Boolean = response.error ?: true
-        Log.e("debug", "errCode = $errorCode")
-        Log.e("debug", "error = $error")
         if ((errorCode == 0) or (errorCode == 200)) {
-            if (response.data != null) {
-                onSuccess(response.data)
-            } else {
-
-            }
-
+            onSuccess(response.data)
         } else if (!error) {
-            if (response.results != null) {
-                onSuccess(response.results)
-            } else {
-                onSuccess(Any() as T)
-            }
+            onSuccess(response.results)
         } else {
             onError(ApiException(errorCode, errorMsg))
         }
@@ -50,8 +39,7 @@ abstract class BaseObserver<T> : DisposableObserver<BaseResponse<T>> {
         ExceptionHandler.handleException(e)
     }
 
-    abstract fun onSuccess(data: T)
-
+    abstract fun onSuccess(data: T?)
 
     override fun onComplete() {
         baseView?.dismissLoading()

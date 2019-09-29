@@ -88,7 +88,7 @@ interface ApiService {
     fun getGankToday(): Observable<BaseResponse<HashMap<String, List<GankToday>>>>
 
     @GET("user/logout/json")
-    fun logout(): Observable<BaseResponse<Void>>
+    fun logout(): Observable<BaseResponse<LogoutResult>>
 
 
 }

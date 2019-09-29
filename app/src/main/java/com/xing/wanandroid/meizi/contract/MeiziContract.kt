@@ -5,10 +5,10 @@ import com.xing.wanandroid.meizi.bean.Meizi
 
 interface MeiziContract {
     interface View : IView {
-        fun onMeiziList(list: List<Meizi>)
+        fun onMeiziList(page: Int, list: List<Meizi>?)
     }
 
     interface Presenter {
-        fun getMeiziList()
+        fun getMeiziList(page: Int, pageSize: Int)
     }
 }

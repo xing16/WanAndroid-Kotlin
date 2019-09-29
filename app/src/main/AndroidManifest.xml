@@ -17,10 +17,15 @@
             android:supportsRtl="true"
             android:theme="@style/AppTheme"
             android:usesCleartextTraffic="true">
-        <activity android:name=".setting.AboutActivity"></activity>
+        <activity android:name=".setting.AboutActivity" />
         <activity android:name=".setting.SettingActivity" />
         <activity android:name=".favorite.FavoriteActivity" />
         <activity android:name=".main.MainActivity">
+
+        </activity>
+        <activity
+                android:name=".main.SplashActivity"
+                android:theme="@style/FullScreenStyle">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -28,9 +33,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-                android:name=".main.SplashActivity"
-                android:theme="@style/FullScreenStyle" />
         <activity
                 android:name=".web.WebViewActivity"
                 android:theme="@style/WebViewActivityTheme" />

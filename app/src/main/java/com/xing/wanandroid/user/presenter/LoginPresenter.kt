@@ -13,7 +13,7 @@ class LoginPresenter : BasePresenter<LoginContract.View>(), LoginContract.Presen
 
     override fun login(username: String, password: String) {
         addSubscribe(create(ApiService::class.java).login(username, password), object : BaseObserver<User>(getView()) {
-            override fun onSuccess(user: User) {
+            override fun onSuccess(user: User?) {
                 getView()?.onLoginResult(username, user)
                 DbManager.getInstance().getUserDao().deleteAll()
                 DbManager.getInstance().getUserDao().insert(user)

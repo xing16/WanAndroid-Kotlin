@@ -6,7 +6,7 @@ import com.xing.wanandroid.user.bean.RegisterResponse
 interface RegisterContract {
 
     interface View : IView {
-        fun onRegisterResult(result: RegisterResponse)
+        fun onRegisterResult(result: RegisterResponse?)
     }
 
     interface Presenter {

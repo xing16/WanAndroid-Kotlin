@@ -7,6 +7,8 @@ import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.Toolbar
 import android.view.View
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
 import com.xing.wanandroid.image.ImageBrowseActivity
@@ -25,7 +27,10 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
     private lateinit var meiziAdapter: MeiziAdapter
     private var dataList: ArrayList<Meizi> = ArrayList()
     private lateinit var toolbar: Toolbar
+    private lateinit var refreshLayout: SmartRefreshLayout
     private lateinit var gridLayoutManager: GridLayoutManager
+    private var mCurPage: Int = 0
+    private val pageSize: Int = 21
 
     override fun getLayoutResId(): Int {
         return R.layout.activity_meizi
@@ -38,6 +43,11 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.elevation = dp2px(mContext, 5f)
         toolbar.setNavigationOnClickListener { finish() }
+        refreshLayout = findViewById(R.id.srl_meizi)
+        refreshLayout.setEnableRefresh(false)
+        refreshLayout.setEnableLoadMore(true)
+        refreshLayout.setRefreshFooter(ClassicsFooter(mContext))
+
         recyclerView = findViewById(R.id.rv_meizi)
         gridLayoutManager = GridLayoutManager(mContext, 4)
 
@@ -53,7 +63,7 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
 
     override fun initData() {
         super.initData()
-        presenter.getMeiziList()
+        presenter.getMeiziList(mCurPage, pageSize)
         setListener()
     }
 
@@ -71,7 +81,6 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
                 )
             }
         }
-
     }
 
     private fun convert2UrlList(dataList: ArrayList<Meizi>): ArrayList<String> {
@@ -82,21 +91,23 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
         return urlList
     }
 
-
     override fun showLoading() {
     }
 
     override fun dismissLoading() {
     }
 
-    override fun onMeiziList(list: List<Meizi>) {
-        dataList.addAll(list)
+    override fun onMeiziList(page: Int, list: List<Meizi>?) {
+        refreshLayout.finishLoadMore()
+        mCurPage = page + 1
+        if (list != null) {
+            dataList.addAll(list)
+        }
         meiziAdapter.setNewData(dataList)
     }
 
     override fun createPresenter(): MeiziPresenter {
         return MeiziPresenter()
     }
-
 
 }

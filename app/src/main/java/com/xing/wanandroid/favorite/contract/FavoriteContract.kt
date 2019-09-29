@@ -6,7 +6,7 @@ import com.xing.wanandroid.home.bean.ArticleResponse
 interface FavoriteContract {
 
     interface View : IView {
-        fun onArticleFavorite(page: Int, response: ArticleResponse)
+        fun onArticleFavorite(page: Int, response: ArticleResponse?)
     }
 
     interface Presenter {

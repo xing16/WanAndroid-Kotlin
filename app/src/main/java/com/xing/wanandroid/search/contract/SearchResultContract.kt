@@ -5,7 +5,7 @@ import com.xing.wanandroid.search.bean.SearchResultResponse
 
 interface SearchResultContract {
     interface View : IView {
-        fun onSearchResult(page: Int, response: SearchResultResponse)
+        fun onSearchResult(page: Int, response: SearchResultResponse?)
     }
 
     interface Presenter {

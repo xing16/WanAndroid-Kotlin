@@ -72,15 +72,17 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
         mAdapter = ProjectAdapter(R.layout.item_project)
         recyclerView?.adapter = mAdapter
         mAdapter.onItemClickListener =
-                BaseQuickAdapter.OnItemClickListener { adapter, view, position -> onItemClick(position) }
+            BaseQuickAdapter.OnItemClickListener { adapter, view, position -> onItemClick(position) }
         mAdapter.onItemChildClickListener =
-                BaseQuickAdapter.OnItemChildClickListener { adapter, view, position -> onItemChildClick(position) }
+            BaseQuickAdapter.OnItemChildClickListener { adapter, view, position -> onItemChildClick(position) }
     }
 
-    override fun onProjectLists(page: Int, response: ProjectResponse) {
+    override fun onProjectLists(page: Int, response: ProjectResponse?) {
         refreshLayout?.finishLoadMore()
         mCurPage = page + 1
-        dataList.addAll(response.datas)
+        if (response?.datas != null) {
+            dataList.addAll(response.datas)
+        }
         mAdapter.setNewData(dataList)
     }
 

@@ -85,30 +85,32 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
     override fun dismissLoading() {
     }
 
-    override fun onWxPublic(list: List<WxPublic>) {
+    override fun onWxPublic(list: List<WxPublic>?) {
         wxPublicAdapter.setNewData(list)
     }
 
-    override fun onGankToday(map: HashMap<String, List<GankToday>>) {
+    override fun onGankToday(map: HashMap<String, List<GankToday>>?) {
         Log.e("debug", "map = $map")
         val list: ArrayList<GankTodayEntity<GankToday>> = ArrayList()
-        for (key in map.keys) {
-            if ("福利" == key) {
-                val meiziImage = map.get(key)?.get(0)?.url
-                Glide.with(mContext).load(meiziImage).into(headerImgView)
+        if (map != null) {
+            for (key in map.keys) {
+                if ("福利" == key) {
+                    val meiziImage = map.get(key)?.get(0)?.url
+                    Glide.with(mContext).load(meiziImage).into(headerImgView)
 //                val matrix = ColorMatrix()
 
 //                matrix.setSaturation(0f)
 //                val filter = ColorMatrixColorFilter(matrix)
 //                headerImgView.setColorFilter(filter)
-                continue
-            }
-            list.add(GankTodayEntity(true, key))
-            val size = map.get(key)?.size ?: 0
-            for (i in 0 until size) {
-                val gankToday = map.get(key)?.get(i)
-                if (gankToday != null) {
-                    list.add(GankTodayEntity(gankToday))
+                    continue
+                }
+                list.add(GankTodayEntity(true, key))
+                val size = map.get(key)?.size ?: 0
+                for (i in 0 until size) {
+                    val gankToday = map.get(key)?.get(i)
+                    if (gankToday != null) {
+                        list.add(GankTodayEntity(gankToday))
+                    }
                 }
             }
         }

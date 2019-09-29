@@ -6,7 +6,7 @@ import com.xing.wanandroid.system.bean.SystemCategory
 interface SystemContract {
 
     interface View : IView {
-        fun onSystemCategory(data: List<SystemCategory>)
+        fun onSystemCategory(data: List<SystemCategory>?)
     }
 
     interface Presenter {

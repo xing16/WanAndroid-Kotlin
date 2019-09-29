@@ -78,16 +78,19 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
     }
 
 
-    override fun onSearchResult(page: Int, response: SearchResultResponse) {
+    override fun onSearchResult(page: Int, response: SearchResultResponse?) {
+        val datas = response?.datas
         if (page == 0) {
-            if (response.datas.isEmpty()) {
+            if (datas == null || datas.isEmpty()) {
                 val emptyView: View = LayoutInflater.from(context).inflate(R.layout.layout_empty, null, false)
                 searchResultAdapter.emptyView = emptyView
             }
         }
         refreshLayout?.finishLoadMore()
-        dataList.addAll(response.datas)
         mCurPage = page + 1
+        if (datas != null) {
+            dataList.addAll(datas)
+        }
         searchResultAdapter.setNewData(dataList)
     }
 

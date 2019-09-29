@@ -11,7 +11,7 @@ class RegisterPresenter : BasePresenter<RegisterContract.View>(), RegisterContra
     override fun register(username: String, password: String, repassword: String) {
         addSubscribe(create(ApiService::class.java).register(username, password, repassword),
             object : BaseObserver<RegisterResponse>() {
-                override fun onSuccess(data: RegisterResponse) {
+                override fun onSuccess(data: RegisterResponse?) {
                     getView()?.onRegisterResult(data)
                 }
             })

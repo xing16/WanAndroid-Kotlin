@@ -41,19 +41,21 @@ class ProjectFragment : BaseMVPFragment<ProjectContract.View, ProjectPresenter>(
         presenter.getProjectTabs()
     }
 
-    override fun onProjectTabs(projectTabs: List<ProjectTab>) {
+    override fun onProjectTabs(projectTabs: List<ProjectTab>?) {
         val projectTabsList = getFragmentItems(projectTabs)
         adapter.setDataSource(projectTabsList)
     }
 
-    private fun getFragmentItems(projectTabs: List<ProjectTab>): List<FragmentItem> {
+    private fun getFragmentItems(projectTabs: List<ProjectTab>?): List<FragmentItem> {
         val list = mutableListOf<FragmentItem>()
-        for (projectTab in projectTabs) {
-            list.add(
-                FragmentItem(
-                    projectTab.name, ProjectPageFragment.newInstance(projectTab.id)
+        if (projectTabs != null) {
+            for (projectTab in projectTabs) {
+                list.add(
+                    FragmentItem(
+                        projectTab.name, ProjectPageFragment.newInstance(projectTab.id)
+                    )
                 )
-            )
+            }
         }
         return list
     }

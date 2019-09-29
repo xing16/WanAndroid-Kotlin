@@ -14,7 +14,7 @@ class SearchResultPresenter : BasePresenter<SearchResultContract.View>(), Search
         addSubscribe(
             create(ApiService::class.java).getSearchResult(page, keyword),
             object : BaseObserver<SearchResultResponse>() {
-                override fun onSuccess(response: SearchResultResponse) {
+                override fun onSuccess(response: SearchResultResponse?) {
                     if (this@SearchResultPresenter.isViewAttached()) {
                         this@SearchResultPresenter.getView()?.onSearchResult(page, response)
                     }

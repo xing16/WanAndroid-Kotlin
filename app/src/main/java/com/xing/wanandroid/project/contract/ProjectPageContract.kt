@@ -6,7 +6,7 @@ import com.xing.wanandroid.project.bean.ProjectResponse
 
 interface ProjectPageContract {
     interface View : IView {
-        fun onProjectLists(page: Int, response: ProjectResponse)
+        fun onProjectLists(page: Int, response: ProjectResponse?)
     }
 
     interface Presenter {

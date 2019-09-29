@@ -59,9 +59,10 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
         presenter.getSearchHistory()
     }
 
-    override fun onSearchHot(searchHots: ArrayList<SearchHot>) {
-        searchHotsList = searchHots
-        Log.e("debug", "searchHosts = " + searchHots.size)
+    override fun onSearchHot(searchHots: ArrayList<SearchHot>?) {
+        if (searchHots != null) {
+            searchHotsList = searchHots
+        }
         flowLayout.setAdapter(object : FlowAdapter<SearchHot>(searchHotsList) {
             override fun getView(position: Int, t: SearchHot, parent: ViewGroup): View {
                 val textView = TextView(mContext)
@@ -86,7 +87,7 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
     override fun dismissLoading() {
     }
 
-    override fun onSearchHistory(searchHistory: ArrayList<SearchHistory>) {
+    override fun onSearchHistory(searchHistory: ArrayList<SearchHistory>?) {
     }
 
 

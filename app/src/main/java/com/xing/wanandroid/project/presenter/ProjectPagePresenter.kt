@@ -11,7 +11,7 @@ class ProjectPagePresenter : BasePresenter<ProjectPageContract.View>(), ProjectP
         addSubscribe(
             create(ApiService::class.java).getProjectLists(page, cid),
             object : BaseObserver<ProjectResponse>() {
-                override fun onSuccess(data: ProjectResponse) {
+                override fun onSuccess(data: ProjectResponse?) {
                     if (this@ProjectPagePresenter.isViewAttached()) {
                         this@ProjectPagePresenter.getView()?.onProjectLists(page, data)
                     }

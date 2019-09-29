@@ -102,10 +102,12 @@ class SystemArticleActivity : BaseMVPActivity<SystemArticleContract.View, System
     override fun dismissLoading() {
     }
 
-    override fun onSystemArticles(page: Int, list: List<Article>) {
+    override fun onSystemArticles(page: Int, list: List<Article>?) {
         refreshLayout.finishLoadMore()
         mCurPage = page + 1
-        dataList.addAll(list)
+        if (list != null) {
+            dataList.addAll(list)
+        }
         mAdapter.setNewData(dataList)
     }
 }

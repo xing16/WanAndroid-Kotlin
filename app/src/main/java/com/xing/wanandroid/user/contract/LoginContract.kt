@@ -7,7 +7,7 @@ import com.xing.wanandroid.user.bean.LoginResponse
 interface LoginContract {
 
     interface View : IView {
-        fun onLoginResult(username: String, user: User)
+        fun onLoginResult(username: String, user: User?)
     }
 
     interface Presenter {

@@ -79,9 +79,11 @@ class SystemFragment : BaseMVPFragment<SystemContract.View, SystemPresenter>(),
     }
 
 
-    override fun onSystemCategory(data: List<SystemCategory>) {
-        dataList = data
-        systemCategoryAdapter.setNewData(data)
+    override fun onSystemCategory(data: List<SystemCategory>?) {
+        if (data != null) {
+            dataList = data
+        }
+        systemCategoryAdapter.setNewData(dataList)
     }
 
     override fun showLoading() {

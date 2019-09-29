@@ -18,9 +18,9 @@ class SearchHistoryPresenter : BasePresenter<SearchHistoryContract.View>(), Sear
      */
     override fun getSearchHot() {
         addSubscribe(create(ApiService::class.java).getSearchHot(), object : BaseObserver<ArrayList<SearchHot>>() {
-            override fun onSuccess(data: ArrayList<SearchHot>) {
+            override fun onSuccess(data: ArrayList<SearchHot>?) {
                 if (this@SearchHistoryPresenter.isViewAttached()) {
-                    Log.e("debug", "getSearchHot() = " + data.size)
+                    Log.e("debug", "getSearchHot() = " + data?.size)
                     this@SearchHistoryPresenter.getView()?.onSearchHot(data)
                 }
             }

@@ -89,7 +89,7 @@ class RegisterActivity : BaseMVPActivity<RegisterContract.View, RegisterPresente
     override fun dismissLoading() {
     }
 
-    override fun onRegisterResult(result: RegisterResponse) {
+    override fun onRegisterResult(result: RegisterResponse?) {
         Toast.makeText(mContext, "注册成功", Toast.LENGTH_LONG).show()
         finish()
     }

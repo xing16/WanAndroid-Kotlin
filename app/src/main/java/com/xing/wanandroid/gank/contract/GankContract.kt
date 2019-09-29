@@ -6,9 +6,9 @@ import com.xing.wanandroid.gank.bean.WxPublic
 
 interface GankContract {
     interface View : IView {
-        fun onWxPublic(list: List<WxPublic>)
+        fun onWxPublic(list: List<WxPublic>?)
 
-        fun onGankToday(map: HashMap<String, List<GankToday>>)
+        fun onGankToday(map: HashMap<String, List<GankToday>>?)
     }
 
     interface Presenter {
