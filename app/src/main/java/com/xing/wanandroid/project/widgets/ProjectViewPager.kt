@@ -36,7 +36,6 @@ class ProjectViewPager : ViewPager {
                 } else {
                     parent.requestDisallowInterceptTouchEvent(true)
                 }
-
             }
         }
         return super.dispatchTouchEvent(ev)

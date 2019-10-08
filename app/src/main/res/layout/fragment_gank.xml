@@ -7,7 +7,7 @@
         android:orientation="vertical"
         tools:context=".gank.GankFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <com.xing.wanandroid.home.widget.WxPublicRecyclerView
             android:id="@+id/rv_gank_today"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -21,9 +21,9 @@
             android:layout_marginBottom="30dp"
             android:background="@drawable/selector_gank_calendar"
             android:clickable="true"
-            android:padding="12dp"
+            android:elevation="20dp"
+            android:padding="15dp"
             android:src="@drawable/ic_calendar"
             app:elevation="20dp" />
-
 
 </RelativeLayout>
