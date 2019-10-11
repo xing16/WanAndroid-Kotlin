@@ -1,6 +1,7 @@
 package com.xing.wanandroid.widget
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Build
@@ -16,6 +17,7 @@ import android.webkit.WebChromeClient
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.FrameLayout
 import com.xing.wanandroid.utils.dp2px
 
 /**
@@ -41,6 +43,7 @@ class XWebView : WebView {
     }
 
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun initWebSettings() {
         settings.javaScriptEnabled = true
         settings.setSupportZoom(true)
@@ -65,7 +68,7 @@ class XWebView : WebView {
 
     private fun initProgressBar() {
         webProgressBar = WebProgressBar(context)
-        webProgressBar.layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp2px(context, 6f).toInt())
+        webProgressBar.layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, dp2px(context, 6f).toInt())
         addView(webProgressBar)
 
     }

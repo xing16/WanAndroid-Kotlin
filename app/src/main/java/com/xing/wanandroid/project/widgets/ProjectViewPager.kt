@@ -25,9 +25,9 @@ class ProjectViewPager : ViewPager {
                 return super.dispatchTouchEvent(ev)
             }
             MotionEvent.ACTION_MOVE -> {
-                var moveX: Float = ev.x
-                var currentItem: Int = getCurrentItem()
-                var deltaX: Float = moveX - downX
+                val moveX: Float = ev.x
+                val currentItem: Int = getCurrentItem()
+                val deltaX: Float = moveX - downX
                 // 右滑内部 ViewPager 第一页
                 if (currentItem == 0 && deltaX > 0) {
                     parent.requestDisallowInterceptTouchEvent(false)

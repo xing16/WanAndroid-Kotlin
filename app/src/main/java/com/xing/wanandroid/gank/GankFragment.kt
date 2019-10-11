@@ -77,6 +77,19 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
 
         presenter.getWxPublic()
         presenter.getGankToday()
+
+        wxPublicRecyclerView?.setOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+
+            }
+
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (recyclerView.layoutManager is LinearLayoutManager) {
+                    val firstVisiblePosition = (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                    Log.e("casdcasdc", "firstVisiblePosition============= = ${firstVisiblePosition}")
+                }
+            }
+        })
     }
 
     override fun showLoading() {
@@ -118,6 +131,9 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
         gankTodayAdapter.addHeaderView(headerView)
         gankTodayAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                if (list[position].isHeader) {
+                    return
+                }
                 val url = list[position].t.url
                 val bundle = Bundle()
                 bundle.putString(WebViewActivity.URL, url)
