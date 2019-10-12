@@ -3,8 +3,8 @@ package com.xing.wanandroid.base
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.R
 import com.xing.wanandroid.common.annotation.EventBusSubscribe

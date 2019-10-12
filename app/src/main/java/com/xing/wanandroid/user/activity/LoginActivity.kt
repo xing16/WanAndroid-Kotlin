@@ -4,21 +4,17 @@ import android.text.SpannableString
 import android.text.TextUtils
 import android.text.style.UnderlineSpan
 import android.view.View
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
 import com.xing.wanandroid.db.bean.User
-import com.xing.wanandroid.main.bean.LoggedInEvent
-import com.xing.wanandroid.user.bean.LoginResponse
 import com.xing.wanandroid.user.contract.LoginContract
 import com.xing.wanandroid.user.presenter.LoginPresenter
 import com.xing.wanandroid.utils.gotoActivity
 import com.xing.wanandroid.widget.ClearEditText
 import com.xing.wanandroid.widget.LoginView
-import org.greenrobot.eventbus.EventBus
 
 class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     LoginContract.View, View.OnClickListener {

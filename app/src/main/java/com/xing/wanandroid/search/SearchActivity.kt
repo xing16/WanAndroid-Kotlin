@@ -1,7 +1,6 @@
 package com.xing.wanandroid.search
 
 import android.animation.*
-import android.support.v4.app.Fragment
 import android.text.TextUtils
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.LinearInterpolator
@@ -9,6 +8,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.BaseActivity
 import com.xing.wanandroid.utils.hideKeyboard

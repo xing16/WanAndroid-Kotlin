@@ -1,9 +1,9 @@
 package com.xing.wanandroid.image
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.BaseActivity

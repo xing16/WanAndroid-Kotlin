@@ -1,10 +1,10 @@
 package com.xing.wanandroid.user.activity
 
-import android.support.v7.widget.Toolbar
 import android.text.TextUtils
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.widget.Toolbar
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
 import com.xing.wanandroid.user.bean.RegisterResponse

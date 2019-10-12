@@ -1,9 +1,9 @@
 package com.xing.wanandroid.main.widgets
 
 import android.content.Context
-import android.support.v4.view.ViewPager
 import android.util.AttributeSet
 import android.view.MotionEvent
+import androidx.viewpager.widget.ViewPager
 
 /**
  * 使用 内部拦截法 解决滑动冲突

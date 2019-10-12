@@ -56,15 +56,10 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    api rootProject.ext.dependencies['appcompat-v7']
+    api rootProject.ext.dependencies['appcompat']
     api rootProject.ext.dependencies['design']
-    api rootProject.ext.dependencies['support-v4']
-    api rootProject.ext.dependencies['cardview-v7']
-    api rootProject.ext.dependencies['annotations']
-    api rootProject.ext.dependencies['recyclerview-v7']
-    api rootProject.ext.dependencies['constraint-layout']
+    api rootProject.ext.dependencies['recyclerview']
     api rootProject.ext.dependencies['gson']
-    api rootProject.ext.dependencies['constraint-layout']
     api rootProject.ext.dependencies['retrofit']
     api rootProject.ext.dependencies['rxandroid']
     api rootProject.ext.dependencies['rxjava']
@@ -75,12 +70,8 @@ dependencies {
     api rootProject.ext.dependencies['fastjson']
     api rootProject.ext.dependencies['recycler-adapter-helper']
     api rootProject.ext.dependencies['glide']
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     annotationProcessor rootProject.ext.dependencies['glide-compiler']
 
-    // butterknife
-    api rootProject.ext.dependencies['butterknife']
-    annotationProcessor rootProject.ext.dependencies['butterknife-compiler']
     // arouter
     api rootProject.ext.dependencies['arouter-api']
     annotationProcessor rootProject.ext.dependencies['arouter-compiler']
@@ -89,7 +80,6 @@ dependencies {
     api rootProject.ext.dependencies['retrofit-cookie']
     api rootProject.ext.dependencies['smart-refreshlayout']
     api rootProject.ext.dependencies['photoview']
-    api rootProject.ext.dependencies['andpermission']
     api rootProject.ext.dependencies['eventbus']
     api rootProject.ext.dependencies['aspectj']
     api rootProject.ext.dependencies['statusbar-util']

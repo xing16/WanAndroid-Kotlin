@@ -1,9 +1,8 @@
 package com.xing.wanandroid.setting
 
-import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.widget.Toolbar
 import com.xing.wanandroid.R
 import com.xing.wanandroid.app.MainApp
 import com.xing.wanandroid.base.mvp.BaseMVPActivity

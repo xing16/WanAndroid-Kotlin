@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
-import android.support.v7.widget.Toolbar
 import android.view.Menu
 import android.view.MenuItem
 import android.webkit.WebView
@@ -25,6 +24,7 @@ import com.tencent.mm.opensdk.constants.ConstantsAPI
 import android.content.IntentFilter
 import android.content.BroadcastReceiver
 import android.util.Log
+import androidx.appcompat.widget.Toolbar
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.xing.wanandroid.R
 

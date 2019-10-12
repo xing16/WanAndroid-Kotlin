@@ -2,17 +2,15 @@ package com.xing.wanandroid.favorite
 
 import android.app.Activity
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
-import android.util.Log
 import android.view.View
+import androidx.appcompat.widget.Toolbar
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
 import com.xing.wanandroid.favorite.adapter.FavoriteAdapter
@@ -24,8 +22,6 @@ import com.xing.wanandroid.utils.dp2px
 import com.xing.wanandroid.utils.gotoActivity
 import com.xing.wanandroid.web.WebViewActivity
 import com.xing.wanandroid.widget.LinearItemDecoration
-import kotlinx.android.synthetic.main.activity_main.view.*
-import kotlinx.android.synthetic.main.activity_search.*
 
 class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresenter>(),
     FavoriteContract.View {

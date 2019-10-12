@@ -1,8 +1,8 @@
 package com.xing.wanandroid.project
 
 import android.os.Bundle
-import android.support.design.widget.TabLayout
 import android.view.View
+import com.google.android.material.tabs.TabLayout
 import com.xing.wanandroid.R
 import com.xing.wanandroid.project.adapter.ProjectPageAdapter
 import com.xing.wanandroid.base.mvp.BaseMVPFragment

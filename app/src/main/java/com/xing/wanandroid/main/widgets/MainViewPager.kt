@@ -1,16 +1,13 @@
 package com.xing.wanandroid.main.widgets
 
 import android.content.Context
-import android.support.v4.view.ViewPager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
-import android.util.Log
 import android.view.MotionEvent
+import androidx.viewpager.widget.ViewPager
 import kotlin.math.abs
 
 /**
- * viewpager 与 recyclerview 之间的滑动冲突，使用外部拦截法
+ * 内部拦截，需结合子 RecyclerView dispatchTouchEvent() 共同处理
  */
 class MainViewPager : ViewPager {
 

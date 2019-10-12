@@ -2,10 +2,6 @@ package com.xing.wanandroid.main
 
 import android.app.Activity
 import android.graphics.BitmapFactory
-import android.support.design.widget.NavigationView
-import android.support.design.widget.TabLayout
-import android.support.v4.widget.DrawerLayout
-import android.util.EventLog
 import android.util.Log
 import android.view.Gravity
 import android.view.KeyEvent
@@ -13,6 +9,9 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
 import com.jaeger.library.StatusBarUtil
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
@@ -37,12 +36,11 @@ import com.xing.wanandroid.user.activity.LoginActivity
 import com.xing.wanandroid.utils.blur
 import com.xing.wanandroid.utils.gotoActivity
 import com.xing.wanandroid.utils.isCookieNotEmpty
-import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import kotlin.system.exitProcess
 
-@EventBusSubscribe()
+@EventBusSubscribe
 class MainActivity : BaseMVPActivity<MainContract.View, MainPresenter>(), MainContract.View, View.OnClickListener {
 
     private lateinit var mainMenu: ImageView

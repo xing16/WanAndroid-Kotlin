@@ -2,7 +2,10 @@ package com.xing.wanandroid.utils
 
 import android.content.Context
 import android.graphics.Bitmap
-import android.support.v8.renderscript.*
+import androidx.renderscript.Allocation
+import androidx.renderscript.Element
+import androidx.renderscript.RenderScript
+import androidx.renderscript.ScriptIntrinsicBlur
 
 /**
  * 0 - 25
