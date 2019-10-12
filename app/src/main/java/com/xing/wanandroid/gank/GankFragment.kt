@@ -21,6 +21,7 @@ import com.xing.wanandroid.gank.bean.GankTodayEntity
 import com.xing.wanandroid.gank.bean.WxPublic
 import com.xing.wanandroid.gank.contract.GankContract
 import com.xing.wanandroid.gank.presenter.GankPresenter
+import com.xing.wanandroid.home.widget.WxPublicRecyclerView
 import com.xing.wanandroid.utils.gotoActivity
 import com.xing.wanandroid.web.WebViewActivity
 import com.xing.wanandroid.widget.LinearItemDecoration
@@ -33,7 +34,7 @@ import com.xing.wanandroid.widget.LinearItemDecoration
 class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankContract.View {
 
     private lateinit var headerView: View
-    private lateinit var wxPublicRecyclerView: RecyclerView
+    private lateinit var wxPublicRecyclerView: WxPublicRecyclerView
     private lateinit var headerImgView: ImageView
     private var gankRecyclerView: RecyclerView? = null
     private lateinit var wxPublicAdapter: WxPublicAdapter
@@ -78,18 +79,18 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
         presenter.getWxPublic()
         presenter.getGankToday()
 
-        wxPublicRecyclerView?.setOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-
-            }
-
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (recyclerView.layoutManager is LinearLayoutManager) {
-                    val firstVisiblePosition = (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-                    Log.e("casdcasdc", "firstVisiblePosition============= = ${firstVisiblePosition}")
-                }
-            }
-        })
+//        wxPublicRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+//
+//            }
+//
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                if (recyclerView.layoutManager is LinearLayoutManager) {
+//                    val firstVisiblePosition = (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+//                    Log.e("casdcasdc", "firstVisiblePosition============= = ${firstVisiblePosition}")
+//                }
+//            }
+//        })
     }
 
     override fun showLoading() {

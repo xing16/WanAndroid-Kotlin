@@ -17,51 +17,36 @@ class WxPublicRecyclerView : RecyclerView {
 
     constructor(context: Context) : super(context)
 
-    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
-//        addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//
-//            }
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                if (layoutManager is LinearLayoutManager) {
-//                    val firstVisiblePosition = (layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
-//                    Log.e("WxPublicRecyclerView", "firstVisiblePosition============= = ${firstVisiblePosition}")
-//                }
-//            }
-//        })
-    }
-
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
 
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         when (ev.action) {
             MotionEvent.ACTION_DOWN -> {
-                Log.e("WxPublicRecyclerView", "ACTION_DOWN")
                 downX = ev.x
                 downY = ev.y
                 parent.requestDisallowInterceptTouchEvent(true)
             }
             MotionEvent.ACTION_MOVE -> {
-                Log.e("WxPublicRecyclerView111", "ACTION_MOVE")
-                setOnScrollListener(object : OnScrollListener() {
-                    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                        super.onScrolled(recyclerView, dx, dy)
-                        if (layoutManager is LinearLayoutManager) {
-                            val firstVisiblePosition = (layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-                            Log.e("WxPublicRecyclerView", "firstVisiblePosition = ${firstVisiblePosition}")
-                            if (firstVisiblePosition == 2 && (ev.x > downX)) {
-                                parent.requestDisallowInterceptTouchEvent(false)
-                            }
-                        }
+                if (layoutManager is LinearLayoutManager) {
+                    val firstVisiblePosition = (layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+                    Log.e("WxPublicRecyclerView", "firstVisiblePosition----------- = ${firstVisiblePosition}")
+                    if (firstVisiblePosition == 0 && (ev.x > downX)) {
+                        parent.requestDisallowInterceptTouchEvent(false)
                     }
-                })
-
+                }
             }
             MotionEvent.ACTION_UP -> {
                 Log.e("WxPublicRecyclerView", "ACTION_UP")
             }
         }
-
         return super.dispatchTouchEvent(ev)
     }
+
+//    override fun onScrolled(dx: Int, dy: Int) {
+//        super.onScrolled(dx, dy)
+//        if (layoutManager is LinearLayoutManager) {
+//            val firstVisiblePosition = (layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
+//            Log.e("WxPublicRecyclerView", "firstVisiblePosition = ${firstVisiblePosition}")
+//        }
+//    }
 }

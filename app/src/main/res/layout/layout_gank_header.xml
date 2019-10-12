@@ -31,7 +31,7 @@
 
     </RelativeLayout>
 
-    <android.support.v7.widget.RecyclerView
+    <com.xing.wanandroid.home.widget.WxPublicRecyclerView
             android:id="@+id/rv_gank_header_wxpublic"
             android:layout_width="match_parent"
             android:layout_height="80dp"
