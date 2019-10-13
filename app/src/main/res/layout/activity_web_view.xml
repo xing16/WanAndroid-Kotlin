@@ -7,7 +7,7 @@
         android:orientation="vertical"
         tools:context=".web.WebViewActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
             android:id="@+id/tb_web"
             android:layout_width="match_parent"
             android:layout_height="50dp"

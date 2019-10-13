@@ -5,7 +5,7 @@
         <shape android:shape="oval">
             <corners android:radius="35dp" />
             <size android:width="70dp" android:height="70dp" />
-            <gradient android:endColor="@color/colorAccent" android:startColor="#FA0D02" android:type="linear" />
+            <gradient android:endColor="@color/colorAccentPressed" android:startColor="@color/colorAccent" android:type="linear" />
         </shape>
 
     </item>
@@ -14,7 +14,7 @@
         <shape android:shape="rectangle">
             <corners android:radius="35dp" />
             <size android:width="70dp" android:height="70dp" />
-            <gradient android:endColor="@color/colorAccent" android:startColor="#FA0D02" android:type="linear" />
+            <gradient android:endColor="@color/colorAccentPressed" android:startColor="@color/colorAccent" android:type="linear" />
         </shape>
 
     </item>

@@ -7,12 +7,13 @@
         android:orientation="vertical"
         tools:context=".gank.GankFragment">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_gank_today"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
     <ImageView
+            android:id="@+id/iv_date_choose"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentRight="true"

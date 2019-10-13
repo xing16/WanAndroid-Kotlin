@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.chad.library.adapter.base.BaseQuickAdapter
+import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
 import com.xing.wanandroid.gank.adapter.GankTodayAdapter
 import com.xing.wanandroid.gank.adapter.WxPublicAdapter
@@ -35,11 +36,12 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
     private lateinit var wxPublicRecyclerView: WxPublicRecyclerView
     private lateinit var headerImgView: ImageView
     private var gankRecyclerView: RecyclerView? = null
-    private lateinit var wxPublicAdapter: WxPublicAdapter
-    private lateinit var gankTodayAdapter: GankTodayAdapter
+    private var wxPublicAdapter: WxPublicAdapter? = null
+    private var gankTodayAdapter: GankTodayAdapter? = null
+    private var chooseDateImgView: ImageView? = null
 
     override fun getLayoutResId(): Int {
-        return com.xing.wanandroid.R.layout.fragment_gank
+        return R.layout.fragment_gank
     }
 
     override fun createPresenter(): GankPresenter {
@@ -47,20 +49,15 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
     }
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
-        headerView = LayoutInflater.from(mContext).inflate(com.xing.wanandroid.R.layout.layout_gank_header, null, false)
-        wxPublicRecyclerView = headerView.findViewById(com.xing.wanandroid.R.id.rv_gank_header_wxpublic)
-        headerImgView = headerView.findViewById(com.xing.wanandroid.R.id.iv_gank_header_img)
-        gankRecyclerView = rootView?.findViewById(com.xing.wanandroid.R.id.rv_gank_today)
+        headerView = LayoutInflater.from(mContext).inflate(R.layout.layout_gank_header, null, false)
+        wxPublicRecyclerView = headerView.findViewById(R.id.rv_gank_header_wxpublic)
+        headerImgView = headerView.findViewById(R.id.iv_gank_header_img)
+        gankRecyclerView = rootView?.findViewById(R.id.rv_gank_today)
+        chooseDateImgView = rootView?.findViewById(R.id.iv_date_choose)
 
         // 初始化 wxPublicRecyclerView
         wxPublicRecyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false)
-        wxPublicAdapter = WxPublicAdapter(com.xing.wanandroid.R.layout.item_wx_public)
-        wxPublicAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
-            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
 
-            }
-        }
-        wxPublicRecyclerView.adapter = wxPublicAdapter
 
         // 初始化 gankRecyclerView
         gankRecyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
@@ -73,22 +70,13 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
 
     override fun initData() {
         super.initData()
-
         presenter.getWxPublic()
         presenter.getGankToday()
+        chooseDateImgView?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View?) {
 
-//        wxPublicRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-//
-//            }
-//
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                if (recyclerView.layoutManager is LinearLayoutManager) {
-//                    val firstVisiblePosition = (recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition()
-//                    Log.e("casdcasdc", "firstVisiblePosition============= = ${firstVisiblePosition}")
-//                }
-//            }
-//        })
+            }
+        })
     }
 
     override fun showLoading() {
@@ -98,7 +86,23 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
     }
 
     override fun onWxPublic(list: List<WxPublic>?) {
-        wxPublicAdapter.setNewData(list)
+        if (list == null) {
+            return
+        }
+        if (wxPublicAdapter == null) {
+            wxPublicAdapter = WxPublicAdapter(R.layout.item_wx_public, list)
+            wxPublicAdapter?.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
+                override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                    val bundle = Bundle()
+                    bundle.putInt(WxPublicArticleActivity.WXPUBLIC_ID, list[position].id)
+                    bundle.putString(WxPublicArticleActivity.WXPUBLIC_TITLE, list[position].name)
+                    gotoActivity(mContext as Activity, WxPublicArticleActivity().javaClass, bundle)
+                }
+            }
+            wxPublicRecyclerView.adapter = wxPublicAdapter
+        } else {
+            wxPublicAdapter?.setNewData(list)
+        }
     }
 
     override fun onGankToday(map: HashMap<String, List<GankToday>>?) {
@@ -126,27 +130,28 @@ class GankFragment : BaseMVPFragment<GankContract.View, GankPresenter>(), GankCo
                 }
             }
         }
-        gankTodayAdapter = GankTodayAdapter(com.xing.wanandroid.R.layout.item_gank_section_item, com.xing.wanandroid.R.layout.item_gank_section_header, list)
-        gankTodayAdapter.addHeaderView(headerView)
-        gankTodayAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
-            override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
-                if (list[position].isHeader) {
-                    return
+        if (gankTodayAdapter == null) {
+            gankTodayAdapter = GankTodayAdapter(R.layout.item_gank_section_item, R.layout.item_gank_section_header, list)
+            gankTodayAdapter?.addHeaderView(headerView)
+            gankTodayAdapter?.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
+                override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                    if (list[position].isHeader) {
+                        return
+                    }
+                    val url = list[position].t.url
+                    val bundle = Bundle()
+                    bundle.putString(WebViewActivity.URL, url)
+                    gotoActivity(mContext as Activity, WebViewActivity().javaClass, bundle)
                 }
-                val url = list[position].t.url
-                val bundle = Bundle()
-                bundle.putString(WebViewActivity.URL, url)
-                gotoActivity(mContext as Activity, WebViewActivity().javaClass, bundle)
             }
+            gankRecyclerView?.adapter = gankTodayAdapter
+        } else {
+            gankTodayAdapter?.setNewData(list)
         }
-        gankRecyclerView?.adapter = gankTodayAdapter
     }
-
 
     companion object {
         @JvmStatic
         fun newInstance() = GankFragment()
     }
-
-
 }

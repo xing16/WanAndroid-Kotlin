@@ -1,59 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tb_about"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp"
-            tools:context=".setting.AboutActivity">
+            android:layout_height="50dp"
+            android:background="@android:color/white" />
 
-        <TextView
-                android:layout_width="wrap_content"
+    <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="简介"
-                android:textColor="@color/black_333"
-                android:textSize="20sp" />
+                android:background="@android:color/white"
+                android:orientation="vertical"
+                android:padding="15dp"
+                tools:context=".setting.AboutActivity">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="WanAndroid 使用 MVP" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="简介"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
+            <TextView
+                    android:id="@+id/tv_app_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingExtra="2dp"
+                    android:text="@string/app_desc"
+                    android:textColor="@color/color_f5c" />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="开发者"
-                android:textColor="@color/black_333"
-                android:textSize="20sp" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="开发者"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="WanAndroid 使用 MVP" />
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:lineSpacingExtra="2dp"
+                    android:text="星火燎原"
+                    android:textColor="@color/color_f5c" />
 
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="开源库"
+                    android:textColor="@android:color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="开源库"
-                android:textColor="@color/black_333"
-                android:textSize="20sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_library"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+        </LinearLayout>
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="WanAndroid 使用 MVP" />
+    </ScrollView>
 
-
-    </LinearLayout>
-
-</ScrollView>
+</LinearLayout>
 

@@ -12,7 +12,6 @@ import com.bumptech.glide.request.RequestOptions
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import com.xing.wanandroid.R
@@ -46,8 +45,8 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
         refreshLayout = rootView?.findViewById(R.id.srl_home)
-        refreshLayout?.setRefreshHeader(ClassicsHeader(context))
-        refreshLayout?.setRefreshFooter(ClassicsFooter(context))
+        refreshLayout?.setEnableRefresh(true)
+        refreshLayout?.setRefreshHeader(ClassicsHeader(mContext))
         recyclerView = rootView?.findViewById(R.id.rv_home)
 
         headerView = layoutInflater.inflate(R.layout.layout_home_header, null, false)

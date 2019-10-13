@@ -87,6 +87,10 @@ interface ApiService {
     @GET("http://gank.io/api/today")
     fun getGankToday(): Observable<BaseResponse<HashMap<String, List<GankToday>>>>
 
+    @GET("wxarticle/list/{id}/{page}/json")
+    fun getWxPublicArticle(@Path("id") id: Int, @Path("page") page: Int): Observable<BaseResponse<ArticleResponse>>
+
+
     @GET("user/logout/json")
     fun logout(): Observable<BaseResponse<LogoutResult>>
 

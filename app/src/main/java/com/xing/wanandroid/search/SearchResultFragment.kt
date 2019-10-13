@@ -45,12 +45,10 @@ class SearchResultFragment : BaseMVPFragment<SearchResultContract.View, SearchRe
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
         refreshLayout = rootView?.findViewById(R.id.srl_search_result)
         refreshLayout?.setEnableRefresh(false)
-        refreshLayout?.setRefreshFooter(ClassicsFooter(context))
         recyclerView = rootView?.findViewById(R.id.rv_search_result)
         val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
             .height(1f)
             .margin(15f, 15f)
-            .jumpPositions(arrayOf(0))
         recyclerView?.addItemDecoration(itemDecoration)
     }
 

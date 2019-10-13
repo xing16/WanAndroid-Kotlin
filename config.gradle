@@ -15,9 +15,9 @@ ext {
     ]
 
     dependencies = [
-            "appcompat"           : 'androidx.appcompat:appcompat:1.0.0',
+            "appcompat"              : 'androidx.appcompat:appcompat:1.0.0',
             "design"                 : 'com.google.android.material:material:1.0.0',
-            "recyclerview"        : 'androidx.recyclerview:recyclerview:1.0.0',
+            "recyclerview"           : 'androidx.recyclerview:recyclerview:1.0.0',
             "gson"                   : "com.google.code.gson:gson:2.2.4",
             "retrofit"               : "com.squareup.retrofit2:retrofit:2.4.0",
             "rxandroid"              : "io.reactivex.rxjava2:rxandroid:2.1.0",
@@ -31,17 +31,16 @@ ext {
             "fastjson"               : "com.alibaba:fastjson:1.1.70.android",
             "glide"                  : "com.github.bumptech.glide:glide:4.9.0",
             "glide-compiler"         : "com.github.bumptech.glide:compiler:4.9.0",
-            "recycler-adapter-helper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30",
+            "recycler-adapter-helper": "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.45-androidx",
             "banner"                 : "com.youth.banner:banner:1.4.10",
             "greendao"               : "org.greenrobot:greendao:3.2.2",
             "retrofit-cookie"        : "com.github.franmontiel:PersistentCookieJar:v1.0.1",
-            "smart-refreshlayout"    : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-21",
+            "smart-refreshlayout"    : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0",
             "photoview"              : "com.github.chrisbanes:PhotoView:2.0.0",
             "eventbus"               : "org.greenrobot:eventbus:3.1.1",
             "aspectj"                : "org.aspectj:aspectjrt:1.8.9",
             "statusbar-util"         : "com.jaeger.statusbarutil:library:1.5.1",
             "lottie"                 : "com.airbnb.android:lottie:2.7.0",
             "wechat"                 : "com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+",
-            "persistent-cookiejar"   : "com.github.franmontiel:PersistentCookieJar:v1.0.1"
     ]
 }

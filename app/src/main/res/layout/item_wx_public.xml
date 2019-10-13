@@ -25,7 +25,7 @@
             android:layout_marginTop="6dp"
             android:gravity="center"
             android:singleLine="true"
-            android:textColor="@color/black_333"
+            android:textColor="@color/black_f222"
             android:textSize="16sp"
             tools:text="xing16" />
 

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
@@ -47,7 +46,6 @@ class SystemArticleActivity : BaseMVPActivity<SystemArticleContract.View, System
         toolbar.setNavigationOnClickListener { finish() }
         refreshLayout = findViewById(R.id.srl_system_article)
         refreshLayout.setEnableRefresh(false)
-        refreshLayout.setRefreshFooter(ClassicsFooter(mContext))
         recyclerView = findViewById(R.id.rv_system_article)
     }
 
@@ -57,7 +55,6 @@ class SystemArticleActivity : BaseMVPActivity<SystemArticleContract.View, System
         val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
             .height(1f)
             .margin(15f, 15f)
-            .jumpPositions(arrayOf(0))
         recyclerView.addItemDecoration(itemDecoration)
         recyclerView.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         mAdapter = HomeRecyclerAdapter(R.layout.item_home_recycler)

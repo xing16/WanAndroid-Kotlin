@@ -67,7 +67,7 @@ class SearchHistoryFragment : BaseMVPFragment<SearchHistoryContract.View, Search
                 textView.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 16f)
                 textView.setBackgroundResource(R.drawable.shape_search_history_bg)
                 textView.text = t.name
-                textView.setTextColor(resources.getColor(R.color.black_333))
+                textView.setTextColor(resources.getColor(R.color.black_f222))
                 return textView
             }
         })

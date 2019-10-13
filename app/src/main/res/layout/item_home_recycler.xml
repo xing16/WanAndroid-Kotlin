@@ -47,7 +47,6 @@
                 android:textSize="14sp"
                 tools:text="xing" />
 
-
         <TextView
                 android:id="@+id/tv_home_public_time"
                 android:layout_width="wrap_content"

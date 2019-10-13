@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
@@ -45,7 +44,6 @@ class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresente
     override fun initView() {
         refreshLayout = findViewById(R.id.srl_favorite)
         refreshLayout.setEnableRefresh(false)
-        refreshLayout.setRefreshFooter(ClassicsFooter(mContext))
         toolbar = findViewById(R.id.tb_favorite)
         setSupportActionBar(toolbar)
         supportActionBar?.title = "收藏"
@@ -57,7 +55,6 @@ class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresente
         val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
             .height(1f)
             .margin(15f, 15f)
-            .jumpPositions(arrayOf(0))
         recyclerView.addItemDecoration(itemDecoration)
         favoriteAdapter = FavoriteAdapter(R.layout.item_home_recycler)
         favoriteAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {

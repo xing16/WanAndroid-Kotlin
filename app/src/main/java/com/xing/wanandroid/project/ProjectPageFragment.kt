@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.BaseLazyFragment
@@ -50,11 +49,9 @@ class ProjectPageFragment : BaseLazyFragment<ProjectPageContract.View, ProjectPa
         val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
             .height(1f)
             .margin(15f, 15f)
-            .jumpPositions(arrayOf(0))
         recyclerView?.addItemDecoration(itemDecoration)
         refreshLayout = rootView?.findViewById(R.id.srl_project)
         refreshLayout?.setEnableRefresh(false)
-        refreshLayout?.setRefreshFooter(ClassicsFooter(context))
         recyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
         setListener()
     }

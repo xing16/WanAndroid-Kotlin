@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="wrap_content"
         android:background="#eee"
         android:gravity="center_vertical"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp">
 
     <TextView
             android:id="@+id/tv_gank_section_head"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
-            android:textColor="@color/black_333"
-            android:textSize="18sp" />
+            android:textColor="@color/black_f222"
+            android:textSize="20sp"
+            tools:text="Android" />
 
 </LinearLayout>

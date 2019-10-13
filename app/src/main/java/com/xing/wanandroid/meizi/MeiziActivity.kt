@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
-import com.scwang.smartrefresh.layout.footer.ClassicsFooter
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
 import com.xing.wanandroid.image.ImageBrowseActivity
@@ -46,7 +45,6 @@ class MeiziActivity : BaseMVPActivity<MeiziContract.View, MeiziPresenter>(), Mei
         refreshLayout = findViewById(R.id.srl_meizi)
         refreshLayout.setEnableRefresh(false)
         refreshLayout.setEnableLoadMore(true)
-        refreshLayout.setRefreshFooter(ClassicsFooter(mContext))
 
         recyclerView = findViewById(R.id.rv_meizi)
         gridLayoutManager = GridLayoutManager(mContext, 4)

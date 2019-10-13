@@ -6,7 +6,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-    <android.support.design.widget.TabLayout
+    <com.google.android.material.tabs.TabLayout
             android:id="@+id/tl_project_tabs"
             android:layout_width="match_parent"
             android:layout_height="35dp"
@@ -20,7 +20,7 @@
             app:tabTextAppearance="@style/ProjectTabLayoutStyle"
             app:tabTextColor="@color/color_f32">
 
-    </android.support.design.widget.TabLayout>
+    </com.google.android.material.tabs.TabLayout>
 
     <com.xing.wanandroid.main.widgets.ProjectViewPager
             android:id="@+id/vp_project_pager"

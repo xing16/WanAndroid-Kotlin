@@ -5,25 +5,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".favorite.FavoriteActivity">
+        tools:context=".gank.WxPublicArticleActivity">
 
     <androidx.appcompat.widget.Toolbar
-            android:id="@+id/tb_favorite"
+            android:id="@+id/tb_wxpublic"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:background="@android:color/white" />
 
-
     <com.scwang.smartrefresh.layout.SmartRefreshLayout
-            android:id="@+id/srl_favorite"
+            android:id="@+id/srl_wxpublic_article"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_favorite"
+                android:id="@+id/rv_wxpublic_article"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
-
 
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 

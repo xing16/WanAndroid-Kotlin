@@ -4,8 +4,13 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.xing.wanandroid.R
 import com.xing.wanandroid.gank.bean.WxPublic
+import com.xing.wanandroid.home.bean.Article
 
-class WxPublicAdapter(layoutResId: Int) : BaseQuickAdapter<WxPublic, BaseViewHolder>(layoutResId) {
+class WxPublicAdapter : BaseQuickAdapter<WxPublic, BaseViewHolder> {
+
+    constructor(layoutResId: Int) : super(layoutResId)
+
+    constructor(layoutResId: Int, list: List<WxPublic>) : super(layoutResId, list)
 
     override fun convert(helper: BaseViewHolder?, item: WxPublic?) {
         val name: String = item?.name ?: ""

@@ -1,12 +1,32 @@
 # WanAndroid-Kotlin
+WanAndroid 是基于 Kotlin + MVP + RxJava + OkHttp 实现好用好看的学习阅读类客户端, 包括首页，项目，体系，干货，搜索，收藏，妹子等功能。
+
+项目地址： https://github.com/xing16/WanAndroid-Kotlin
+
+欢迎大佬们 Star ！
+
 ## 效果图：
-| ![主页](https://raw.githubusercontent.com/xing16/WanAndroid-Kotlin/master/ScreenShot/main.gif) | ![首页](https://raw.githubusercontent.com/xing16/WanAndroid-Kotlin/master/ScreenShot/home.gif) | ![项目](https://raw.githubusercontent.com/xing16/WanAndroid-Kotlin/master/ScreenShot/project.gif) |
+
+| ![splash.gif](https://upload-images.jianshu.io/upload_images/9057812-03193cf6d8770697.gif?imageMogr2/auto-orient/strip) | ![main.gif](https://upload-images.jianshu.io/upload_images/9057812-9e92d54348dc8e90.gif?imageMogr2/auto-orient/strip) | ![web.gif](https://upload-images.jianshu.io/upload_images/9057812-623696977a6cad68.gif?imageMogr2/auto-orient/strip) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| ![体系](https://raw.githubusercontent.com/xing16/WanAndroid-Kotlin/master/ScreenShot/system.gif) | ![干活](https://raw.githubusercontent.com/xing16/WanAndroid-Kotlin/master/ScreenShot/gank.gif) | ![搜索](https://raw.githubusercontent.com/xing16/WanAndroid-Kotlin/master/ScreenShot/search.gif) |
-| ![启动图](https://raw.githubusercontent.com/xing16/WanAndroid-Kotlin/master/ScreenShot/splash.gif)                                                          |  ![妹子](https://raw.githubusercontent.com/xing16/WanAndroid-Kotlin/master/ScreenShot/meizi.gif)                                                     |                                                              |
-|                                                              |                                                              |                                                              |
-|                                                              |                                                              |                                                              |
+| ![search.gif](https://upload-images.jianshu.io/upload_images/9057812-e399263f14854c5c.gif?imageMogr2/auto-orient/strip) | ![meizi.gif](https://upload-images.jianshu.io/upload_images/9057812-852fac93d1fbc792.gif?imageMogr2/auto-orient/strip) | ![favorite.gif](https://upload-images.jianshu.io/upload_images/9057812-35721196030cf66e.gif?imageMogr2/auto-orient/strip) |
+| ![login.gif](https://upload-images.jianshu.io/upload_images/9057812-534ebdaa276af212.gif?imageMogr2/auto-orient/strip) |                                                              |                                                              |
 
 
 
+### 依赖库
 
+Retrofit
+OkHttp
+RxJava2
+RxJavaAndroid
+Arouter
+fastjson
+Glide
+recycler-adapter-helper
+banner
+greendao
+PersistentCookieJar
+SmartRefreshLayout
+PhotoView
+statusbarutil

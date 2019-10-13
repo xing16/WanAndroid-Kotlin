@@ -30,6 +30,7 @@ import com.xing.wanandroid.main.widgets.MainViewPager
 import com.xing.wanandroid.meizi.MeiziActivity
 import com.xing.wanandroid.project.ProjectFragment
 import com.xing.wanandroid.search.SearchActivity
+import com.xing.wanandroid.setting.AboutActivity
 import com.xing.wanandroid.setting.SettingActivity
 import com.xing.wanandroid.system.SystemFragment
 import com.xing.wanandroid.user.activity.LoginActivity
@@ -90,6 +91,9 @@ class MainActivity : BaseMVPActivity<MainContract.View, MainPresenter>(), MainCo
                 }
                 R.id.item_nav_setting -> {
                     gotoActivity(mContext as Activity, SettingActivity().javaClass)
+                }
+                R.id.item_nav_about -> {
+                    gotoActivity(mContext as Activity, AboutActivity().javaClass)
                 }
             }
             true

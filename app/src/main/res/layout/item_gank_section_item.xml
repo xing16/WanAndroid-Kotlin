@@ -16,7 +16,7 @@
                 android:layout_height="26dp"
                 android:layout_centerVertical="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/android_logo_dark" />
+                android:src="@drawable/ic_android_dev" />
 
         <TextView
                 android:id="@+id/tv_gank_who"
@@ -43,14 +43,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
             android:ellipsize="end"
-            android:textColor="@color/black_333"
+            android:textColor="@color/black_f222"
             android:textSize="16sp" />
 
 
     <LinearLayout
             android:id="@+id/ll_gank_images_parent"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="90dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:visibility="gone">

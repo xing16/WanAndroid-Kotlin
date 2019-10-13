@@ -95,7 +95,7 @@ class LoginActivity : BaseMVPActivity<LoginContract.View, LoginPresenter>(),
     }
 
     override fun dismissLoading() {
-        loginView.setState(LoginView.STATE_FAILED)
+//        loginView.setState(LoginView.STATE_FAILED)
     }
 
     override fun onLoginResult(username: String, user: User?) {

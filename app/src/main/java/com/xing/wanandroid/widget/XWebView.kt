@@ -10,8 +10,6 @@ import android.os.Looper
 import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams
 import android.view.animation.DecelerateInterpolator
 import android.webkit.WebChromeClient
 import android.webkit.WebSettings
@@ -21,7 +19,7 @@ import android.widget.FrameLayout
 import com.xing.wanandroid.utils.dp2px
 
 /**
- * 封装 WebView
+ * 封装 WebView， https://developer.android.google.cn/reference/android/webkit/WebView.html
  */
 class XWebView : WebView {
 
@@ -33,18 +31,16 @@ class XWebView : WebView {
 
     constructor(context: Context) : super(context)
 
-    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet)
-
-    init {
-        initWebSettings()
+    constructor(context: Context, attributeSet: AttributeSet) : super(context, attributeSet) {
+        initWebView(context, attributeSet)
         initProgressBar()
-        webViewClient = MyWebViewClient()
-        webChromeClient = MyWebViewChromeClient()
+        webViewClient = XWebViewClient()
+        webChromeClient = XWebViewChromeClient()
     }
 
-
     @SuppressLint("SetJavaScriptEnabled")
-    private fun initWebSettings() {
+    private fun initWebView(context: Context, attributeSet: AttributeSet) {
+        val settings = settings
         settings.javaScriptEnabled = true
         settings.setSupportZoom(true)
         settings.displayZoomControls = false
@@ -98,7 +94,7 @@ class XWebView : WebView {
     }
 
 
-    inner class MyWebViewClient : WebViewClient() {
+    inner class XWebViewClient : WebViewClient() {
 
         override fun shouldOverrideUrlLoading(view: WebView?, url: String?): Boolean {
             view?.loadUrl(url)
@@ -117,7 +113,7 @@ class XWebView : WebView {
 
     }
 
-    inner class MyWebViewChromeClient : WebChromeClient() {
+    inner class XWebViewChromeClient : WebChromeClient() {
 
         override fun onReceivedTitle(view: WebView?, title: String?) {
             super.onReceivedTitle(view, title)
@@ -195,8 +191,5 @@ class XWebView : WebView {
          * 页面加载完成,不使用 onPageFinish() 因为 onPageFinish() 会被回调两次
          */
         fun onPageLoadComplete()
-
     }
-
-
 }
