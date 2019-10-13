@@ -16,17 +16,17 @@ WanAndroid 是基于 Kotlin + MVP + RxJava + OkHttp 实现好用好看的学习�
 
 ### 依赖库
 
-Retrofit
-OkHttp
-RxJava2
-RxJavaAndroid
-Arouter
-fastjson
-Glide
-recycler-adapter-helper
-banner
-greendao
-PersistentCookieJar
-SmartRefreshLayout
-PhotoView
-statusbarutil
+- Retrofit
+- OkHttp
+- RxJava2
+- RxJavaAndroid
+- Arouter
+- fastjson
+- Glide
+- recycler-adapter-helper
+- banner
+- greendao
+- PersistentCookieJar
+- SmartRefreshLayout
+- PhotoView
+- statusbarutil
