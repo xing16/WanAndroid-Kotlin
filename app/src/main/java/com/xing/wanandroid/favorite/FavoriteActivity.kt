@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.header.ClassicsHeader
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.xing.wanandroid.R
 import com.xing.wanandroid.base.mvp.BaseMVPActivity
@@ -43,7 +44,8 @@ class FavoriteActivity : BaseMVPActivity<FavoriteContract.View, FavoritePresente
 
     override fun initView() {
         refreshLayout = findViewById(R.id.srl_favorite)
-        refreshLayout.setEnableRefresh(false)
+        refreshLayout.setEnableRefresh(true)
+//        refreshLayout.setRefreshHeader(ClassicsHeader(mContext)("casdcasd").setPrimaryColor(R.color.colorPrimary))
         toolbar = findViewById(R.id.tb_favorite)
         setSupportActionBar(toolbar)
         supportActionBar?.title = "收藏"

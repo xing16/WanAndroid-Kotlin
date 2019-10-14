@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.xing.wanandroid.R
-import com.xing.wanandroid.project.adapter.ProjectPageAdapter
 import com.xing.wanandroid.base.mvp.BaseMVPFragment
-import com.xing.wanandroid.system.adapter.SystemAdapter
+import com.xing.wanandroid.system.adapter.SystemCategoryAdapter
+import com.xing.wanandroid.system.adapter.SystemContentAdapter
 import com.xing.wanandroid.system.bean.SystemCategory
 import com.xing.wanandroid.system.contract.SystemContract
 import com.xing.wanandroid.system.presenter.SystemPresenter
@@ -18,19 +18,14 @@ import com.xing.wanandroid.utils.CID
 import com.xing.wanandroid.utils.TITLE
 import com.xing.wanandroid.utils.gotoActivity
 
-private const val ARG_PARAM1 = "param1"
-
 class SystemFragment : BaseMVPFragment<SystemContract.View, SystemPresenter>(),
     SystemContract.View {
 
     private var categoryRecyclerView: RecyclerView? = null
     private var contentRecyclerView: RecyclerView? = null
-    private lateinit var systemCategoryAdapter: SystemAdapter
-    private lateinit var contentAdapter: SystemAdapter
+    private lateinit var categoryAdapter: SystemCategoryAdapter
+    private lateinit var contentAdapter: SystemContentAdapter
     private var dataList: List<SystemCategory> = ArrayList()
-
-    private var param1: String? = null
-    private lateinit var adapter: ProjectPageAdapter
 
     override fun getLayoutResId(): Int {
         return R.layout.fragment_system
@@ -45,18 +40,19 @@ class SystemFragment : BaseMVPFragment<SystemContract.View, SystemPresenter>(),
         super.initData()
         // Left menu
         categoryRecyclerView?.layoutManager = LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false)
-        systemCategoryAdapter = SystemAdapter(R.layout.item_system_category)
-        systemCategoryAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
+        categoryAdapter = SystemCategoryAdapter(R.layout.item_system_category)
+        categoryAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
+                categoryAdapter.setClickedPosition(position)
                 val systemCategory = dataList[position]
                 contentAdapter.setNewData(systemCategory.children)
             }
         }
-        categoryRecyclerView?.adapter = systemCategoryAdapter
+        categoryRecyclerView?.adapter = categoryAdapter
 
         // Content
         contentRecyclerView?.layoutManager = GridLayoutManager(mContext, 2)
-        contentAdapter = SystemAdapter(R.layout.item_system_content)
+        contentAdapter = SystemContentAdapter(R.layout.item_system_content)
         contentAdapter.onItemClickListener = object : BaseQuickAdapter.OnItemClickListener {
             override fun onItemClick(adapter: BaseQuickAdapter<*, *>?, view: View?, position: Int) {
                 val cid = contentAdapter.data[position].id
@@ -83,7 +79,8 @@ class SystemFragment : BaseMVPFragment<SystemContract.View, SystemPresenter>(),
         if (data != null) {
             dataList = data
         }
-        systemCategoryAdapter.setNewData(dataList)
+        categoryAdapter.setNewData(dataList)
+        contentAdapter.setNewData(dataList[0].children)
     }
 
     override fun showLoading() {

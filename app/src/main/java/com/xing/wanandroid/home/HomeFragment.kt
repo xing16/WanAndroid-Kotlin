@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -27,7 +28,6 @@ import com.youth.banner.Banner
 import com.youth.banner.listener.OnBannerListener
 import com.youth.banner.loader.ImageLoader
 
-private const val ARG_PARAM1 = "param1"
 
 class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeContract.View {
 
@@ -46,7 +46,6 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
     override fun initView(rootView: View?, savedInstanceState: Bundle?) {
         refreshLayout = rootView?.findViewById(R.id.srl_home)
         refreshLayout?.setEnableRefresh(true)
-        refreshLayout?.setRefreshHeader(ClassicsHeader(mContext))
         recyclerView = rootView?.findViewById(R.id.rv_home)
 
         headerView = layoutInflater.inflate(R.layout.layout_home_header, null, false)
@@ -59,7 +58,7 @@ class HomeFragment : BaseMVPFragment<HomeContract.View, HomePresenter>(), HomeCo
 
     override fun initData() {
         super.initData()
-        val itemDecoration = LinearItemDecoration(mContext).color(mContext.resources.getColor(R.color.white_eaeaea))
+        val itemDecoration = LinearItemDecoration(mContext).color(ContextCompat.getColor(mContext, R.color.white_eaeaea))
             .height(1f)
             .margin(15f, 15f)
             .jumpPositions(arrayOf(0))

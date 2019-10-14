@@ -2,6 +2,7 @@ package com.xing.wanandroid.app
 
 import android.app.Application
 import android.content.Context
+import androidx.core.content.ContextCompat
 import com.franmontiel.persistentcookiejar.PersistentCookieJar
 import com.franmontiel.persistentcookiejar.cache.SetCookieCache
 import com.franmontiel.persistentcookiejar.persistence.SharedPrefsCookiePersistor
@@ -20,16 +21,20 @@ class MainApp : Application() {
         //设置全局的 Header 构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator(object : DefaultRefreshHeaderCreator {
             override fun createRefreshHeader(context: Context, layout: RefreshLayout): RefreshHeader {
-                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.black)  //全局设置主题颜色
-                return ClassicsHeader(Companion.context)//指定为经典Header，默认是 贝塞尔雷达Header
+                //指定为经典Header，默认是 贝塞尔雷达 Header
+                return ClassicsHeader(Companion.context)
+//                    .setPrimaryColor(ContextCompat.getColor(Companion.context, R.color.colorAccent))  // header 背景
+                    .setAccentColor(ContextCompat.getColor(Companion.context, R.color.black_f222)) // header 中文字，icon 颜色
             }
         })
 
         // 设置全局的 Footer 构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator(object : DefaultRefreshFooterCreator {
             override fun createRefreshFooter(context: Context, layout: RefreshLayout): RefreshFooter {
-                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white)  //全局设置主题颜色
+//                layout.setPrimaryColorsId(R.color.colorPrimary, android.R.color.white)  //全局设置主题颜色
                 return ClassicsFooter(Companion.context)   //指定为经典Header，默认是 贝塞尔雷达Header
+//                    .setPrimaryColor(ContextCompat.getColor(Companion.context, R.color.colorAccent))  // footer 背景
+                    .setAccentColor(ContextCompat.getColor(Companion.context, R.color.black_f222)) // footer 中文字，icon 颜色
             }
         })
     }
