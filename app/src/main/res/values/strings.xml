@@ -21,7 +21,7 @@
     <string name="click_to_login">未登录,点击登录</string>
     <string name="logout">退出登录</string>
     <string name="app_desc">WanAndroid 使用 MVP+RxJava+OkHttp实现好用的学习阅读类客户端,包括首页，项目，体系，干货，搜索，收藏，妹子等功能。\n</string>
-    <string name="app_address">项目地址: </string>
+    <string name="app_address">项目地址 : </string>
     <string name="app_link">https://github.com/xing16/WanAndroid-Kotlin</string>
 
     <string-array name="library_list">
@@ -40,6 +40,5 @@
         <item>PhotoView</item>
         <item>statusbarutil</item>
     </string-array>
-
-
+    
 </resources>

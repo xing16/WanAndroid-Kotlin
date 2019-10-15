@@ -24,12 +24,15 @@ import com.tencent.mm.opensdk.constants.ConstantsAPI
 import android.content.IntentFilter
 import android.content.BroadcastReceiver
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.tencent.mm.opensdk.openapi.WXAPIFactory
 import com.xing.wanandroid.R
+import com.xing.wanandroid.web.bean.AddFavoriteResponse
 
 
-class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
+class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>(), WebContract.View {
 
     private lateinit var toolbar: Toolbar
     private var webView: XWebView? = null
@@ -40,6 +43,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
     private var author: String? = null
     private var dialogFragment: WebDialogFragment? = null
     private var loadUrl: String? = null
+    private var favoriteSuccessView: View? = null
     private var appId: String = "wx2c753629bd2e94bd"
 
     companion object {
@@ -186,7 +190,7 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
      * 返回
      */
     private fun goBack() {
-        var canGoBack = webView?.canGoBack() ?: false
+        val canGoBack = webView?.canGoBack() ?: false
         if (canGoBack) {
             webView?.goBack()
         } else {
@@ -250,6 +254,17 @@ class WebViewActivity : BaseMVPActivity<WebContract.View, WebPresenter>() {
         val uri = Uri.parse(loadUrl)
         val intent = Intent(Intent.ACTION_VIEW, uri)
         startActivity(intent)
+    }
+
+
+    /**
+     * 收藏成功回调
+     */
+    override fun onAddFavorited(addFavoriteResponse: AddFavoriteResponse?) {
+        if (favoriteSuccessView == null) {
+            favoriteSuccessView = LayoutInflater.from(mContext).inflate(R.layout.layout_favorite_toast, null, false)
+            ToastUtils.show(mContext, favoriteSuccessView!!)
+        }
     }
 
 }

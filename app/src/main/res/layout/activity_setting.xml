@@ -20,7 +20,7 @@
     <Button
             android:id="@+id/btn_logout"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="46dp"
             android:layout_marginStart="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="25dp"
