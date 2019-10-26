@@ -7,7 +7,7 @@ WanAndroid 是基于 Kotlin + MVP + RxJava + OkHttp 实现好用好看的学习�
 
 ## 效果图：
 
-| ![splash.gif](https://upload-images.jianshu.io/upload_images/9057812-03193cf6d8770697.gif?imageMogr2/auto-orient/strip) | ![main.gif](https://upload-images.jianshu.io/upload_images/9057812-9e92d54348dc8e90.gif?imageMogr2/auto-orient/strip) | ![web.gif](https://upload-images.jianshu.io/upload_images/9057812-623696977a6cad68.gif?imageMogr2/auto-orient/strip) |
+| ![splash.gif](https://upload-images.jianshu.io/upload_images/9057812-03193cf6d8770697.gif?imageMogr2/auto-orient/strip) | ![main.gif](https://upload-images.jianshu.io/upload_images/9057812-2458086a01c4341d.gif?imageMogr2/auto-orient/strip) | ![web.gif](https://upload-images.jianshu.io/upload_images/9057812-623696977a6cad68.gif?imageMogr2/auto-orient/strip) |
 | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | ![search.gif](https://upload-images.jianshu.io/upload_images/9057812-e399263f14854c5c.gif?imageMogr2/auto-orient/strip) | ![meizi.gif](https://upload-images.jianshu.io/upload_images/9057812-852fac93d1fbc792.gif?imageMogr2/auto-orient/strip) | ![favorite.gif](https://upload-images.jianshu.io/upload_images/9057812-c505aa79d85d2138.gif?imageMogr2/auto-orient/strip) |
 | ![login.gif](https://upload-images.jianshu.io/upload_images/9057812-838f23317738b7bb.gif?imageMogr2/auto-orient/strip) |                                                              |                                                              |
